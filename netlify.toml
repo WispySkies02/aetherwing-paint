@@ -1,0 +1,25 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+[[redirects]]
+  from = "/api/paints"
+  to = "/.netlify/functions/paint-data"
+  status = 200
+
+# Paint selections live at /<paint-slug>/. Serve the app shell on a direct
+# request/reload so index.html can resolve that slug against the bundled + live
+# paint registry instead of Netlify falling through to 404.html.
+[[redirects]]
+  from = "/:slug"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "same-origin"

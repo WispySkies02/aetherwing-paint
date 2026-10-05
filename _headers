@@ -1,0 +1,27 @@
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Cache-Control: no-store, max-age=0
+
+/index.html
+  Cache-Control: no-store, max-age=0
+
+/404.html
+  Cache-Control: no-store, max-age=0
+
+/assets/*.js
+  Cache-Control: no-store, max-age=0
+
+/images/*
+  Cache-Control: public, max-age=604800
+
+/assets/anniversary-2015-v82.css
+  Cache-Control: no-store, max-age=0, must-revalidate
+
+/assets/anniversary-2015-v82.js
+  Cache-Control: no-store, max-age=0, must-revalidate
+
+/assets/main-site-shell-v82.css
+  Cache-Control: no-store, max-age=0, must-revalidate

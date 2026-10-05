@@ -1,0 +1,342 @@
+/* Aetherwing Paint Booth v76 — annual Oct. 1–7 EST. 2015 anniversary takeover. */
+html[data-anniversary-2015="true"]{
+  --ann-blue:#008fe8;
+  --ann-blue-deep:#006bb6;
+  --ann-cyan:#33b9f3;
+  --ann-teal:#00a7a0;
+  --ann-green:#5fba46;
+  --ann-navy:#041d2c;
+  --ann-navy-2:#082f43;
+  --ann-paper:#f4fbff;
+  --ann-line:#7edcff;
+}
+html[data-anniversary-2015="true"] body{background:#03131d;color:var(--ann-paper)}
+html[data-anniversary-2015="true"] body::before{background:radial-gradient(circle at 82% 12%,rgba(51,185,243,.16),transparent 29%),radial-gradient(circle at 14% 74%,rgba(0,167,160,.15),transparent 32%),linear-gradient(145deg,#041724,#082d3f 42%,#03131d 76%);opacity:1}
+html[data-anniversary-2015="true"] body::after{background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:30px 30px;mix-blend-mode:normal;opacity:.34}
+html[data-anniversary-2015="true"] .site-header{background:linear-gradient(180deg,#0b4059,#062537 70%,#041a27);border-bottom-color:var(--ann-blue);box-shadow:0 8px 0 rgba(0,0,0,.34)}
+html[data-anniversary-2015="true"] .site-header::after{width:100%;height:4px;clip-path:none;background:linear-gradient(90deg,var(--ann-blue) 0 67%,var(--ann-teal) 67% 88%,var(--ann-green) 88%)}
+html[data-anniversary-2015="true"] .brand{width:min(360px,34vw);height:72px}
+html[data-anniversary-2015="true"] .brand img{filter:drop-shadow(0 4px 7px rgba(0,0,0,.48))}
+html[data-anniversary-2015="true"] .desktop-nav>a,
+html[data-anniversary-2015="true"] .nav-group>button{color:#dff6ff}
+html[data-anniversary-2015="true"] .desktop-nav>a:hover,
+html[data-anniversary-2015="true"] .desktop-nav>a.active,
+html[data-anniversary-2015="true"] .nav-group>button:hover{background:linear-gradient(180deg,#116086,#0b3b56);color:#fff}
+html[data-anniversary-2015="true"] .desktop-nav>a.active{box-shadow:inset 0 -5px var(--ann-teal)}
+html[data-anniversary-2015="true"] .nav-group__menu,
+html[data-anniversary-2015="true"] .mobile-menu{background:linear-gradient(180deg,#0b3d57,#041b29);border-color:#60c9ef;box-shadow:7px 8px 0 rgba(0,0,0,.38)}
+html[data-anniversary-2015="true"] .nav-group__menu small{color:#87eaff}
+html[data-anniversary-2015="true"] .nav-group__menu a:hover,
+html[data-anniversary-2015="true"] .nav-group__menu a.active{background:#bcecff;color:#042238}
+.aw-anniversary-week{display:none}
+html[data-anniversary-2015="true"] .aw-anniversary-week{display:flex;position:relative;z-index:65;min-height:31px;align-items:center;justify-content:center;gap:.7rem;padding:.32rem 1rem;background:linear-gradient(90deg,#006bb6,#008fe8 52%,#00a7a0);border-bottom:1px solid rgba(255,255,255,.2);color:#fff;text-transform:uppercase;box-shadow:0 5px 16px rgba(0,0,0,.24)}
+html[data-anniversary-2015="true"] .aw-anniversary-week span,
+html[data-anniversary-2015="true"] .aw-anniversary-week small{font:900 .48rem/1 var(--font-mono);letter-spacing:.14em}
+html[data-anniversary-2015="true"] .aw-anniversary-week strong{font:900 .66rem/1 var(--font-condensed);font-style:italic;letter-spacing:.1em}
+html[data-anniversary-2015="true"] .aw-paint-facility{background:linear-gradient(180deg,#051d2a,#020b11 60%,#020608)}
+html[data-anniversary-2015="true"] .aw-paint-facility::before{background:linear-gradient(180deg,rgba(0,143,232,.07),rgba(0,0,0,.48));opacity:1}
+html[data-anniversary-2015="true"] .aw-facility-hud{background:linear-gradient(180deg,#0c425d,#062638);border-color:#247ca4;box-shadow:inset 0 1px rgba(255,255,255,.11)}
+html[data-anniversary-2015="true"] .aw-hud-brand{border-right-color:#2a718f}
+html[data-anniversary-2015="true"] .aw-hud-logo{width:min(390px,56vw);max-height:78px}
+html[data-anniversary-2015="true"] .aw-hud-brand>span{color:#8cecff}
+html[data-anniversary-2015="true"] .aw-hud-brand>strong{font-family:var(--font-condensed);font-style:italic;text-shadow:0 2px 0 #003050,4px 5px 0 rgba(0,0,0,.2)}
+html[data-anniversary-2015="true"] .aw-hud-brand>small{color:#8db6c7}
+html[data-anniversary-2015="true"] .aw-hud-metrics>div{background:linear-gradient(180deg,#0b354a,#061f2e);border-color:#276d89}
+html[data-anniversary-2015="true"] .aw-hud-metrics span{color:#76cce9}
+html[data-anniversary-2015="true"] .aw-hud-metrics strong{color:#fff}
+html[data-anniversary-2015="true"] .aw-hud-metrics .is-live strong{color:#73e9de}
+html[data-anniversary-2015="true"] .aw-garage-directory{background:#061924;border-color:#286985}
+html[data-anniversary-2015="true"] .aw-directory-list button{background:#071f2c;border-bottom-color:#16475e;color:#e8f9ff}
+html[data-anniversary-2015="true"] .aw-directory-list button:hover{background:#0a3042}
+html[data-anniversary-2015="true"] .aw-directory-list button.is-active{background:linear-gradient(90deg,color-mix(in srgb,var(--league) 14%,#073148),#07202d 70%);box-shadow:inset 0 0 30px rgba(0,143,232,.08)}
+html[data-anniversary-2015="true"] .aw-directory-list button>span,
+html[data-anniversary-2015="true"] .aw-directory-list button>div small{color:#78abc0}
+html[data-anniversary-2015="true"] .aw-rail-note{border-top-color:#286985;color:#6fa5bb}
+html[data-anniversary-2015="true"] .aw-booth-statusbar{background:linear-gradient(180deg,#0e435d,#06283a);border-color:#2e7b9c}
+html[data-anniversary-2015="true"] .aw-booth-statusbar span{color:#78dfff}
+html[data-anniversary-2015="true"] .aw-booth-signal i{background:#69dfd7;box-shadow:0 0 12px rgba(105,223,215,.8)}
+html[data-anniversary-2015="true"] .aw-scene-trigger,
+html[data-anniversary-2015="true"] .aw-export-trigger,
+html[data-anniversary-2015="true"] .aw-info-tab{background:linear-gradient(180deg,rgba(15,68,93,.96),rgba(6,37,53,.96));border-color:#4698b8;color:#f2fbff;box-shadow:inset 0 1px rgba(255,255,255,.1)}
+html[data-anniversary-2015="true"] .aw-info-tab b{background:var(--ann-blue);color:#fff}
+html[data-anniversary-2015="true"] .aw-booth-room{box-shadow:inset 0 0 0 1px rgba(92,196,235,.14)}
+html[data-anniversary-2015="true"] .aw-back-wall{background:linear-gradient(180deg,rgba(6,42,59,.3),rgba(0,0,0,.18))}
+html[data-anniversary-2015="true"] .aw-back-mark{color:#7edcff!important;opacity:.15!important}
+html[data-anniversary-2015="true"] .aw-control-bench{background:linear-gradient(180deg,#0b354a,#061d2a);border-top-color:#2e728e}
+html[data-anniversary-2015="true"] .aw-bench-label{border-right-color:#28637b}
+html[data-anniversary-2015="true"] .aw-bench-label>span{color:#76ddff}
+html[data-anniversary-2015="true"] .aw-paint-rack>button{background:#071c29;border-color:#25566c;color:#eaf8fe}
+html[data-anniversary-2015="true"] .aw-paint-rack>button.is-active{border-color:#7be4ff;box-shadow:inset 0 -3px 0 var(--ann-teal),0 0 15px rgba(0,143,232,.16)}
+html[data-anniversary-2015="true"] .aw-paint-rack>button span small{color:#6f9fb4}
+html[data-anniversary-2015="true"] .aw-nav-controls button{background:linear-gradient(180deg,#103d53,#082638);border-color:#326e87;color:#dff6ff}
+html[data-anniversary-2015="true"] .aw-nav-controls button:nth-child(2){border-color:#79e9df;color:#79e9df}
+html[data-anniversary-2015="true"] .aw-booth-info{background:rgba(4,25,36,.98);border-left-color:#35b4e8;box-shadow:-20px 0 55px rgba(0,0,0,.52)}
+html[data-anniversary-2015="true"] .aw-info-head{background:#0b3b53;border-bottom-color:#286e8b}
+html[data-anniversary-2015="true"] .aw-info-main dl,
+html[data-anniversary-2015="true"] .aw-info-main dl>div{border-color:#1f5268}
+html[data-anniversary-2015="true"] .aw-info-main dt{color:#6ba5bc}
+html[data-anniversary-2015="true"] .aw-info-actions{background:#061b27;border-top-color:#28657e}
+html[data-anniversary-2015="true"] .aw-scheme-readout{background:#04131c;border-color:#347895}
+html[data-anniversary-2015="true"] .aw-console-button{background:linear-gradient(180deg,#10445d,#082b3e);border-color:#347996}
+html[data-anniversary-2015="true"] .aw-driver-bay-overview{background:#051923;border-top-color:#247294}
+html[data-anniversary-2015="true"] .aw-overview-head>span{color:#7de8ff}
+html[data-anniversary-2015="true"] .aw-overview-grid article{background:#071e2a;border-color:#285b70}
+html[data-anniversary-2015="true"] .aw-overview-grid article header{border-bottom-color:#24546a}
+html[data-anniversary-2015="true"] .aw-overview-driver{border-bottom-color:#173f52}
+html[data-anniversary-2015="true"] .aw-paint-collection{background:#03131d}
+html[data-anniversary-2015="true"] .aw-collection-toolbar{background:rgba(4,27,39,.96);border-color:#2b7190;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+html[data-anniversary-2015="true"] .aw-scene-panel{background:linear-gradient(180deg,#0a3a52,#061c29);border-color:#5bc4eb}
+html[data-anniversary-2015="true"] .aw-scene-panel header{border-bottom-color:#2c728e}
+html[data-anniversary-2015="true"] .aw-scene-grid>button{background:#082434;border-color:#285c73;color:#edfaff}
+html[data-anniversary-2015="true"] .aw-scene-grid>button.is-active{border-color:#73e5ff;box-shadow:inset 0 -3px var(--ann-teal)}
+html[data-anniversary-2015="true"] .aw-export-sheet{background:linear-gradient(180deg,#0b3b53,#061b28);border-color:#61c9ed}
+html[data-anniversary-2015="true"] .aw-export-head{border-bottom-color:#2b708d}
+@media(max-width:980px){
+  html[data-anniversary-2015="true"] .brand{width:260px;height:62px}
+  html[data-anniversary-2015="true"] .aw-hud-logo{width:min(330px,74vw)}
+}
+@media(max-width:600px){
+  html[data-anniversary-2015="true"] .aw-anniversary-week{justify-content:flex-start;gap:.45rem;padding:.34rem .65rem;overflow:hidden;white-space:nowrap}
+  html[data-anniversary-2015="true"] .aw-anniversary-week small{display:none}
+  html[data-anniversary-2015="true"] .brand{width:215px;height:56px}
+  html[data-anniversary-2015="true"] .aw-hud-logo{max-height:62px}
+}
+
+/* v77 — match the main-site Anniversary Week identity, not merely the palette. */
+.aw-anniversary-utility,.aw-anniversary-race-link,.aw-anniversary-hud{display:none}
+html[data-anniversary-2015="true"] body{padding-bottom:38px!important;font-family:Arial,Helvetica,sans-serif!important}
+html[data-anniversary-2015="true"] .aw-anniversary-utility{display:block;border-bottom:1px solid #2d6f91;background:#05131d}
+html[data-anniversary-2015="true"] .aw-anniversary-utility__inner{height:27px;display:flex;align-items:center;gap:1.2rem;color:#78a8bd;font:800 .54rem/1 var(--font-mono);letter-spacing:.13em;text-transform:uppercase}
+html[data-anniversary-2015="true"] .aw-anniversary-utility__inner span:first-child{color:#eaf9ff}
+html[data-anniversary-2015="true"] .aw-anniversary-utility__inner span:first-child::before{content:'EST. 2015 • ANNIVERSARY WEEK  /  ';color:#9ce8ff}
+html[data-anniversary-2015="true"] .aw-anniversary-utility__inner span:nth-child(2){color:#a7d4e6}
+html[data-anniversary-2015="true"] .aw-anniversary-utility__inner a{margin-left:auto;color:#cdeeff;text-decoration:none}
+html[data-anniversary-2015="true"] .site-header{background:linear-gradient(180deg,#fff 0 7px,#0a2b40 7px 100%)!important;border-bottom:4px solid var(--ann-blue)!important;box-shadow:0 12px 26px rgba(0,0,0,.42)!important}
+html[data-anniversary-2015="true"] .site-header::after{left:0!important;right:0!important;bottom:-4px!important;width:100%!important;height:4px!important;background:linear-gradient(90deg,var(--ann-blue) 0 66%,var(--ann-teal) 66% 86%,var(--ann-green) 86% 100%)!important;clip-path:none!important}
+html[data-anniversary-2015="true"] .site-header__inner{height:86px!important;justify-content:flex-start!important}
+html[data-anniversary-2015="true"] .brand{width:auto!important;min-width:0!important;flex:0 0 min(390px,31vw)!important;height:76px!important}
+html[data-anniversary-2015="true"] .brand img{filter:drop-shadow(0 5px 8px rgba(0,0,0,.55))!important}
+html[data-anniversary-2015="true"] .desktop-nav{margin-left:auto!important;gap:.1rem!important}
+html[data-anniversary-2015="true"] .desktop-nav>a,
+html[data-anniversary-2015="true"] .nav-group>button{position:relative!important;font-family:'Arial Narrow',Arial,Helvetica,sans-serif!important;font-size:.71rem!important;font-weight:700!important;font-style:italic!important;letter-spacing:.035em!important;color:#d8ecf7!important}
+html[data-anniversary-2015="true"] .desktop-nav>a::after,
+html[data-anniversary-2015="true"] .nav-group>button::after{content:'';position:absolute;left:.75rem;right:.75rem;bottom:0;height:3px;background:linear-gradient(90deg,var(--ann-blue),var(--ann-teal));transform:scaleX(0);transform-origin:left;transition:transform .18s}
+html[data-anniversary-2015="true"] .desktop-nav>a:hover::after,
+html[data-anniversary-2015="true"] .desktop-nav>a.active::after,
+html[data-anniversary-2015="true"] .nav-group>button:hover::after{transform:scaleX(1)}
+html[data-anniversary-2015="true"] .desktop-nav>a.active{box-shadow:none!important}
+html[data-anniversary-2015="true"] .nav-group>button span{color:#75defc!important}
+html[data-anniversary-2015="true"] .nav-group__menu{border:1px solid #55bdec!important;border-top:3px solid #36b6ee!important;border-radius:0 0 6px 6px!important;transform:none!important}
+html[data-anniversary-2015="true"] .nav-group__menu small{color:#85ddff!important}
+html[data-anniversary-2015="true"] .nav-group__menu a:hover,
+html[data-anniversary-2015="true"] .nav-group__menu a.active{background:#bcecff!important;color:#042238!important}
+html[data-anniversary-2015="true"] .aw-anniversary-race-link{display:grid;flex:0 0 150px;align-content:center;align-self:stretch;margin-left:.4rem;padding:0 .75rem;border-left:1px solid #286783;border-right:1px solid #286783;background:linear-gradient(180deg,#16a4ea,#0074be);color:#fff;text-decoration:none;text-align:left;box-shadow:inset 0 1px rgba(255,255,255,.35)}
+html[data-anniversary-2015="true"] .aw-anniversary-race-link span{font:800 .48rem/1 var(--font-mono);letter-spacing:.12em;color:#dff7ff}
+html[data-anniversary-2015="true"] .aw-anniversary-race-link b{margin-top:.3rem;font:900 .68rem/1 'Arial Narrow',Arial,sans-serif;font-style:italic;letter-spacing:.03em}
+html[data-anniversary-2015="true"] .aw-anniversary-week{min-height:32px;padding:.38rem 1rem;background:linear-gradient(90deg,#006bb6,#008fe8 52%,#00a7a0)!important;border-bottom:1px solid #72d8ff!important;box-shadow:0 5px 18px rgba(0,0,0,.32)!important}
+html[data-anniversary-2015="true"] .aw-anniversary-week span,
+html[data-anniversary-2015="true"] .aw-anniversary-week small{font:900 .5rem/1 var(--font-mono)!important;letter-spacing:.14em!important}
+html[data-anniversary-2015="true"] .aw-anniversary-week strong{font:900 .68rem/1 'Arial Narrow',Arial,sans-serif!important;font-style:italic!important;letter-spacing:.1em!important}
+
+/* Mirror the main site's section chrome through the Paint Booth facility. */
+html[data-anniversary-2015="true"] .aw-facility-hud{position:relative;overflow:hidden;min-height:136px!important;padding-top:25px!important;border:0!important;border-bottom:3px solid #0a84cf!important;border-radius:6px 6px 0 0!important;background:linear-gradient(180deg,rgba(15,68,96,.96),rgba(6,31,45,.98))!important;box-shadow:inset 0 1px rgba(255,255,255,.11),0 8px 20px rgba(0,0,0,.2)!important}
+html[data-anniversary-2015="true"] .aw-facility-hud::before{content:'AETHERWING eMOTORSPORTS • EST. 2015';position:absolute;z-index:3;left:0;top:0;padding:.38rem .78rem;background:linear-gradient(90deg,#008fe8,#00a7a0);color:#fff;font:900 .49rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase}
+html[data-anniversary-2015="true"] .aw-facility-hud::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--ann-teal),var(--ann-green))}
+html[data-anniversary-2015="true"] .aw-hud-brand{border-right-color:#2d7696!important}
+html[data-anniversary-2015="true"] .aw-hud-brand::before{background:linear-gradient(var(--ann-blue),var(--ann-teal))!important;box-shadow:0 0 20px rgba(0,143,232,.28)!important}
+html[data-anniversary-2015="true"] .aw-hud-brand>span{color:#7de5ff!important;font-family:Arial,Helvetica,sans-serif!important}
+html[data-anniversary-2015="true"] .aw-hud-brand>strong{font-family:'Arial Narrow',Arial,Helvetica,sans-serif!important;font-weight:900!important;font-style:italic!important;letter-spacing:-.035em!important;text-shadow:0 2px 0 #002a46,5px 6px 0 rgba(0,0,0,.22)!important}
+html[data-anniversary-2015="true"] .aw-hud-brand>small{color:#acd6e6!important}
+html[data-anniversary-2015="true"] .aw-hud-metrics{border-left-color:#2d7696!important}
+html[data-anniversary-2015="true"] .aw-hud-metrics>div{border-right-color:#2d7696!important;background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(0,0,0,.03))!important}
+html[data-anniversary-2015="true"] .aw-hud-metrics span{color:#8fcce3!important}
+html[data-anniversary-2015="true"] .aw-hud-metrics .is-live strong{color:#79eee5!important}
+
+html[data-anniversary-2015="true"] :is(.aw-garage-directory,.aw-driver-wall,.aw-control-bench,.aw-booth-info,.aw-scene-panel,.aw-export-dialog,.aw-collection-toolbar,.aw-collection-card,.aw-overview-grid article){border-radius:7px!important;border-color:#2c779b!important;background-image:linear-gradient(180deg,rgba(16,65,88,.95),rgba(5,28,41,.97))!important;box-shadow:inset 0 1px rgba(255,255,255,.1),0 12px 28px rgba(0,0,0,.28)!important;clip-path:none!important}
+html[data-anniversary-2015="true"] :is(.aw-rail-heading,.aw-driver-wall-head,.aw-bench-label,.aw-info-head,.aw-overview-head,.aw-scene-panel header,.aw-export-head){background:linear-gradient(180deg,rgba(16,75,102,.96),rgba(7,39,56,.98))!important;border-color:#2b7898!important;box-shadow:inset 0 1px rgba(255,255,255,.08)!important}
+html[data-anniversary-2015="true"] :is(.aw-rail-heading,.aw-driver-wall-head,.aw-bench-label,.aw-overview-head)>span{color:#7de5ff!important}
+html[data-anniversary-2015="true"] :is(.aw-rail-heading,.aw-driver-wall-head,.aw-bench-label,.aw-overview-head) strong,
+html[data-anniversary-2015="true"] .aw-info-head strong,
+html[data-anniversary-2015="true"] .aw-scene-panel h2{font-family:'Arial Narrow',Arial,Helvetica,sans-serif!important;font-style:italic!important;letter-spacing:.025em!important}
+html[data-anniversary-2015="true"] .aw-directory-list button,
+html[data-anniversary-2015="true"] .aw-driver-controls button,
+html[data-anniversary-2015="true"] .aw-paint-rack>button,
+html[data-anniversary-2015="true"] .aw-scene-grid>button,
+html[data-anniversary-2015="true"] .aw-collection-filters button,
+html[data-anniversary-2015="true"] .aw-console-button,
+html[data-anniversary-2015="true"] .aw-nav-controls button{border-radius:5px!important;border:1px solid #286e90!important;background:linear-gradient(180deg,#12435a,#082c3f)!important;color:#edfaff!important;box-shadow:inset 0 1px rgba(255,255,255,.08)!important}
+html[data-anniversary-2015="true"] .aw-directory-list button:hover,
+html[data-anniversary-2015="true"] .aw-driver-controls button:hover,
+html[data-anniversary-2015="true"] .aw-paint-rack>button:hover,
+html[data-anniversary-2015="true"] .aw-scene-grid>button:hover{border-color:#63c9ef!important;background:linear-gradient(180deg,#18516b,#0a3448)!important}
+html[data-anniversary-2015="true"] .aw-directory-list button.is-active,
+html[data-anniversary-2015="true"] .aw-driver-controls button.is-active,
+html[data-anniversary-2015="true"] .aw-paint-rack>button.is-active,
+html[data-anniversary-2015="true"] .aw-scene-grid>button.is-active,
+html[data-anniversary-2015="true"] .aw-collection-filters button.is-active{border-color:#7ae1ff!important;background:linear-gradient(180deg,#13a4e9,#0076bd)!important;color:#fff!important;box-shadow:inset 0 1px rgba(255,255,255,.32),0 0 18px rgba(0,143,232,.28)!important}
+html[data-anniversary-2015="true"] .aw-collection-toolbar{top:117px!important;border-left:0!important;padding:.72rem!important}
+html[data-anniversary-2015="true"] .aw-collection-toolbar::before{content:'AETHERWING eMOTORSPORTS • EST. 2015';display:block;margin:-.72rem -.72rem .72rem;padding:.38rem .68rem;background:linear-gradient(90deg,#008fe8,#00a7a0);color:#fff;font:900 .47rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase}
+html[data-anniversary-2015="true"] .aw-collection-toolbar input{border-radius:4px!important;border-color:#347e9c!important;background:#061d2a!important;color:#fff!important}
+html[data-anniversary-2015="true"] .aw-paint-collection{background:radial-gradient(circle at 84% 12%,rgba(0,143,232,.16),transparent 28%),linear-gradient(180deg,#041724,#03131d)!important}
+html[data-anniversary-2015="true"] .aw-paint-collection .section-title{font-family:'Arial Narrow',Arial,Helvetica,sans-serif!important;font-weight:900!important;font-style:italic!important;letter-spacing:-.035em!important;text-shadow:0 2px 0 #002a46,5px 6px 0 rgba(0,0,0,.22)!important}
+html[data-anniversary-2015="true"] .aw-collection-card{border-color:#2c779b!important}
+html[data-anniversary-2015="true"] .aw-collection-card strong{font-family:'Arial Narrow',Arial,Helvetica,sans-serif!important;font-style:italic!important}
+html[data-anniversary-2015="true"] .site-footer{padding-bottom:56px!important;background:linear-gradient(180deg,#0c3b53,#04131e 44%)!important;border-top:5px solid #008fe8!important;box-shadow:inset 0 2px #00a7a0!important}
+html[data-anniversary-2015="true"] .site-footer::after{width:100%!important;height:4px!important;background:linear-gradient(90deg,#008fe8 0 66%,#00a7a0 66% 86%,#5fba46 86% 100%)!important;clip-path:none!important}
+html[data-anniversary-2015="true"] .footer-links a:hover{background:#bcecff!important;color:#042238!important}
+
+/* Same fixed Anniversary Week scorebar used by the main site. */
+html[data-anniversary-2015="true"] .aw-anniversary-hud{display:block;position:fixed;z-index:1500;inset:auto 0 0;pointer-events:none;font-family:Arial,Helvetica,sans-serif;filter:drop-shadow(0 -4px 10px rgba(0,0,0,.3))}
+html[data-anniversary-2015="true"] .aw-anniversary-hud__bug{position:absolute;right:1rem;bottom:43px;display:flex;align-items:stretch;background:#06283b;border:1px solid #4fc4ee;border-radius:5px;overflow:hidden;box-shadow:inset 0 1px rgba(255,255,255,.16),0 4px 0 rgba(0,0,0,.35)}
+html[data-anniversary-2015="true"] .aw-anniversary-hud__live{display:grid;place-items:center;padding:.48rem .55rem;background:linear-gradient(180deg,#0fa3eb,#0071b9);color:#fff;font:900 .5rem/1 var(--font-mono);letter-spacing:.12em;text-shadow:0 1px #000}
+html[data-anniversary-2015="true"] .aw-anniversary-hud__channel{display:grid;padding:.35rem .65rem .36rem;min-width:170px;background:linear-gradient(180deg,#0c405a,#06283b);color:#fff}
+html[data-anniversary-2015="true"] .aw-anniversary-hud__channel b{font-size:.62rem;line-height:1;letter-spacing:.09em}
+html[data-anniversary-2015="true"] .aw-anniversary-hud__channel small{margin-top:.18rem;color:#7ff2e8;font-size:.45rem;letter-spacing:.11em}
+html[data-anniversary-2015="true"] .aw-anniversary-hud__bar{height:38px;display:grid;grid-template-columns:auto 1fr auto;background:linear-gradient(180deg,#e8f6fc,#a9d8ea 47%,#7fbad1 49%,#bfe3ef);border-top:1px solid #f6fdff;color:#06314a;box-shadow:inset 0 1px rgba(255,255,255,.68),inset 0 -1px rgba(0,0,0,.45)}
+html[data-anniversary-2015="true"] .aw-anniversary-hud__identity{display:flex;align-items:center;gap:.55rem;padding:0 .8rem 0 .65rem;background:linear-gradient(180deg,#0b9ce5,#006eb4);color:#fff;font-weight:900;font-size:.55rem;letter-spacing:.09em;text-shadow:0 1px #000}
+html[data-anniversary-2015="true"] .aw-anniversary-hud__identity i{width:7px;height:7px;border-radius:50%;background:#65e5db;box-shadow:0 0 8px #65e5db}
+html[data-anniversary-2015="true"] .aw-anniversary-hud__ticker{display:flex;align-items:center;min-width:0;padding:0 1rem;overflow:hidden;white-space:nowrap;font-weight:900;font-size:.55rem;letter-spacing:.08em;text-transform:uppercase}
+html[data-anniversary-2015="true"] .aw-anniversary-hud__ticker span{overflow:hidden;text-overflow:ellipsis}
+html[data-anniversary-2015="true"] .aw-anniversary-hud__era{display:flex;align-items:center;padding:0 .9rem;background:linear-gradient(180deg,#079990,#05706d);border-left:1px solid #7eece5;color:#efffff;font-weight:900;font-size:.55rem;letter-spacing:.1em}
+
+@media(max-width:1180px){html[data-anniversary-2015="true"] .aw-anniversary-race-link{display:none}}
+@media(max-width:980px){
+  html[data-anniversary-2015="true"] .aw-anniversary-utility{display:none}
+  html[data-anniversary-2015="true"] .site-header__inner{height:82px!important}
+  html[data-anniversary-2015="true"] .brand{flex-basis:260px!important;height:62px!important}
+  html[data-anniversary-2015="true"] .aw-collection-toolbar{top:82px!important}
+  html[data-anniversary-2015="true"] .aw-anniversary-hud__bug{display:none}
+  html[data-anniversary-2015="true"] .aw-anniversary-hud__bar{grid-template-columns:auto 1fr}
+  html[data-anniversary-2015="true"] .aw-anniversary-hud__era{display:none}
+}
+@media(max-width:600px){
+  html[data-anniversary-2015="true"] body{padding-bottom:34px!important}
+  html[data-anniversary-2015="true"] .brand{flex-basis:215px!important;height:56px!important}
+  html[data-anniversary-2015="true"] .aw-anniversary-week{justify-content:flex-start;padding:.34rem .65rem;overflow:hidden;white-space:nowrap}
+  html[data-anniversary-2015="true"] .aw-anniversary-week small{display:none}
+  html[data-anniversary-2015="true"] .aw-facility-hud{padding-top:23px!important;border-radius:4px 4px 0 0!important}
+  html[data-anniversary-2015="true"] .aw-anniversary-hud__bar{height:34px}
+  html[data-anniversary-2015="true"] .aw-anniversary-hud__identity{padding-inline:.55rem;font-size:.46rem}
+  html[data-anniversary-2015="true"] .aw-anniversary-hud__ticker{padding-inline:.55rem;font-size:.45rem}
+  html[data-anniversary-2015="true"] .site-footer{padding-bottom:50px!important}
+}
+
+/* v79 — main-site Anniversary shell parity.
+   Port the actual Anniversary header / mobile navigation / race-strip language into Paint Booth. */
+.aw-anniversary-race-graphic,.mobile-race-link{display:none}
+html[data-anniversary-2015="true"] .site-header{
+  position:sticky!important;top:0!important;z-index:1300!important;
+  background:linear-gradient(180deg,#fff 0 7px,#0a2b40 7px 100%)!important;
+  border-bottom:4px solid var(--ann-blue)!important;
+  box-shadow:0 12px 26px rgba(0,0,0,.42)!important
+}
+html[data-anniversary-2015="true"] .site-header::before{content:''!important;position:absolute!important;inset:7px 0 4px!important;pointer-events:none!important;background:linear-gradient(90deg,transparent,rgba(255,255,255,.055),transparent)!important}
+html[data-anniversary-2015="true"] .site-header::after{left:0!important;right:0!important;bottom:-4px!important;width:100%!important;height:4px!important;background:linear-gradient(90deg,var(--ann-blue) 0 66%,var(--ann-teal) 66% 86%,var(--ann-green) 86% 100%)!important;clip-path:none!important}
+html[data-anniversary-2015="true"] .aw-anniversary-utility{display:block!important;position:relative!important;z-index:2!important;border-bottom:1px solid #2d6f91!important;background:#05131d!important}
+html[data-anniversary-2015="true"] .aw-anniversary-utility__inner{height:27px!important;display:flex!important;align-items:center!important;gap:1.2rem!important;color:#737f87!important;font:800 .54rem/1 var(--font-mono)!important;letter-spacing:.13em!important;text-transform:uppercase!important}
+html[data-anniversary-2015="true"] .aw-anniversary-utility__inner::before{content:'EST. 2015 • ANNIVERSARY WEEK'!important;color:#9ce8ff!important;white-space:nowrap!important}
+html[data-anniversary-2015="true"] .aw-anniversary-utility__inner span:first-child{color:#eaf9ff!important}
+html[data-anniversary-2015="true"] .aw-anniversary-utility__inner span:first-child::before{content:none!important}
+html[data-anniversary-2015="true"] .aw-anniversary-utility__inner span:nth-child(2){color:#aeb4b9!important}
+html[data-anniversary-2015="true"] .aw-anniversary-utility__inner a{margin-left:auto!important;color:#c9eefa!important;text-decoration:none!important}
+html[data-anniversary-2015="true"] .site-header__inner{position:relative!important;z-index:2!important;height:86px!important;display:flex!important;align-items:center!important;gap:1.5rem!important}
+html[data-anniversary-2015="true"] .brand{display:flex!important;align-items:center!important;flex:0 0 min(390px,31vw)!important;width:auto!important;min-width:0!important;height:76px!important;text-decoration:none!important}
+html[data-anniversary-2015="true"] .brand img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:left center!important;filter:drop-shadow(0 5px 8px rgba(0,0,0,.55))!important}
+html[data-anniversary-2015="true"] .desktop-nav{align-self:stretch!important;display:flex!important;align-items:stretch!important;gap:.1rem!important;margin-left:auto!important}
+html[data-anniversary-2015="true"] .desktop-nav>a,
+html[data-anniversary-2015="true"] .nav-group>button{position:relative!important;display:flex!important;align-items:center!important;gap:.45rem!important;height:100%!important;padding:0 .82rem!important;border:0!important;background:transparent!important;color:#d8ecf7!important;text-decoration:none!important;font:700 .71rem/1 'Arial Narrow',Arial,Helvetica,sans-serif!important;font-style:italic!important;letter-spacing:.035em!important;text-transform:uppercase!important}
+html[data-anniversary-2015="true"] .desktop-nav>a::after,
+html[data-anniversary-2015="true"] .nav-group>button::after{content:''!important;position:absolute!important;left:.75rem!important;right:.75rem!important;bottom:0!important;height:3px!important;background:linear-gradient(90deg,var(--ann-blue),var(--ann-teal))!important;transform:scaleX(0)!important;transform-origin:left!important;transition:transform .18s!important}
+html[data-anniversary-2015="true"] .desktop-nav>a:hover,
+html[data-anniversary-2015="true"] .desktop-nav>a.active,
+html[data-anniversary-2015="true"] .nav-group>button:hover{color:#fff!important;background:linear-gradient(180deg,#0f4c6a,#0b3248)!important;box-shadow:none!important}
+html[data-anniversary-2015="true"] .desktop-nav>a:hover::after,
+html[data-anniversary-2015="true"] .desktop-nav>a.active::after,
+html[data-anniversary-2015="true"] .nav-group>button:hover::after{transform:scaleX(1)!important}
+html[data-anniversary-2015="true"] .nav-group>button span{color:#72d8ff!important;font-size:.65rem!important}
+html[data-anniversary-2015="true"] .nav-group__menu{right:0!important;top:100%!important;width:245px!important;padding:.65rem!important;background:linear-gradient(180deg,#0d3a52,#061925)!important;border:1px solid #55bdec!important;border-top:3px solid #36b6ee!important;box-shadow:0 16px 34px rgba(0,0,0,.5)!important;transform:none!important}
+html[data-anniversary-2015="true"] .nav-group__menu small{padding:.48rem .6rem!important;color:#8fe8ff!important;font:900 .57rem/1 var(--font-mono)!important;letter-spacing:.13em!important;text-transform:uppercase!important}
+html[data-anniversary-2015="true"] .nav-group__menu a{padding:.82rem .65rem!important;border-top:1px solid #24526a!important;color:#d1e7f2!important;text-decoration:none!important;font:700 .77rem/1.1 'Arial Narrow',Arial,Helvetica,sans-serif!important;font-style:italic!important;letter-spacing:.045em!important;text-transform:uppercase!important}
+html[data-anniversary-2015="true"] .nav-group__menu a:hover,
+html[data-anniversary-2015="true"] .nav-group__menu a.active{color:#fff!important;background:linear-gradient(90deg,rgba(0,143,232,.24),transparent)!important;box-shadow:inset 3px 0 var(--ann-teal)!important}
+html[data-anniversary-2015="true"] .aw-anniversary-race-link{display:grid!important;min-width:150px!important;flex:0 0 150px!important;align-content:center!important;align-self:stretch!important;margin-left:0!important;padding:.58rem .72rem .6rem!important;border:0!important;border-left:1px solid #4b89a5!important;border-radius:0!important;background:linear-gradient(180deg,#16a4ea,#0074be)!important;color:#fff!important;text-decoration:none!important;box-shadow:none!important;text-align:left!important}
+html[data-anniversary-2015="true"] .aw-anniversary-race-link span{color:#d9f4ff!important;font:800 .48rem/1 var(--font-mono)!important;letter-spacing:.13em!important}
+html[data-anniversary-2015="true"] .aw-anniversary-race-link b{margin-top:.25rem!important;color:#fff!important;font:900 .68rem/1 'Arial Narrow',Arial,Helvetica,sans-serif!important;font-style:italic!important;letter-spacing:.06em!important}
+html[data-anniversary-2015="true"] .menu-toggle{display:none;width:48px!important;height:48px!important;border:1px solid #55bdec!important;background:linear-gradient(180deg,#123d54,#071f2d)!important;padding:9px!important;box-shadow:inset 0 1px rgba(255,255,255,.12),0 4px 0 rgba(0,0,0,.28)!important;cursor:pointer!important}
+html[data-anniversary-2015="true"] .menu-toggle span{display:block!important;height:3px!important;margin:5px 0!important;background:#fff!important;transition:.18s!important}
+html[data-anniversary-2015="true"] .menu-toggle span:first-child{background:var(--ann-blue)!important}
+html[data-anniversary-2015="true"] .menu-toggle span:last-child{background:var(--ann-teal)!important}
+html[data-anniversary-2015="true"] .mobile-scrim{position:fixed!important;z-index:1280!important;inset:117px 0 0!important;background:rgba(0,12,18,.8)!important;backdrop-filter:blur(2px)!important}
+html[data-anniversary-2015="true"] .mobile-menu{position:fixed!important;z-index:1290!important;top:117px!important;right:0!important;bottom:0!important;width:min(92vw,430px)!important;overflow:auto!important;background:
+  linear-gradient(155deg,rgba(13,58,82,.98),rgba(6,25,37,.99) 72%),
+  repeating-linear-gradient(135deg,rgba(255,255,255,.035) 0 1px,transparent 1px 18px)!important;
+  border:0!important;border-left:1px solid #55bdec!important;border-top:3px solid #36b6ee!important;box-shadow:-18px 0 44px rgba(0,0,0,.58)!important
+}
+html[data-anniversary-2015="true"] .mobile-menu__inner{padding:1.25rem!important}
+html[data-anniversary-2015="true"] .mobile-kicker{display:inline-block!important;padding:.4rem .65rem!important;background:linear-gradient(90deg,var(--ann-blue),var(--ann-teal))!important;color:#fff!important;font:900 .58rem/1 var(--font-mono)!important;letter-spacing:.13em!important;text-transform:uppercase!important;transform:none!important;box-shadow:0 3px 0 #003e67!important}
+html[data-anniversary-2015="true"] .mobile-home{display:block!important;margin:1.2rem 0!important;color:#fff!important;text-decoration:none!important;font:900 3rem/.84 'Arial Narrow',Arial,Helvetica,sans-serif!important;font-style:italic!important;text-transform:uppercase!important;text-shadow:0 2px 0 #00304c!important}
+html[data-anniversary-2015="true"] .mobile-group{border-top:1px solid #2d6b88!important}
+html[data-anniversary-2015="true"] .mobile-group__toggle{width:100%!important;min-height:58px!important;display:flex!important;justify-content:space-between!important;align-items:center!important;border:0!important;background:none!important;color:#fff!important;font:900 1.25rem/1 'Arial Narrow',Arial,Helvetica,sans-serif!important;font-style:italic!important;letter-spacing:.055em!important;text-transform:uppercase!important}
+html[data-anniversary-2015="true"] .mobile-group__toggle b{color:#64def1!important;font:400 1.7rem/1 var(--font-mono)!important}
+html[data-anniversary-2015="true"] .mobile-group__links{display:grid!important;padding:0 0 .8rem 1rem!important}
+html[data-anniversary-2015="true"] .mobile-group__links a{padding:.75rem!important;border-left:3px solid #24536a!important;color:#c5dce7!important;text-decoration:none!important;font:800 .84rem/1 'Arial Narrow',Arial,Helvetica,sans-serif!important;font-style:italic!important;text-transform:uppercase!important}
+html[data-anniversary-2015="true"] .mobile-group__links a.active,
+html[data-anniversary-2015="true"] .mobile-group__links a:hover{border-left-color:var(--ann-teal)!important;color:#fff!important;background:rgba(0,143,232,.13)!important}
+html[data-anniversary-2015="true"] .mobile-race-link{display:flex!important;justify-content:space-between!important;align-items:center!important;margin-top:1rem!important;padding:1rem!important;border:1px solid #7bd8ff!important;border-radius:4px!important;background:linear-gradient(180deg,#16a4ea,#0074be)!important;color:#fff!important;text-decoration:none!important;font:900 1rem/1 'Arial Narrow',Arial,Helvetica,sans-serif!important;font-style:italic!important;text-transform:uppercase!important;box-shadow:inset 0 1px rgba(255,255,255,.32),0 3px 0 #003e67!important}
+html[data-anniversary-2015="true"] .mobile-feature{margin-top:1rem!important;padding:1rem!important;border:1px solid #2b6f90!important;background:linear-gradient(180deg,#0b3043,#061c29)!important;transform:none!important}
+html[data-anniversary-2015="true"] .mobile-feature strong{font:900 1.4rem/.9 'Arial Narrow',Arial,Helvetica,sans-serif!important;font-style:italic!important;text-transform:uppercase!important;color:#fff!important}
+html[data-anniversary-2015="true"] .mobile-feature p{margin:.7rem 0 0!important;color:#8fc7dc!important;font:700 .68rem/1.5 var(--font-mono)!important}
+
+/* Main-site style race graphics carry the blue identity through the facility instead of stopping at the header. */
+html[data-anniversary-2015="true"] .aw-anniversary-week{position:relative!important;overflow:hidden!important;background:linear-gradient(90deg,#005f9d,#008fe8 50%,#00a7a0)!important;border:0!important;border-bottom:1px solid #72d8ff!important;box-shadow:inset 0 1px rgba(255,255,255,.28),0 7px 20px rgba(0,0,0,.3)!important}
+html[data-anniversary-2015="true"] .aw-anniversary-week::before{content:'';position:absolute;left:0;top:0;bottom:0;width:28%;background:repeating-linear-gradient(135deg,rgba(255,255,255,.12) 0 8px,rgba(255,255,255,0) 8px 18px);clip-path:polygon(0 0,100% 0,82% 100%,0 100%);pointer-events:none}
+html[data-anniversary-2015="true"] .aw-anniversary-week>*{position:relative;z-index:1}
+html[data-anniversary-2015="true"] .aw-anniversary-race-graphic{display:grid;position:relative;z-index:4;grid-template-columns:36% 12% 10% 1fr;align-items:center;height:34px;border-bottom:1px solid #226885;background:#061a26;overflow:hidden;box-shadow:0 8px 20px rgba(0,0,0,.28)}
+html[data-anniversary-2015="true"] .aw-anniversary-race-graphic i{height:100%;transform:skewX(-24deg);transform-origin:left;background:var(--ann-blue)}
+html[data-anniversary-2015="true"] .aw-anniversary-race-graphic i:nth-child(2){background:var(--ann-teal)}
+html[data-anniversary-2015="true"] .aw-anniversary-race-graphic i:nth-child(3){background:var(--ann-green)}
+html[data-anniversary-2015="true"] .aw-anniversary-race-graphic span{justify-self:end;padding-right:1rem;color:#aeeaff;font:900 .48rem/1 var(--font-mono);letter-spacing:.13em;text-transform:uppercase}
+html[data-anniversary-2015="true"] .aw-paint-facility{position:relative!important;background:
+  radial-gradient(circle at 84% 12%,rgba(0,143,232,.18),transparent 28%),
+  linear-gradient(180deg,#051d2a,#020b11 60%,#020608)!important}
+html[data-anniversary-2015="true"] .aw-paint-facility::after{content:'';position:absolute;inset:34px 0 auto;height:150px;pointer-events:none;background:linear-gradient(120deg,rgba(0,143,232,.14),transparent 32%),repeating-linear-gradient(135deg,rgba(255,255,255,.025) 0 1px,transparent 1px 18px);z-index:0}
+html[data-anniversary-2015="true"] .aw-facility-hud{position:relative!important;z-index:2!important;border:0!important;border-bottom:3px solid #0a84cf!important;border-radius:0!important;background:linear-gradient(180deg,rgba(15,68,96,.96),rgba(6,31,45,.98))!important;box-shadow:inset 0 1px rgba(255,255,255,.11),0 8px 20px rgba(0,0,0,.2)!important}
+html[data-anniversary-2015="true"] .aw-facility-hud::before{content:'AETHERWING eMOTORSPORTS • EST. 2015 • PAINT FACILITY';position:absolute!important;left:0!important;right:auto!important;top:0!important;height:auto!important;width:auto!important;padding:.34rem .68rem!important;background:linear-gradient(90deg,#008fe8,#00a7a0)!important;color:#fff!important;border:0!important;font:900 .47rem/1 var(--font-mono)!important;letter-spacing:.12em!important;text-transform:uppercase!important;box-shadow:none!important}
+html[data-anniversary-2015="true"] .aw-facility-hud::after{content:'';position:absolute;left:0;right:0;bottom:-3px;height:3px;background:linear-gradient(90deg,var(--ann-teal),var(--ann-green))}
+html[data-anniversary-2015="true"] .aw-booth-shell{position:relative!important;z-index:2!important}
+html[data-anniversary-2015="true"] :is(.aw-rail-heading,.aw-driver-wall-head,.aw-bench-label,.aw-info-head,.aw-overview-head,.aw-scene-panel header,.aw-export-head){position:relative!important;overflow:hidden!important;border-bottom:3px solid #0a84cf!important;background:linear-gradient(180deg,rgba(15,68,96,.92),rgba(6,31,45,.96))!important}
+html[data-anniversary-2015="true"] :is(.aw-rail-heading,.aw-driver-wall-head,.aw-bench-label,.aw-info-head,.aw-overview-head,.aw-scene-panel header,.aw-export-head)::after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,var(--ann-teal),var(--ann-green))}
+html[data-anniversary-2015="true"] .aw-booth-statusbar{position:relative!important;overflow:hidden!important;background:linear-gradient(90deg,#006bb6,#008fe8 54%,#0a3549)!important;border-bottom:1px solid #75d9ff!important;box-shadow:inset 0 1px rgba(255,255,255,.2)!important}
+html[data-anniversary-2015="true"] .aw-booth-statusbar::before{content:'';position:absolute;left:-24px;top:0;bottom:0;width:130px;background:repeating-linear-gradient(135deg,rgba(255,255,255,.14) 0 7px,transparent 7px 16px);transform:skewX(-20deg);pointer-events:none}
+html[data-anniversary-2015="true"] :is(.aw-scene-trigger,.aw-export-trigger,.aw-info-tab,.aw-mobile-booth-console button){border-color:#7bd8ff!important;background:linear-gradient(180deg,#16a4ea,#0074be)!important;color:#fff!important;box-shadow:inset 0 1px rgba(255,255,255,.32),0 3px 0 #003e67!important}
+html[data-anniversary-2015="true"] .aw-mobile-booth-console{background:linear-gradient(180deg,#0c3d55,#061f2d)!important;border-color:#2b7898!important}
+html[data-anniversary-2015="true"] .aw-paint-collection{position:relative!important}
+html[data-anniversary-2015="true"] .aw-paint-collection::before{content:'AETHERWING PAINT ARCHIVE  •  RACE LIVERY DATABASE  •  EST. 2015';display:block;padding:.42rem var(--gutter);background:linear-gradient(90deg,#006bb6,#008fe8 54%,#00a7a0);border-block:1px solid #72d8ff;color:#fff;font:900 .5rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 7px 18px rgba(0,0,0,.25)}
+
+@media(max-width:1180px){html[data-anniversary-2015="true"] .aw-anniversary-race-link{display:none!important}}
+@media(max-width:980px){
+  html[data-anniversary-2015="true"] .desktop-nav{display:none!important}
+  html[data-anniversary-2015="true"] .menu-toggle{display:block!important;margin-left:auto!important}
+  html[data-anniversary-2015="true"] .aw-anniversary-utility{display:block!important}
+  html[data-anniversary-2015="true"] .aw-anniversary-utility__inner span:nth-child(2){display:none!important}
+  html[data-anniversary-2015="true"] .site-header__inner{height:86px!important}
+  html[data-anniversary-2015="true"] .brand{flex-basis:240px!important;height:68px!important}
+  html[data-anniversary-2015="true"] .mobile-menu,
+  html[data-anniversary-2015="true"] .mobile-scrim{top:117px!important}
+  html[data-anniversary-2015="true"] .aw-collection-toolbar{top:117px!important}
+  html[data-anniversary-2015="true"] .aw-anniversary-race-graphic{grid-template-columns:48% 12% 10% 1fr}
+}
+@media(max-width:520px){
+  html[data-anniversary-2015="true"] .aw-anniversary-utility__inner{height:24px!important;gap:.55rem!important}
+  html[data-anniversary-2015="true"] .aw-anniversary-utility__inner::before{font-size:.46rem!important}
+  html[data-anniversary-2015="true"] .aw-anniversary-utility__inner span:first-child{display:none!important}
+  html[data-anniversary-2015="true"] .aw-anniversary-utility__inner a{font-size:.48rem!important}
+  html[data-anniversary-2015="true"] .site-header__inner{height:74px!important}
+  html[data-anniversary-2015="true"] .brand{height:62px!important;flex-basis:220px!important}
+  html[data-anniversary-2015="true"] .mobile-menu,
+  html[data-anniversary-2015="true"] .mobile-scrim{top:102px!important}
+  html[data-anniversary-2015="true"] .aw-collection-toolbar{top:102px!important}
+  html[data-anniversary-2015="true"] .aw-anniversary-race-graphic{height:28px;grid-template-columns:56% 12% 10% 1fr}
+  html[data-anniversary-2015="true"] .aw-anniversary-race-graphic span{display:none}
+  html[data-anniversary-2015="true"] .aw-paint-collection::before{font-size:.43rem;padding-inline:.7rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+}

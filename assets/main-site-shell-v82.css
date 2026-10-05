@@ -1,0 +1,265 @@
+/* Paint Booth v82 — shared aetherwing.net site shell.
+   The booth remains a separate deployment, but navigation/header/menu chrome is intentionally the same family. */
+.site-header{position:sticky!important;top:0!important;z-index:300!important;background:rgba(7,8,10,.985)!important;border-bottom:1px solid #474b50!important;box-shadow:0 14px 35px rgba(0,0,0,.42)!important}
+.site-header:after{content:''!important;position:absolute!important;left:0!important;right:0!important;bottom:-4px!important;width:auto!important;height:4px!important;background:linear-gradient(90deg,#e10600 0 36%,#f3f3f3 36% 47%,#777d83 47% 55%,#e10600 55% 71%,#4a6fff 71% 100%)!important;clip-path:none!important}
+.site-header__utility{display:block;border-bottom:1px solid #25282d;background:#030405}
+.site-header__utility-inner{height:27px;display:flex;align-items:center;gap:1.2rem;color:#737a81;font:800 .54rem/1 var(--font-mono);letter-spacing:.13em;text-transform:uppercase}
+.site-header__utility-inner span:nth-child(2){color:#aeb4b9}.site-header__utility-inner a{margin-left:auto;color:#c9cdd0;text-decoration:none}.site-header__utility-inner a:hover{color:#fff}
+.site-header__inner{height:86px!important;display:flex!important;align-items:center!important;gap:1.5rem!important;justify-content:flex-start!important}
+.brand{display:flex!important;align-items:center!important;flex:0 0 min(320px,27vw)!important;width:auto!important;min-width:0!important;height:74px!important;text-decoration:none!important}
+.brand img{width:100%!important;height:100%!important;object-fit:contain!important;object-position:left center!important;filter:drop-shadow(0 7px 7px rgba(0,0,0,.7))!important}
+.desktop-nav{align-self:stretch!important;display:flex!important;align-items:stretch!important;gap:.1rem!important;margin-left:auto!important;height:auto!important}
+.desktop-nav>a,.nav-group>button{position:relative!important;display:flex!important;align-items:center!important;gap:.45rem!important;height:100%!important;padding:0 .82rem!important;border:0!important;background:transparent!important;color:#c3c6c8!important;text-decoration:none!important;font:900 .71rem/1 var(--font-condensed)!important;font-style:italic!important;letter-spacing:.065em!important;text-transform:uppercase!important;cursor:pointer!important}
+.desktop-nav>a:after,.nav-group>button:after{content:'';position:absolute;left:.75rem;right:.75rem;bottom:0;height:3px;background:#e10600;transform:scaleX(0);transform-origin:left;transition:transform .18s}
+.desktop-nav>a:hover,.desktop-nav>a.active,.nav-group>button:hover{color:#fff!important;background:linear-gradient(180deg,transparent,rgba(255,255,255,.035))!important}
+.desktop-nav>a:hover:after,.desktop-nav>a.active:after,.nav-group>button:hover:after{transform:scaleX(1)}
+.nav-group{position:relative}.nav-group>button span{color:#e10600!important;font-size:.65rem!important}
+.nav-group__menu{position:absolute!important;right:0!important;top:100%!important;width:245px!important;padding:.65rem!important;background:linear-gradient(180deg,#17191d,#090a0c)!important;border:1px solid #555b61!important;border-top:3px solid #e10600!important;box-shadow:0 18px 42px rgba(0,0,0,.62)!important;display:none!important;transform:none!important}
+.nav-group:hover .nav-group__menu,.nav-group:focus-within .nav-group__menu{display:grid!important}.nav-group__menu small{padding:.48rem .6rem!important;color:#9ea4a9!important;font:900 .57rem/1 var(--font-mono)!important;letter-spacing:.13em!important;text-transform:uppercase!important}.nav-group__menu a{padding:.82rem .65rem!important;border-top:1px solid #292c30!important;color:#c8cbcd!important;text-decoration:none!important;font:800 .77rem/1.1 var(--font-condensed)!important;font-style:italic!important;letter-spacing:.045em!important;text-transform:uppercase!important}.nav-group__menu a:hover,.nav-group__menu a.active{color:#fff!important;background:linear-gradient(90deg,rgba(225,6,0,.17),transparent)!important;box-shadow:inset 3px 0 #e10600!important}
+.header-race-link{display:grid;min-width:150px;padding:.58rem .72rem .6rem;border-left:1px solid #454a4f;text-decoration:none}.header-race-link span{color:#8e9499;font:800 .48rem/1 var(--font-mono);letter-spacing:.13em}.header-race-link b{margin-top:.25rem;color:#fff;font:900 .68rem/1 var(--font-condensed);font-style:italic;letter-spacing:.06em}.header-race-link:hover b{color:#ff4a42}
+.menu-toggle{display:none!important;width:48px!important;height:48px!important;border:1px solid #656a6f!important;background:#121417!important;padding:9px!important;box-shadow:none!important;cursor:pointer!important}.menu-toggle span{display:block!important;height:3px!important;background:#fff!important;margin:5px 0!important;transition:.18s!important}.menu-toggle span:first-child{background:#e10600!important}.menu-toggle[aria-expanded=true] span:nth-child(1){transform:translateY(8px) rotate(45deg)!important}.menu-toggle[aria-expanded=true] span:nth-child(2){opacity:0!important}.menu-toggle[aria-expanded=true] span:nth-child(3){transform:translateY(-8px) rotate(-45deg)!important}
+.mobile-scrim[hidden],.mobile-menu[hidden]{display:none!important}.mobile-scrim{position:fixed!important;z-index:280!important;inset:117px 0 0!important;background:rgba(0,0,0,.78)!important;backdrop-filter:none!important}.mobile-menu{position:fixed!important;z-index:290!important;top:117px!important;right:0!important;bottom:0!important;width:min(92vw,430px)!important;overflow:auto!important;background:linear-gradient(155deg,#16191d,#050607 70%)!important;border:0!important;border-left:1px solid #60656a!important;box-shadow:-18px 0 44px rgba(0,0,0,.58)!important}.mobile-menu__inner{padding:1.25rem!important}.mobile-kicker{display:inline-block!important;padding:.4rem .65rem!important;background:#e10600!important;color:#fff!important;font:900 .58rem/1 var(--font-mono)!important;letter-spacing:.13em!important;text-transform:uppercase!important;transform:none!important}.mobile-home{display:block!important;margin:1.2rem 0!important;color:#fff!important;text-decoration:none!important;font:900 3rem/.84 var(--font-condensed)!important;font-style:italic!important;text-transform:uppercase!important}.mobile-group{border-top:1px solid #34383c!important}.mobile-group__toggle{width:100%!important;min-height:58px!important;display:flex!important;justify-content:space-between!important;align-items:center!important;border:0!important;background:none!important;color:#fff!important;font:900 1.25rem/1 var(--font-condensed)!important;font-style:italic!important;letter-spacing:.055em!important;text-transform:uppercase!important}.mobile-group__toggle b{color:#e10600!important;font:400 1.7rem/1 var(--font-mono)!important}.mobile-group__links{display:grid;padding:0 0 .8rem 1rem}.mobile-group__links[hidden]{display:none!important}.mobile-group__links a{padding:.75rem!important;border-left:3px solid #35393e!important;color:#bbb!important;text-decoration:none!important;font:800 .84rem/1 var(--font-condensed)!important;font-style:italic!important;text-transform:uppercase!important}.mobile-group__links a.active,.mobile-group__links a:hover{border-left-color:#e10600!important;color:#fff!important;background:rgba(225,6,0,.08)!important}.mobile-race-link{display:flex!important;justify-content:space-between!important;align-items:center!important;margin-top:1rem!important;padding:1rem!important;background:#e10600!important;color:#fff!important;text-decoration:none!important;font:900 1rem/1 var(--font-condensed)!important;font-style:italic!important;text-transform:uppercase!important}.mobile-feature{margin-top:1rem!important;padding:1rem!important;border:1px solid #40454a!important;background:#0b0d0f!important;transform:none!important}.mobile-feature strong{font:900 1.4rem/.9 var(--font-condensed)!important;font-style:italic!important;text-transform:uppercase!important}.mobile-feature p{margin:.7rem 0 0!important;color:#8f9498!important;font:700 .68rem/1.5 var(--font-mono)!important}.menu-open{overflow:hidden}
+.aw-season-banner{display:none;position:relative;z-index:70;min-height:34px;padding:.4rem 1rem;align-items:center;justify-content:center;gap:.6rem;border-bottom:1px solid #34383c;background:#0b0d10;color:#fff;text-transform:uppercase}.aw-season-banner__icon{width:.46rem;height:.46rem;background:currentColor}.aw-season-banner span{font:900 .56rem/1 var(--font-mono);letter-spacing:.14em}.aw-season-banner b{font:800 .5rem/1 var(--font-mono);letter-spacing:.09em;color:#aeb6bb}
+@media(max-width:1160px){.header-race-link{display:none!important}.brand{flex-basis:min(290px,27vw)!important}}
+@media(max-width:980px){.desktop-nav{display:none!important}.menu-toggle{display:block!important;margin-left:auto!important}.brand{flex-basis:240px!important}.site-header__utility-inner span:nth-child(2){display:none}.mobile-menu,.mobile-scrim{top:117px!important}}
+@media(max-width:520px){.site-header__utility-inner{height:24px}.site-header__utility-inner span:first-child{font-size:.48rem}.site-header__utility-inner a{font-size:.48rem}.site-header__inner{height:74px!important}.brand{height:62px!important;flex-basis:220px!important}.mobile-menu,.mobile-scrim{top:102px!important}.aw-season-banner{min-height:31px;padding:.35rem .7rem;gap:.45rem}.aw-season-banner span{font-size:.48rem}.aw-season-banner b{font-size:.43rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
+
+/* Anniversary Week parity with the main site's 2015 shell. */
+html[data-anniversary-2015="true"] body{background:#04131e!important;color:#f4fbff!important}
+html[data-anniversary-2015="true"] .site-header{background:linear-gradient(180deg,#ffffff 0 7px,#0a2b40 7px 100%)!important;border-bottom:4px solid #008fe8!important;box-shadow:0 12px 26px rgba(0,0,0,.42)!important}
+html[data-anniversary-2015="true"] .site-header:after{height:4px!important;bottom:-4px!important;background:linear-gradient(90deg,#008fe8 0 66%,#00a7a0 66% 86%,#5fba46 86% 100%)!important}
+html[data-anniversary-2015="true"] .site-header__utility{background:#05131d!important;border-bottom-color:#2d6f91!important}
+html[data-anniversary-2015="true"] .site-header__utility-inner:before{content:'EST. 2015 • ANNIVERSARY WEEK';color:#9ce8ff;font:900 .5rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase}
+html[data-anniversary-2015="true"] .site-header__utility-inner>span:first-child{color:#eaf9ff!important}
+html[data-anniversary-2015="true"] .brand{flex-basis:min(390px,31vw)!important;height:76px!important}
+html[data-anniversary-2015="true"] .brand img{filter:drop-shadow(0 5px 8px rgba(0,0,0,.55))!important}
+html[data-anniversary-2015="true"] .desktop-nav>a,html[data-anniversary-2015="true"] .nav-group>button{font-family:'Arial Narrow',Arial,Helvetica,sans-serif!important;font-weight:700!important;font-style:italic!important;letter-spacing:.035em!important;color:#d8ecf7!important}
+html[data-anniversary-2015="true"] .desktop-nav>a:hover,html[data-anniversary-2015="true"] .desktop-nav>a.active,html[data-anniversary-2015="true"] .nav-group>button:hover{background:linear-gradient(180deg,#0f4c6a,#0b3248)!important;color:#fff!important}
+html[data-anniversary-2015="true"] .desktop-nav>a:after,html[data-anniversary-2015="true"] .nav-group>button:after{background:linear-gradient(90deg,#008fe8,#00a7a0)!important}
+html[data-anniversary-2015="true"] .nav-group__menu,html[data-anniversary-2015="true"] .mobile-menu{background:linear-gradient(180deg,#0d3a52,#061925)!important;border-color:#55bdec!important;border-top-color:#36b6ee!important;box-shadow:0 16px 34px rgba(0,0,0,.5)!important}
+html[data-anniversary-2015="true"] .mobile-menu{border-left:1px solid #58c7ef!important}
+html[data-anniversary-2015="true"] .menu-toggle{border:1px solid #69737a!important;background:#10151a!important;box-shadow:none!important}
+html[data-anniversary-2015="true"] .menu-toggle span:first-child{background:#e10600!important}
+html[data-anniversary-2015="true"] .mobile-kicker{background:#e10600!important;color:#fff!important}
+html[data-anniversary-2015="true"] .mobile-group{border-top-color:#2a586d!important}
+html[data-anniversary-2015="true"] .mobile-group__toggle b{color:#e10600!important}
+html[data-anniversary-2015="true"] .mobile-group__links a{border-left-color:#24536a!important;color:#c5dce7!important}
+html[data-anniversary-2015="true"] .mobile-group__links a.active,html[data-anniversary-2015="true"] .mobile-group__links a:hover{border-left-color:#00a7a0!important;color:#fff!important;background:rgba(0,143,232,.13)!important}
+html[data-anniversary-2015="true"] .header-race-link,html[data-anniversary-2015="true"] .mobile-race-link{border-radius:4px!important;border:1px solid #7bd8ff!important;background:linear-gradient(180deg,#16a4ea,#0074be)!important;color:#fff!important;box-shadow:inset 0 1px rgba(255,255,255,.38),0 3px 0 #003e67!important;text-shadow:0 1px #004b78!important}
+html[data-anniversary-2015="true"] .mobile-feature{border-color:#2b6f90!important;background:linear-gradient(180deg,#0b3043,#061c29)!important}
+html[data-anniversary-2015="true"] .mobile-feature p{color:#8fc7dc!important}
+html[data-anniversary-2015="true"] .aw-season-banner{display:flex!important;background:linear-gradient(90deg,#005f9d,#008fe8 50%,#00a7a0)!important;border-color:#72d8ff!important;box-shadow:inset 0 1px rgba(255,255,255,.28),0 7px 20px rgba(0,0,0,.3)!important}
+html[data-anniversary-2015="true"] .aw-season-banner__icon{color:#dff8ff!important}html[data-anniversary-2015="true"] .aw-season-banner span,html[data-anniversary-2015="true"] .aw-season-banner b{color:#fff!important;text-shadow:0 1px rgba(0,0,0,.45)!important}
+
+/* Make the Paint Booth page itself flow from the same blue anniversary shell instead of dropping to black. */
+html[data-anniversary-2015="true"] .aw-paint-facility{background:radial-gradient(circle at 84% 10%,rgba(0,143,232,.20),transparent 30%),repeating-linear-gradient(135deg,rgba(255,255,255,.02) 0 1px,transparent 1px 18px),linear-gradient(150deg,#041a27 0%,#082d3f 34%,#03131d 72%,#02090d 100%)!important}
+html[data-anniversary-2015="true"] .aw-facility-hud{position:relative!important;display:grid!important;grid-template-columns:minmax(0,1.4fr) minmax(0,1fr)!important;min-height:250px!important;align-items:end!important;padding:3.2rem max(var(--gutter),calc((100vw - 1500px)/2)) 1.35rem!important;border:0!important;border-bottom:5px solid #008fe8!important;background:linear-gradient(110deg,rgba(4,25,37,.96),rgba(8,58,79,.88) 62%,rgba(3,21,31,.96))!important;box-shadow:inset 0 -4px #00a7a0,0 16px 35px rgba(0,0,0,.25)!important;overflow:hidden!important}
+html[data-anniversary-2015="true"] .aw-facility-hud:before{content:'AETHERWING eMOTORSPORTS / PAINT FACILITY';position:absolute!important;left:max(var(--gutter),calc((100vw - 1500px)/2))!important;top:2rem!important;width:auto!important;height:auto!important;padding:0!important;background:none!important;color:#7de5ff!important;border:0!important;font:900 .64rem/1 var(--font-mono)!important;letter-spacing:.15em!important;text-transform:uppercase!important}
+html[data-anniversary-2015="true"] .aw-facility-hud:after{content:'';position:absolute;left:0;right:0;bottom:0;height:5px;background:linear-gradient(90deg,#008fe8 0 68%,#00a7a0 68% 88%,#5fba46 88%)}
+html[data-anniversary-2015="true"] .aw-hud-brand{align-self:end!important;padding:0!important}.aw-hud-brand img{transition:opacity .18s}
+html[data-anniversary-2015="true"] .aw-hud-brand .aw-hud-logo{display:none!important}
+html[data-anniversary-2015="true"] .aw-hud-brand>span{display:block!important;color:#9ee9ff!important;font:900 .65rem/1 var(--font-mono)!important;letter-spacing:.14em!important}
+html[data-anniversary-2015="true"] .aw-hud-brand>strong{display:block!important;margin:.55rem 0 .6rem!important;color:#f5fbff!important;font:900 clamp(3.3rem,7vw,7rem)/.78 'Arial Narrow',Arial,Helvetica,sans-serif!important;font-style:italic!important;letter-spacing:-.04em!important;text-shadow:0 2px 0 #002a46,7px 8px 0 rgba(0,0,0,.2)!important}
+html[data-anniversary-2015="true"] .aw-hud-brand>small{display:block!important;max-width:720px!important;color:#c4dbe6!important;font:800 .64rem/1.45 var(--font-mono)!important;letter-spacing:.09em!important}
+html[data-anniversary-2015="true"] .aw-hud-metrics{align-self:end!important;background:rgba(3,22,32,.72)!important;border:1px solid #27799d!important;box-shadow:inset 5px 0 #00a7a0!important}
+html[data-anniversary-2015="true"] .aw-hud-metrics>div{border-color:#245d76!important}html[data-anniversary-2015="true"] .aw-hud-metrics span{color:#93cde3!important}html[data-anniversary-2015="true"] .aw-hud-metrics strong{color:#fff!important}html[data-anniversary-2015="true"] .aw-hud-metrics .is-live strong{color:#74f0a0!important}
+html[data-anniversary-2015="true"] .aw-booth-statusbar{background:linear-gradient(90deg,#006bb6,#008fe8 54%,#0a3549)!important;border-bottom:1px solid #75d9ff!important;box-shadow:inset 0 1px rgba(255,255,255,.2)!important}
+html[data-anniversary-2015="true"] .aw-booth-statusbar:before{content:'';position:absolute;left:-24px;top:0;bottom:0;width:130px;background:repeating-linear-gradient(135deg,rgba(255,255,255,.14) 0 7px,transparent 7px 16px);transform:skewX(-20deg);pointer-events:none}
+html[data-anniversary-2015="true"] .aw-booth-shell{border-top:0!important}
+html[data-anniversary-2015="true"] :is(.aw-garage-directory,.aw-driver-wall,.aw-control-bench,.aw-booth-info,.aw-paint-collection){border-color:#245f79!important}
+html[data-anniversary-2015="true"] :is(.aw-rail-heading,.aw-driver-wall-head,.aw-bench-label,.aw-info-head,.aw-overview-head,.aw-scene-panel header,.aw-export-head){border-bottom:3px solid #0a84cf!important;background:linear-gradient(180deg,rgba(15,68,96,.96),rgba(6,31,45,.98))!important}
+html[data-anniversary-2015="true"] :is(.aw-rail-heading,.aw-driver-wall-head,.aw-bench-label,.aw-info-head,.aw-overview-head,.aw-scene-panel header,.aw-export-head):after{content:'';position:absolute;left:0;right:0;bottom:0;height:3px;background:linear-gradient(90deg,#00a7a0,#5fba46)}
+html[data-anniversary-2015="true"] :is(.aw-scene-trigger,.aw-export-trigger,.aw-info-tab,.aw-mobile-booth-console button){border-color:#7bd8ff!important;background:linear-gradient(180deg,#16a4ea,#0074be)!important;color:#fff!important;box-shadow:inset 0 1px rgba(255,255,255,.32),0 3px 0 #003e67!important}
+html[data-anniversary-2015="true"] .aw-paint-collection:before{content:'AETHERWING PAINT ARCHIVE  •  RACE LIVERY DATABASE  •  EST. 2015';display:block;padding:.42rem var(--gutter);background:linear-gradient(90deg,#006bb6,#008fe8 54%,#00a7a0);border-block:1px solid #72d8ff;color:#fff;font:900 .5rem/1 var(--font-mono);letter-spacing:.12em;text-transform:uppercase;box-shadow:0 7px 18px rgba(0,0,0,.25)}
+html[data-anniversary-2015="true"] .site-footer{background:linear-gradient(180deg,#0c3b53,#04131e 44%)!important;border-top:5px solid #008fe8!important;box-shadow:inset 0 2px #00a7a0!important}
+@media(max-width:980px){html[data-anniversary-2015="true"] .site-header__utility-inner:before{display:none}html[data-anniversary-2015="true"] .brand{flex-basis:240px!important;height:68px!important}html[data-anniversary-2015="true"] .aw-facility-hud{grid-template-columns:1fr!important;min-height:0!important;padding:3.4rem var(--gutter) 1.2rem!important;gap:1.2rem!important}.aw-hud-metrics{width:100%!important}}
+@media(max-width:520px){html[data-anniversary-2015="true"] .brand{height:62px!important;flex-basis:220px!important}html[data-anniversary-2015="true"] .aw-facility-hud{padding-top:3rem!important}html[data-anniversary-2015="true"] .aw-facility-hud:before{left:var(--gutter)!important;top:1.35rem!important;font-size:.53rem!important}html[data-anniversary-2015="true"] .aw-hud-brand>strong{font-size:clamp(3.2rem,16vw,5rem)!important}html[data-anniversary-2015="true"] .aw-hud-brand>small{font-size:.52rem!important}.aw-season-banner b{max-width:58vw}}
+html[data-anniversary-2015="true"] .site-header__utility-inner:before{background:#e10600!important;color:#fff!important;padding:.2rem .45rem!important;margin-right:.15rem!important;box-shadow:inset 0 1px rgba(255,255,255,.22)!important}
+@media(max-width:980px){html[data-anniversary-2015="true"] .site-header__utility-inner:before{display:none!important}}
+
+/* v82 — Anniversary Week blue-flow parity.
+   The main site reads as a full blue/teal environment during the 2015 throwback.
+   Paint Booth should match that shell instead of feeling like a blackout app with blue trim.
+   Keep the actual render bay neutral enough for paint accuracy. */
+html[data-anniversary-2015="true"] body{
+  background:#06283a!important;
+}
+html[data-anniversary-2015="true"] body::before{
+  background:
+    radial-gradient(circle at 82% 11%,rgba(51,185,243,.28),transparent 29%),
+    radial-gradient(circle at 12% 77%,rgba(0,167,160,.18),transparent 32%),
+    repeating-linear-gradient(135deg,rgba(255,255,255,.024) 0 1px,transparent 1px 18px),
+    linear-gradient(150deg,#0a425b 0%,#08354c 35%,#06283a 68%,#041b29 100%)!important;
+  opacity:1!important;
+}
+html[data-anniversary-2015="true"] body::after{
+  background:linear-gradient(180deg,rgba(1,20,31,.04),rgba(2,15,23,.28))!important;
+  opacity:1!important;
+}
+
+/* Header and race stripe: visually match the main-site Anniversary shell. */
+html[data-anniversary-2015="true"] .site-header{
+  background:linear-gradient(180deg,#0e4963 0%,#0b3c55 56%,#082d42 100%)!important;
+  border-bottom:4px solid #008fe8!important;
+  box-shadow:0 12px 26px rgba(0,0,0,.30)!important;
+}
+html[data-anniversary-2015="true"] .site-header::before{
+  content:''!important;position:absolute!important;inset:0!important;pointer-events:none!important;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.055),transparent)!important;
+}
+html[data-anniversary-2015="true"] .site-header::after{
+  background:linear-gradient(90deg,#008fe8 0 66%,#00a7a0 66% 86%,#5fba46 86% 100%)!important;
+  height:5px!important;bottom:-5px!important;
+}
+html[data-anniversary-2015="true"] .site-header__utility{
+  background:#082739!important;border-bottom-color:#307da0!important;
+}
+html[data-anniversary-2015="true"] .site-header__utility-inner{
+  color:#9cc8da!important;
+}
+html[data-anniversary-2015="true"] .site-header__utility-inner a{color:#e8fbff!important}
+html[data-anniversary-2015="true"] .menu-toggle{
+  background:#0a1720!important;border-color:#6c8795!important;box-shadow:none!important;
+}
+html[data-anniversary-2015="true"] .menu-toggle span{background:#fff!important}
+html[data-anniversary-2015="true"] .menu-toggle span:first-child{background:#e10600!important}
+
+/* Mobile drawer: blue 2015 site shell, not blackout. */
+html[data-anniversary-2015="true"] .mobile-scrim{
+  background:rgba(2,18,28,.64)!important;backdrop-filter:blur(2px)!important;
+}
+html[data-anniversary-2015="true"] .mobile-menu{
+  background:
+    radial-gradient(circle at 82% 8%,rgba(0,143,232,.18),transparent 31%),
+    linear-gradient(160deg,#104d68 0%,#0b3e58 35%,#073149 67%,#052536 100%)!important;
+  border-left:1px solid #69d4f7!important;
+  border-top:1px solid #69d4f7!important;
+  box-shadow:-14px 0 38px rgba(0,0,0,.38)!important;
+}
+html[data-anniversary-2015="true"] .mobile-menu__inner{
+  background:linear-gradient(180deg,rgba(255,255,255,.018),transparent 24%)!important;
+}
+html[data-anniversary-2015="true"] .mobile-kicker{
+  background:#e10600!important;color:#fff!important;box-shadow:inset 0 1px rgba(255,255,255,.18)!important;
+}
+html[data-anniversary-2015="true"] .mobile-home{color:#fff!important;text-shadow:0 3px 0 rgba(0,0,0,.22)!important}
+html[data-anniversary-2015="true"] .mobile-group{border-top-color:rgba(134,216,247,.22)!important}
+html[data-anniversary-2015="true"] .mobile-group__toggle{color:#fff!important}
+html[data-anniversary-2015="true"] .mobile-group__toggle b{color:#e10600!important}
+html[data-anniversary-2015="true"] .mobile-group__links{border-left-color:transparent!important}
+html[data-anniversary-2015="true"] .mobile-group__links a{
+  border-left-color:#31789a!important;color:#cfe9f4!important;background:transparent!important;
+}
+html[data-anniversary-2015="true"] .mobile-group__links a.active,
+html[data-anniversary-2015="true"] .mobile-group__links a:hover{
+  border-left-color:#00a7a0!important;color:#fff!important;
+  background:linear-gradient(90deg,rgba(0,143,232,.18),rgba(0,167,160,.05))!important;
+}
+html[data-anniversary-2015="true"] .mobile-race-link{
+  background:linear-gradient(180deg,#19a7ea,#0075be)!important;
+  border:1px solid #86e2ff!important;color:#fff!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.35),0 3px 0 #00446e!important;
+}
+html[data-anniversary-2015="true"] .mobile-feature{
+  background:linear-gradient(180deg,#0d425b,#082b3e)!important;
+  border-color:#397f9e!important;color:#fff!important;
+}
+html[data-anniversary-2015="true"] .mobile-feature p{color:#acd5e5!important}
+
+/* Anniversary banner should visually bridge the header into the facility. */
+html[data-anniversary-2015="true"] .aw-season-banner{
+  background:linear-gradient(90deg,#0875b5 0%,#009de8 52%,#00a7a0 84%,#5fba46 100%)!important;
+  border-top:1px solid rgba(255,255,255,.20)!important;
+  border-bottom:1px solid #8be5ff!important;
+  box-shadow:inset 0 1px rgba(255,255,255,.24),0 7px 18px rgba(0,0,0,.18)!important;
+}
+
+/* Facility and archive become the same blue environment as the main site. */
+html[data-anniversary-2015="true"] .aw-paint-facility{
+  background:
+    radial-gradient(circle at 88% 9%,rgba(0,143,232,.22),transparent 30%),
+    radial-gradient(circle at 11% 61%,rgba(0,167,160,.12),transparent 33%),
+    repeating-linear-gradient(135deg,rgba(255,255,255,.02) 0 1px,transparent 1px 18px),
+    linear-gradient(155deg,#0b4059 0%,#09354d 31%,#072a3e 60%,#051f30 100%)!important;
+}
+html[data-anniversary-2015="true"] .aw-facility-hud{
+  background:linear-gradient(112deg,rgba(12,70,95,.98),rgba(8,54,76,.95) 58%,rgba(6,39,56,.98))!important;
+  border-bottom-color:#20a8e8!important;
+  box-shadow:inset 0 -4px #00a7a0,0 16px 30px rgba(0,0,0,.18)!important;
+}
+html[data-anniversary-2015="true"] .aw-facility-hud::after{
+  background:linear-gradient(90deg,#008fe8 0 68%,#00a7a0 68% 88%,#5fba46 88%)!important;
+}
+html[data-anniversary-2015="true"] .aw-hud-metrics{
+  background:linear-gradient(180deg,rgba(12,66,90,.92),rgba(7,43,61,.94))!important;
+  border-color:#3889aa!important;
+}
+html[data-anniversary-2015="true"] .aw-hud-metrics>div{background:transparent!important;border-color:#2d708d!important}
+html[data-anniversary-2015="true"] .aw-booth-statusbar{
+  background:linear-gradient(90deg,#0c6dab,#008fe8 52%,#0b536c)!important;
+}
+
+/* Blue outer facility shell; the stage itself remains neutral/dark for accurate paint viewing. */
+html[data-anniversary-2015="true"] .aw-booth-shell{
+  background:linear-gradient(180deg,#0a3449,#072637)!important;
+  border-color:#2f7896!important;
+}
+html[data-anniversary-2015="true"] .aw-garage-directory,
+html[data-anniversary-2015="true"] .aw-driver-wall,
+html[data-anniversary-2015="true"] .aw-control-bench,
+html[data-anniversary-2015="true"] .aw-driver-bay-overview,
+html[data-anniversary-2015="true"] .aw-paint-collection,
+html[data-anniversary-2015="true"] .aw-collection-toolbar{
+  background:linear-gradient(180deg,#0b354b,#072637)!important;
+  border-color:#337b99!important;
+}
+html[data-anniversary-2015="true"] .aw-directory-list button,
+html[data-anniversary-2015="true"] .aw-overview-grid article,
+html[data-anniversary-2015="true"] .aw-paint-rack>button,
+html[data-anniversary-2015="true"] .aw-scene-grid>button{
+  background:linear-gradient(180deg,#0c3a50,#082a3c)!important;
+  border-color:#2d6f8a!important;
+}
+html[data-anniversary-2015="true"] .aw-directory-list button:hover,
+html[data-anniversary-2015="true"] .aw-directory-list button.is-active,
+html[data-anniversary-2015="true"] .aw-paint-rack>button.is-active,
+html[data-anniversary-2015="true"] .aw-scene-grid>button.is-active{
+  background:linear-gradient(180deg,#10506c,#0a354b)!important;
+  border-color:#6edbff!important;
+}
+html[data-anniversary-2015="true"] .aw-control-bench{
+  box-shadow:inset 0 4px #008fe8,inset 0 7px #00a7a0!important;
+}
+html[data-anniversary-2015="true"] .aw-paint-collection{
+  background:
+    repeating-linear-gradient(135deg,rgba(255,255,255,.018) 0 1px,transparent 1px 20px),
+    linear-gradient(180deg,#0a3a51,#062334)!important;
+}
+html[data-anniversary-2015="true"] .aw-collection-toolbar{
+  background:linear-gradient(180deg,#0d425a,#082d40)!important;
+  box-shadow:0 10px 26px rgba(0,0,0,.18)!important;
+}
+html[data-anniversary-2015="true"] .aw-paint-collection::before{
+  background:linear-gradient(90deg,#0a71ad,#009de8 55%,#00a7a0 86%,#5fba46)!important;
+}
+html[data-anniversary-2015="true"] .site-footer{
+  background:linear-gradient(180deg,#0c4059,#06283a 46%,#041a27)!important;
+  border-top-color:#19a8ea!important;
+}
+
+/* Neutral render bay: preserve scheme/color fidelity, but frame it with Aetherwing blue. */
+html[data-anniversary-2015="true"] .aw-booth-room{
+  background-color:#090b0d!important;
+  box-shadow:inset 0 0 0 1px rgba(94,205,246,.20),inset 0 0 80px rgba(0,0,0,.26)!important;
+}
+html[data-anniversary-2015="true"] .aw-back-wall{
+  background:linear-gradient(180deg,rgba(10,25,33,.26),rgba(0,0,0,.20))!important;
+}
+
+@media(max-width:600px){
+  html[data-anniversary-2015="true"] .mobile-menu{width:min(92vw,430px)!important}
+  html[data-anniversary-2015="true"] .aw-paint-facility{
+    background:linear-gradient(165deg,#0b4059 0%,#08344a 38%,#06283a 72%,#041b29 100%)!important;
+  }
+  html[data-anniversary-2015="true"] .aw-booth-shell{background:#07283a!important}
+}

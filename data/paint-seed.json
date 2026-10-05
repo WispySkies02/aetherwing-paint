@@ -1,0 +1,863 @@
+{
+  "paints": [
+    {
+      "slug": "d1-ironmouse",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "nrrs"
+      ],
+      "number": "32",
+      "sponsor": "Ironmouse",
+      "manufacturer": "Toyota",
+      "body": "BBR D1 Toyota",
+      "schemeId": "128147637923875",
+      "image": "https://i.ibb.co/PGDhkw2B/ironmouse-D1.png",
+      "special": [
+        "prized"
+      ],
+      "note": "Hailey's prized NRRS / UARL D1 car."
+    },
+    {
+      "slug": "d1-home-depot",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "nrrs"
+      ],
+      "number": "20",
+      "sponsor": "Home Depot / RIDGID Camry",
+      "manufacturer": "Toyota",
+      "body": "BBR D1 Toyota",
+      "schemeId": "135363294132228",
+      "image": "https://i.ibb.co/kbKx0CN/20-Home-Depot-Pepsi400-v1.png",
+      "special": [],
+      "note": "Special #20 Home Depot scheme for the NRRS Season 3 Pepsi 400."
+    },
+    {
+      "slug": "nrrs-ridgid-home-depot-1999",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "nrrs"
+      ],
+      "number": "32",
+      "sponsor": "RIDGID/Home Depot (1999)",
+      "manufacturer": "Toyota",
+      "body": "BBR D1 Toyota",
+      "schemeId": "88053933729419",
+      "image": "https://i.ibb.co/qL6dcnTf/Stewart-Ridgid-1999-Throwback-v3.png",
+      "special": [
+        "throwback"
+      ],
+      "note": "Throwback to Tony Stewart’s primary Pontiac for Joe Gibbs Racing from 1999–2001."
+    },
+    {
+      "slug": "d1-ghost-merica",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "nrrs"
+      ],
+      "number": "32",
+      "sponsor": "Ghost Energy 'Merica Pop",
+      "manufacturer": "Toyota",
+      "body": "BBR D1 Toyota",
+      "schemeId": "106675835845945",
+      "image": "https://i.ibb.co/s9sGdy3s/Ghost-Merica-Pop-Toyota.png",
+      "special": [
+        "patriotic"
+      ]
+    },
+    {
+      "slug": "d1-columbia",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "nrrs"
+      ],
+      "number": "32",
+      "sponsor": "Columbia Sportswear",
+      "manufacturer": "Toyota",
+      "body": "BBR D1 Toyota",
+      "schemeId": "77041730790428",
+      "image": "https://i.ibb.co/Fb9kVxbv/Wispy-23-XI-Pet-Smart.png",
+      "special": [
+        "concept"
+      ],
+      "note": "IRL Concept — imagined as a Columbia Sportswear entry for 23XI Racing, blending Aetherwing’s livery style with a real-world NASCAR presentation."
+    },
+    {
+      "slug": "d1-friskies",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "nrrs"
+      ],
+      "number": "32",
+      "sponsor": "Friskies Party Pack'd",
+      "manufacturer": "Toyota",
+      "body": "BBR D1 Toyota",
+      "schemeId": "121812441355064",
+      "image": "https://i.ibb.co/LXJRB3Z4/Friskies-Party-Packd-NG.png",
+      "special": []
+    },
+    {
+      "slug": "d1-xfinity-mobile",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "nrrs"
+      ],
+      "number": "32",
+      "sponsor": "Xfinity Mobile",
+      "manufacturer": "Toyota",
+      "body": "BBR D1 Toyota",
+      "schemeId": "124576944916357",
+      "image": "https://i.ibb.co/ccJpRpTq/Wispy-Xfinity-Mobile.png",
+      "special": []
+    },
+    {
+      "slug": "d1-hardees",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "nrrs"
+      ],
+      "number": "32",
+      "sponsor": "Hardee's",
+      "manufacturer": "Toyota",
+      "body": "BBR D1 Toyota",
+      "schemeId": "130704640741912",
+      "image": "https://i.ibb.co/FbL4Ny7X/Wispy-Hardees.png",
+      "special": []
+    },
+    {
+      "slug": "d1-chumba",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "nrrs"
+      ],
+      "number": "32",
+      "sponsor": "Chumba Casino",
+      "manufacturer": "Toyota",
+      "body": "BBR D1 Toyota",
+      "schemeId": "86023205741921",
+      "image": "https://i.ibb.co/FbKD7bwS/Chumba-Colored.png",
+      "special": []
+    },
+    {
+      "slug": "d1-pokemon-30th-anniversary-tcg",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "nrrs"
+      ],
+      "number": "32",
+      "sponsor": "Pokemon 30th Anniversary TCG",
+      "manufacturer": "Toyota",
+      "body": "BBR D1 Toyota",
+      "schemeId": "73989394735008",
+      "image": "https://i.ibb.co/XfdtNDxd/Pokemon-30th-TCG.png",
+      "special": [],
+      "specialBadgeIcon": "https://i.ibb.co/qL1KRxtH/800px-30th-Anniversary-logo.png"
+    },
+    {
+      "slug": "d1-mobil1",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "uarl-d1"
+      ],
+      "number": "32",
+      "sponsor": "Mobil 1 Patriotic",
+      "manufacturer": "Cadillac",
+      "body": "Season 5 UARL D1 Cadillac configuration",
+      "schemeId": "80388136200704",
+      "image": "https://i.ibb.co/67vf1swF/Mobil1-Cadillac.png",
+      "special": [
+        "patriotic",
+        "legacy"
+      ],
+      "note": "Historical UARL D1 #32 Cadillac configuration from the Season 5 Texas race. Preserved as raced; the current UARL D1 program uses Toyota.",
+      "historical": true
+    },
+    {
+      "slug": "kmart-petsmart",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "kmart"
+      ],
+      "number": "15",
+      "sponsor": "PetSmart",
+      "manufacturer": "Dodge",
+      "body": "BBR D2 Chevy",
+      "schemeId": "131767216319268",
+      "image": "https://i.ibb.co/Z1kQH6HT/Kmart-Pet-Smart-Dodge.png",
+      "special": [
+        "starclutch"
+      ]
+    },
+    {
+      "slug": "kmart-petsmart-patriotic",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "kmart"
+      ],
+      "number": "15",
+      "sponsor": "PetSmart Patriotic",
+      "manufacturer": "Dodge",
+      "body": "BBR D2 Chevy",
+      "schemeId": "91508267834494",
+      "image": "https://i.ibb.co/Kz2KnHrc/Kmart-Pet-Smart-Patriotic-v2.png",
+      "special": [
+        "patriotic",
+        "starclutch"
+      ]
+    },
+    {
+      "slug": "kmart-ghost-peaches",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "kmart"
+      ],
+      "number": "15",
+      "sponsor": "Ghost Energy Peaches",
+      "manufacturer": "Dodge",
+      "body": "BBR D2 Chevy",
+      "schemeId": "132155153737834",
+      "image": "https://i.ibb.co/Ngcpz1vF/Ghost-Peaches-D2.png",
+      "special": [
+        "starclutch"
+      ]
+    },
+    {
+      "slug": "kmart-2005-home-depot",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "kmart"
+      ],
+      "number": "15",
+      "sponsor": "2005 Home Depot",
+      "manufacturer": "Dodge",
+      "body": "BBR D2 Chevy",
+      "schemeId": "77315638051491",
+      "image": "https://i.ibb.co/8nj6bS1N/Home-Depot-Kmart.png",
+      "special": [
+        "throwback",
+        "starclutch"
+      ],
+      "note": "Throwback to Tony Stewart’s 2005 Cup Series scheme."
+    },
+    {
+      "slug": "kmart-clutch-sinder",
+      "driver": "Clutch",
+      "username": "@Mj_fan088",
+      "leagues": [
+        "kmart"
+      ],
+      "number": "29",
+      "sponsor": "Sinder Dodge",
+      "manufacturer": "Dodge",
+      "body": "BBR D2 Chevy",
+      "schemeId": "132350921119875",
+      "image": "https://i.ibb.co/zV26LQkF/Clutch-Kmart-Sinder.png",
+      "special": [
+        "starclutch"
+      ]
+    },
+    {
+      "slug": "d2-mobil1-toyota-supra",
+      "driver": "Wispy",
+      "username": "@Aokikoto",
+      "leagues": [
+        "uarl-d2"
+      ],
+      "number": "62",
+      "sponsor": "Mobil 1 Toyota Supra",
+      "manufacturer": "Toyota",
+      "body": "NXS20 Toyota Supra",
+      "schemeId": "112002575307440",
+      "image": "/images/paints/mobil1-62-d2-toyota-supra.png",
+      "special": [],
+      "note": "Historical UARL D2 #62 Mobil 1 Toyota Supra. UARL D2 closed September 15, 2026; this livery is preserved in the historical archive.",
+      "historical": true,
+      "programStatus": "closed-archive"
+    },
+    {
+      "slug": "open-ghost-strawberry-watermelon",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "uarl-open"
+      ],
+      "number": "28",
+      "sponsor": "Ghost Energy Strawberry Watermelon",
+      "manufacturer": "Toyota",
+      "body": "BBR Late Model Toyota",
+      "schemeId": "80179635555676",
+      "image": "https://i.ibb.co/LzqZ07d1/BBR-Late-Model-Ghost-Strawberry-Watermelon.png",
+      "special": []
+    },
+    {
+      "slug": "truck-ghost-warped",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "sunoco-truck"
+      ],
+      "number": "54",
+      "sponsor": "Ghost Energy x Vans Warped Tour",
+      "manufacturer": "RAM",
+      "body": "CWS15 RAM",
+      "schemeId": "89210784708745",
+      "image": "https://i.ibb.co/LDs91FwQ/Wispy-Ghost-Warped-Tour-Truck.png",
+      "special": [
+        "starclutch"
+      ]
+    },
+    {
+      "slug": "truck-petsmart-patriotic",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "sunoco-truck"
+      ],
+      "number": "54",
+      "sponsor": "PetSmart Patriotic (Kyle Busch 2026 Tribute)",
+      "manufacturer": "RAM",
+      "body": "CWS15 RAM",
+      "schemeId": "87731880196417",
+      "image": "https://i.ibb.co/3mn1gnfn/Pet-Smart-Patriotic-Truck.png",
+      "special": [
+        "patriotic",
+        "tribute",
+        "starclutch"
+      ]
+    },
+    {
+      "slug": "truck-heatwave",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "sunoco-truck"
+      ],
+      "number": "54",
+      "sponsor": "Heatwave Visual (Squirrel McNutt)",
+      "manufacturer": "RAM",
+      "body": "CWS15 RAM",
+      "schemeId": "121545969084847",
+      "image": "https://i.ibb.co/8LBQRjZS/Left-Side.png",
+      "special": [
+        "starclutch",
+        "racewinner"
+      ],
+      "note": "Race Winner — won at Rockingham on May 2, 2026."
+    },
+    {
+      "slug": "truck-mopar-starclutch-racing",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "sunoco-truck"
+      ],
+      "number": "54",
+      "sponsor": "Mopar / StarClutch Racing",
+      "manufacturer": "RAM",
+      "body": "CWS15 RAM",
+      "schemeId": "101804322425759",
+      "image": "https://i.ibb.co/zhDzKvt1/SCR-Mopar-RAM-2.png",
+      "special": [
+        "starclutch"
+      ]
+    },
+    {
+      "slug": "iracing-ghost-sour-patch-red-berry",
+      "driver": "Hailey Bell",
+      "username": "",
+      "leagues": [
+        "iracing"
+      ],
+      "number": "28",
+      "sponsor": "Ghost Energy Sour Patch Kids Red Berry",
+      "manufacturer": "Toyota",
+      "body": "NASCAR Cup Series Next-Gen Toyota Camry",
+      "schemeId": "",
+      "image": "https://i.ibb.co/zhsFPj6J/i-Racing-com-Simulator-10-22-2024-9-39-27-PM.png",
+      "special": []
+    },
+    {
+      "slug": "iracing-petsmart",
+      "driver": "Hailey Bell",
+      "username": "",
+      "leagues": [
+        "iracing"
+      ],
+      "number": "28",
+      "sponsor": "PetSmart",
+      "manufacturer": "Toyota",
+      "body": "NASCAR Cup Series Next-Gen Toyota Camry",
+      "schemeId": "",
+      "image": "https://i.ibb.co/FLSRXYXS/i-Racing-com-Simulator-3-25-2024-3-36-49-PM.png",
+      "special": []
+    },
+    {
+      "slug": "iracing-petsmart-charities",
+      "driver": "Hailey Bell",
+      "username": "",
+      "leagues": [
+        "iracing"
+      ],
+      "number": "28",
+      "sponsor": "PetSmart Charities",
+      "manufacturer": "Toyota",
+      "body": "NASCAR Cup Series Next-Gen Toyota Camry",
+      "schemeId": "",
+      "image": "https://i.ibb.co/HLLdvKXF/i-Racing-com-Simulator-3-27-2024-5-00-14-PM.png",
+      "special": []
+    },
+    {
+      "slug": "iracing-microsoft",
+      "driver": "Hailey Bell",
+      "username": "",
+      "leagues": [
+        "iracing"
+      ],
+      "number": "28",
+      "sponsor": "Microsoft",
+      "manufacturer": "Toyota",
+      "body": "NASCAR Cup Series Next-Gen Toyota Camry",
+      "schemeId": "",
+      "image": "https://i.ibb.co/b5sFLKMn/i-Racing-com-Simulator-2-24-2024-4-55-27-PM.png",
+      "special": []
+    },
+    {
+      "slug": "iracing-logitech",
+      "driver": "Hailey Bell",
+      "username": "",
+      "leagues": [
+        "iracing"
+      ],
+      "number": "28",
+      "sponsor": "Logitech",
+      "manufacturer": "Toyota",
+      "body": "NASCAR Cup Series Next-Gen Toyota Camry",
+      "schemeId": "",
+      "image": "https://i.ibb.co/DHqCDq1Z/i-Racing-com-Simulator-2-24-2024-5-18-49-PM.png",
+      "special": []
+    },
+    {
+      "slug": "iracing-gamestop-splatoon-3",
+      "driver": "Hailey Bell",
+      "username": "",
+      "leagues": [
+        "iracing"
+      ],
+      "number": "28",
+      "sponsor": "GameStop / Splatoon 3",
+      "manufacturer": "Toyota",
+      "body": "NASCAR Cup Series Next-Gen Toyota Camry",
+      "schemeId": "",
+      "image": "https://i.ibb.co/r2K3CMST/i-Racing-com-Simulator-12-10-2024-9-19-39-PM.png",
+      "special": []
+    },
+    {
+      "slug": "iracing-price-is-right",
+      "driver": "Hailey Bell",
+      "username": "",
+      "leagues": [
+        "iracing"
+      ],
+      "number": "28",
+      "sponsor": "The Price Is Right",
+      "manufacturer": "Toyota",
+      "body": "NASCAR Cup Series Next-Gen Toyota Camry",
+      "schemeId": "",
+      "image": "https://i.ibb.co/DPbRY0f1/i-Racing-com-Simulator-9-3-2024-5-17-21-PM.png",
+      "special": [],
+      "note": "Bob Barker-era The Price Is Right"
+    },
+    {
+      "slug": "iracing-comcast",
+      "driver": "Hailey Bell",
+      "username": "",
+      "leagues": [
+        "iracing"
+      ],
+      "number": "28",
+      "sponsor": "Comcast",
+      "manufacturer": "Toyota",
+      "body": "NASCAR Cup Series Next-Gen Toyota Camry",
+      "schemeId": "",
+      "image": "https://i.ibb.co/nNChr3FP/IMG-0404.png",
+      "special": []
+    },
+    {
+      "slug": "iracing-ghost-cherry-limeade-cubs",
+      "driver": "Hailey Bell",
+      "username": "",
+      "leagues": [
+        "iracing"
+      ],
+      "number": "28",
+      "sponsor": "Ghost Energy Cherry Limeade (Chicago Cubs)",
+      "manufacturer": "Toyota",
+      "body": "NASCAR Cup Series Next-Gen Toyota Camry",
+      "schemeId": "",
+      "image": "https://i.ibb.co/MyrYf7TS/i-Racing-com-Simulator-4-24-2025-10-38-53-PM.png",
+      "special": [],
+      "note": "Inspired by the special Chicago Cubs-themed Ghost Energy Cherry Limeade can design."
+    },
+    {
+      "slug": "iracing-ghost-orange-cream-vgk",
+      "driver": "Hailey Bell",
+      "username": "",
+      "leagues": [
+        "iracing"
+      ],
+      "number": "28",
+      "sponsor": "Ghost Energy Orange Cream (Vegas Golden Knights)",
+      "manufacturer": "Toyota",
+      "body": "NASCAR Cup Series Next-Gen Toyota Camry",
+      "schemeId": "",
+      "image": "https://i.ibb.co/PsFLXmrx/i-Racing-com-Simulator-4-25-2025-1-06-14-AM.png",
+      "special": [],
+      "note": "Inspired by the special gold Vegas Golden Knights-themed Ghost Energy Orange Cream can design."
+    },
+    {
+      "slug": "iracing-petsmart-patriotic",
+      "driver": "Hailey Bell",
+      "username": "",
+      "leagues": [
+        "iracing"
+      ],
+      "number": "28",
+      "sponsor": "PetSmart Patriotic",
+      "manufacturer": "Toyota",
+      "body": "NASCAR Cup Series Next-Gen Toyota Camry",
+      "schemeId": "",
+      "image": "https://i.ibb.co/p6W17zLy/i-Racing-com-Simulator-7-15-2026-1-28-40-PM.png",
+      "special": [
+        "patriotic"
+      ],
+      "note": "Special patriotic-themed PetSmart livery."
+    },
+    {
+      "slug": "iracing-monster-lando-supra",
+      "driver": "Hailey Bell",
+      "username": "",
+      "leagues": [
+        "iracing"
+      ],
+      "number": "97",
+      "sponsor": "Monster Energy (Lando Norris)",
+      "manufacturer": "Toyota",
+      "body": "NASCAR O’Reilly Auto Parts Series Toyota Supra",
+      "schemeId": "",
+      "image": "https://i.ibb.co/xqc32PDT/i-Racing-com-Simulator-10-10-2025-5-02-57-PM.png",
+      "special": [],
+      "note": "Inspired by Lando Norris’ special-edition Monster Energy can design."
+    },
+    {
+      "slug": "iracing-monster-lando-mclaren",
+      "driver": "Aetherwing Endurance Team",
+      "username": "",
+      "leagues": [
+        "iracing"
+      ],
+      "number": "",
+      "sponsor": "Monster Energy (Lando Norris)",
+      "manufacturer": "McLaren",
+      "body": "McLaren 720S GT3 EVO",
+      "schemeId": "",
+      "image": "https://i.ibb.co/Jw6Tqmcf/i-Racing-com-Simulator-10-12-2025-11-42-56-PM.png",
+      "special": [],
+      "note": "Team endurance livery inspired by Lando Norris’ special-edition Monster Energy can design.",
+      "classification": "endurance"
+    }
+  ],
+  "leagues": [
+    {
+      "id": "nrrs",
+      "name": "NRRS",
+      "subtitle": "Aetherwing Program · Stock Car Competition",
+      "bodyTag": "D1 Toyota",
+      "color": "#18c2ff",
+      "description": "Current NRRS charter board. Aetherwing fields three full-time charters plus one shared Part-Time / Development charter.",
+      "drivers": [
+        {
+          "name": "Hailey",
+          "username": "@Aokikoto",
+          "role": "Founder / Driver"
+        },
+        {
+          "name": "Plarker",
+          "username": "@Leg0man1o",
+          "role": "Driver"
+        },
+        {
+          "name": "OPEN",
+          "username": "",
+          "role": "Vacant Full-Time Charter"
+        },
+        {
+          "name": "Aetherwing Open Charter",
+          "username": "",
+          "role": "Shared Part-Time / Development Charter"
+        }
+      ],
+      "relationship": "aetherwing"
+    },
+    {
+      "id": "uarl-d1",
+      "name": "UARL D1",
+      "subtitle": "Aetherwing Program · LL Bean Cup Series",
+      "bodyTag": "BBR Next-Gen Toyota",
+      "color": "#ff5eb8",
+      "description": "Current UARL Division 1 charter board: five full-time charters plus one shared Aetherwing Open Charter. Historical uploaded schemes stay with the season and number they originally ran.",
+      "drivers": [
+        {
+          "name": "Hailey",
+          "username": "@Aokikoto",
+          "role": "Founder / Driver"
+        },
+        {
+          "name": "BurgerTown2Good",
+          "username": "@uhhbzb",
+          "role": "Driver"
+        },
+        {
+          "name": "GK3R",
+          "username": "@sealsntags",
+          "role": "Driver"
+        },
+        {
+          "name": "Rocky",
+          "username": "@IIKyle5Larson",
+          "role": "Driver"
+        },
+        {
+          "name": "OPEN",
+          "username": "",
+          "role": "Vacant Full-Time Charter"
+        },
+        {
+          "name": "Aetherwing Open Charter",
+          "username": "",
+          "role": "Shared Part-Time / Development Charter"
+        }
+      ],
+      "relationship": "aetherwing"
+    },
+    {
+      "id": "uarl-d2",
+      "name": "UARL D2 — Closed / Historical Archive",
+      "subtitle": "Closed September 15, 2026 · Historical Archive",
+      "bodyTag": "NXS20 Toyota Supra",
+      "color": "#9f6bff",
+      "description": "Historical archive for Aetherwing’s former UARL Division 2 program. The #62 Mobil 1 Toyota Supra and its Daytona-era context are preserved here without counting D2 as an active program.",
+      "drivers": [
+        {
+          "name": "Wispy",
+          "username": "@Aokikoto",
+          "role": "Historical D2 Driver · current Roblox display name Hailey"
+        }
+      ],
+      "relationship": "archive"
+    },
+    {
+      "id": "uarl-open",
+      "name": "UARL Open",
+      "subtitle": "Aetherwing Program · Open Series",
+      "bodyTag": "Late Model Toyota",
+      "color": "#d8ff3e",
+      "description": "Current UARL Open Series roster. Late model entries and uploaded open-series schemes live in this garage.",
+      "drivers": [
+        {
+          "name": "Hailey",
+          "username": "@Aokikoto",
+          "role": "Founder / Driver"
+        }
+      ],
+      "relationship": "aetherwing"
+    },
+    {
+      "id": "kmart",
+      "name": "Kmart",
+      "subtitle": "StarClutch Racing Alliance · Kmart Auto Parts Series",
+      "bodyTag": "D2 Dodge",
+      "color": "#ff6a00",
+      "description": "Alliance competition under the StarClutch Racing banner. Dodge schemes use the BBR D2 Chevrolet body.",
+      "drivers": [
+        {
+          "name": "Hailey",
+          "username": "@Aokikoto",
+          "role": "StarClutch Racing Alliance Driver"
+        },
+        {
+          "name": "Will",
+          "username": "@Raceartstudios",
+          "role": "StarClutch Racing Alliance Driver"
+        },
+        {
+          "name": "Eazy",
+          "username": "@Eazyonthafarilla",
+          "role": "Part-Time Alliance Driver"
+        },
+        {
+          "name": "Clutch",
+          "username": "@Mj_fan088",
+          "role": "Part-Time Alliance Driver"
+        },
+        {
+          "name": "Matty",
+          "username": "@mymainisgone98",
+          "role": "Part-Time Alliance Driver"
+        }
+      ],
+      "relationship": "alliance"
+    },
+    {
+      "id": "sunoco-truck",
+      "name": "Sunoco Truck Series",
+      "subtitle": "StarClutch Racing Alliance · Truck Series",
+      "bodyTag": "D3 RAM",
+      "color": "#ffd236",
+      "description": "Alliance competition under the StarClutch Racing banner. Current Sunoco entries use RAM.",
+      "drivers": [
+        {
+          "name": "Eazy",
+          "username": "@Eazyonthafarilla",
+          "role": "StarClutch Racing Alliance Driver"
+        },
+        {
+          "name": "Will",
+          "username": "@Raceartstudios",
+          "role": "StarClutch Racing Alliance Driver"
+        },
+        {
+          "name": "Clutch",
+          "username": "@Mj_fan088",
+          "role": "StarClutch Racing Alliance Driver"
+        },
+        {
+          "name": "Hailey",
+          "username": "@Aokikoto",
+          "role": "StarClutch Racing Alliance Driver"
+        }
+      ],
+      "relationship": "alliance"
+    },
+    {
+      "id": "iracing",
+      "name": "iRacing",
+      "subtitle": "Aetherwing Program · Sim Racing Collection",
+      "bodyTag": "Mixed Fleet",
+      "color": "#00D0FF",
+      "description": "Aetherwing iRacing Factory Program drivers and team endurance liveries. Current iRacing driver presentation uses Hailey Bell.",
+      "drivers": [
+        {
+          "name": "Levi Ramsey",
+          "username": "",
+          "role": "Factory Driver"
+        },
+        {
+          "name": "Hailey Bell",
+          "username": "",
+          "role": "Factory Driver"
+        },
+        {
+          "name": "Joshua Douglas",
+          "username": "",
+          "role": "Factory Driver"
+        },
+        {
+          "name": "Aetherwing Endurance Team",
+          "username": "",
+          "role": "Team Entry"
+        }
+      ],
+      "relationship": "aetherwing"
+    }
+  ],
+  "driverOverrides": {
+    "uarl-open::Hailey": [
+      "28"
+    ],
+    "kmart::Hailey": [
+      "15"
+    ],
+    "kmart::Will": [
+      "24"
+    ],
+    "kmart::Eazy": [
+      "29 PT"
+    ],
+    "kmart::Clutch": [
+      "29 PT"
+    ],
+    "kmart::Matty": [
+      "29 PT"
+    ],
+    "sunoco-truck::Eazy": [
+      "27"
+    ],
+    "sunoco-truck::Will": [
+      "42"
+    ],
+    "sunoco-truck::Clutch": [
+      "46"
+    ],
+    "sunoco-truck::Hailey": [
+      "54"
+    ],
+    "iracing::Levi Ramsey": [
+      "6"
+    ],
+    "iracing::Joshua Douglas": [
+      "35"
+    ],
+    "nrrs::Hailey": [
+      "32"
+    ],
+    "nrrs::Plarker": [
+      "43"
+    ],
+    "nrrs::OPEN": [
+      "54"
+    ],
+    "nrrs::Aetherwing Open Charter": [
+      "62 PT / 82 DEV"
+    ],
+    "uarl-d2::Wispy": [
+      "62 · HISTORICAL"
+    ],
+    "iracing::Hailey Bell": [
+      "28",
+      "97"
+    ],
+    "uarl-d1::Hailey": [
+      "28"
+    ],
+    "uarl-d1::BurgerTown2Good": [
+      "32"
+    ],
+    "uarl-d1::GK3R": [
+      "42"
+    ],
+    "uarl-d1::Rocky": [
+      "46"
+    ],
+    "uarl-d1::OPEN": [
+      "56"
+    ],
+    "uarl-d1::Aetherwing Open Charter": [
+      "62 PT / 82 DEV"
+    ]
+  }
+}
