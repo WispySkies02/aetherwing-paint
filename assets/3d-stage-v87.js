@@ -1,4 +1,4 @@
-/* Aetherwing Paint Booth v86: optional and lazy 3D mode using existing stage.
+/* Aetherwing Paint Booth v87: optional and lazy 3D mode using existing stage.
    3D lab entries have explicit bodyModel AND matching liveryTexture, so a
    static render from a different scheme can never accidentally acquire 3D. */
 const root = document.querySelector('[data-paint-facility]');
@@ -18,7 +18,8 @@ if (root && shell && stage && canvas && button2d && button3d && raw) {
     'sunoco-truck':{model:'/assets/3d/sunoco-truck.glb',mesh:'Body21Mtl',camera:[-34,19,34],distance:[16,85]},
     'oreilly-chevy':{model:'/assets/3d/oreilly-chevy.glb',mesh:'Body1Mtl',camera:[-31,15,-34],distance:[15,75]}
   };
-  const isSupported = p => !!(p && bodies[p.bodyModel] && typeof p.liveryTexture==='string' && p.liveryTexture.startsWith('/assets/3d/') && !p.leagues?.includes('uarl-open') && !p.leagues?.includes('iracing'));
+  const validTexture=url=>typeof url==='string' && (/^\/assets\/3d\/[a-z0-9-]+\.(?:webp|png)$/.test(url)||/^https:\/\/aetherwing\.net\/api\/paint-3d-texture\/[a-f0-9]{64}\.png$/.test(url)||/^https:\/\/paint\.aetherwing\.net\/assets\/3d\/[a-z0-9-]+\.(?:webp|png)$/.test(url));
+  const isSupported = p => !!(p && bodies[p.bodyModel] && validTexture(p.liveryTexture) && !(p.leagues||[]).some(l=>['uarl-open','uarl-d2','iracing'].includes(l)));
   let chosen = paints.find(p=>p.slug===root.dataset.currentPaintSlug)||paints[0]||null;
   let mode='2d';
   let api=null,renderer=null,scene=null,camera=null,controls=null,viewerModel=null,texture=null,THREE=null;
@@ -28,7 +29,8 @@ if (root && shell && stage && canvas && button2d && button3d && raw) {
   const updateControls=()=>{
     const available=isSupported(chosen);
     button3d.disabled=!available;
-    button3d.title=available?'Load the actual 3D body and paint':'3D requires a matched body and flat paint texture; 2D stays available';
+    button3d.title=available?'Load 3D body and this scheme’s flat PNG':'This paint needs a compatible body and flat PNG in Aetherwing Admin';
+    if(availability) availability.textContent=available?'3D READY':(chosen?.leagues||[]).some(l=>['uarl-open','uarl-d2','iracing'].includes(l))?'2D ONLY · BODY NEEDED':chosen?.bodyModel?'PNG NEEDED IN ADMIN':'3D BODY NEEDED';
     button2d.classList.toggle('is-active',mode==='2d');
     button3d.classList.toggle('is-active',mode==='3d');
     button2d.setAttribute('aria-pressed',String(mode==='2d'));
@@ -61,12 +63,12 @@ if (root && shell && stage && canvas && button2d && button3d && raw) {
   function setupEngine(body){
     ({THREE}=api);
     renderer=new THREE.WebGLRenderer({canvas,antialias:innerWidth>700,preserveDrawingBuffer:true,powerPreference:'low-power',alpha:true});
-    renderer.setClearColor(0x000000,0);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=1.65;
+    renderer.setClearColor(0x000000,0);renderer.outputColorSpace=THREE.SRGBColorSpace;renderer.toneMapping=THREE.ACESFilmicToneMapping;renderer.toneMappingExposure=0.93;
     scene=new THREE.Scene();
     camera=new THREE.PerspectiveCamera(37,1,0.1,700);camera.position.set(...body.camera);
-    scene.add(new THREE.HemisphereLight(0xffffff,0xb2bac7,3.15));
-    const ambient=new THREE.AmbientLight(0xffffff,.45);scene.add(ambient);
-    for(const [pos,intensity] of [[[-35,44,34],3],[[33,22,-27],1.5],[[22,37,35],1.5]]){const light=new THREE.DirectionalLight(0xffffff,intensity);light.position.set(...pos);scene.add(light);}
+    scene.add(new THREE.HemisphereLight(0xffffff,0x8c9aa8,1.1));
+    const ambient=new THREE.AmbientLight(0xffffff,.18);scene.add(ambient);
+    for(const [pos,intensity] of [[[-35,44,34],1.05],[[33,22,-27],.48],[[22,37,35],.4]]){const light=new THREE.DirectionalLight(0xffffff,intensity);light.position.set(...pos);scene.add(light);}
     controls=new api.OrbitControls(camera,renderer.domElement);
     controls.target.set(0,0,0);controls.enableDamping=false;controls.enablePan=true;controls.panSpeed=.52;controls.rotateSpeed=.48;controls.zoomSpeed=.72;
     controls.minDistance=body.distance[0];controls.maxDistance=body.distance[1];controls.minPolarAngle=.30;controls.maxPolarAngle=Math.PI*.73;
@@ -88,7 +90,7 @@ if (root && shell && stage && canvas && button2d && button3d && raw) {
     map.colorSpace=THREE.SRGBColorSpace;map.flipY=false;map.needsUpdate=true;
     const mat=mesh.material;
     if(!mat){map.dispose();throw new Error('Missing paint material');}
-    const next=mat.clone();next.color.set(0xffffff);next.map=map;next.transparent=false;next.metalness=0.01;next.roughness=.78;next.side=THREE.DoubleSide;next.needsUpdate=true;
+    const next=mat.clone();next.color.set(0xffffff);next.map=map;next.transparent=false;next.metalness=0.0;next.roughness=.85;next.side=THREE.DoubleSide;next.needsUpdate=true;
     // GLB's original baked texture is released when its material is replaced.
     const old=mesh.material;mesh.material=next;
     if(texture && texture!==map)texture.dispose();texture=map;
@@ -131,18 +133,6 @@ if (root && shell && stage && canvas && button2d && button3d && raw) {
     }
     updateControls();
   });
-  // Quick-access fleet reuses the main booth selection logic and activates the same stage, never a second page.
-  const fleet=Array.from(root.querySelectorAll('[data-3d-demo]'));
-  const syncFleet=()=>fleet.forEach(btn=>btn.classList.toggle('is-active',btn.dataset['3dDemo']===chosen?.slug));
-  fleet.forEach(btn=>btn.addEventListener('click',()=>{
-    const slug=btn.dataset['3dDemo'];
-    if(!slug)return;
-    window.AetherwingBooth?.selectPaint?.(slug,true);
-    if(mode!=='3d' && isSupported(chosen))button3d.click();
-    root.scrollIntoView({behavior:reduced.matches?'auto':'smooth',block:'start'});
-    syncFleet();
-  }));
-  document.addEventListener('aetherwing:paint-change',syncFleet);
   document.addEventListener('visibilitychange',()=>{if(document.hidden){if(rotationRequest)cancelAnimationFrame(rotationRequest);rotationRequest=0;}else if(mode==='3d'){draw();}});
   // Do not animate continuously; render only during direct user interactions.
   addEventListener('pagehide',release);

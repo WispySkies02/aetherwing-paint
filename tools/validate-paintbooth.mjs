@@ -220,8 +220,8 @@ for (const filename of ['nrrs-toyota.glb','sunoco-truck.glb','oreilly-chevy.glb'
 assert.match(html,/data-3d-stage/);
 assert.match(html,/data-view-3d/);
 assert.match(html,/aetherwing:paint-change/);
-assert.match(html,/3d-stage-v86\.js/);
-assert.match(read('assets/3d-stage-v86.js'),/requestId/);
-assert.match(read('assets/3d-stage-v86.js'),/forceContextLoss/);
+assert.match(html,/3d-stage-v87\.js/);
+assert.match(read('assets/3d-stage-v87.js'),/requestId/);
+assert.match(read('assets/3d-stage-v87.js'),/forceContextLoss/);
 
-console.log('v86 verified: 3D lab paints have matching textures and 3 distinct body files, with 2D fallback.');
+console.log('v87 verified: 3 body files, search-first paint rack, all schemes preserved and upload-ready 3D stage with fallback.');

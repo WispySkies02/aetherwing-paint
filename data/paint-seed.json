@@ -16,7 +16,8 @@
       "special": [
         "prized"
       ],
-      "note": "Hailey's prized NRRS / UARL D1 car."
+      "note": "Hailey's prized NRRS / UARL D1 car.",
+      "bodyModel": "nrrs-toyota"
     },
     {
       "slug": "d1-home-depot",
@@ -32,7 +33,8 @@
       "schemeId": "135363294132228",
       "image": "https://i.ibb.co/kbKx0CN/20-Home-Depot-Pepsi400-v1.png",
       "special": [],
-      "note": "Special #20 Home Depot scheme for the NRRS Season 3 Pepsi 400."
+      "note": "Special #20 Home Depot scheme for the NRRS Season 3 Pepsi 400.",
+      "bodyModel": "nrrs-toyota"
     },
     {
       "slug": "nrrs-ridgid-home-depot-1999",
@@ -50,7 +52,8 @@
       "special": [
         "throwback"
       ],
-      "note": "Throwback to Tony Stewart’s primary Pontiac for Joe Gibbs Racing from 1999–2001."
+      "note": "Throwback to Tony Stewart’s primary Pontiac for Joe Gibbs Racing from 1999–2001.",
+      "bodyModel": "nrrs-toyota"
     },
     {
       "slug": "d1-ghost-merica",
@@ -67,7 +70,8 @@
       "image": "https://i.ibb.co/s9sGdy3s/Ghost-Merica-Pop-Toyota.png",
       "special": [
         "patriotic"
-      ]
+      ],
+      "bodyModel": "nrrs-toyota"
     },
     {
       "slug": "d1-columbia",
@@ -85,7 +89,8 @@
       "special": [
         "concept"
       ],
-      "note": "IRL Concept — imagined as a Columbia Sportswear entry for 23XI Racing, blending Aetherwing’s livery style with a real-world NASCAR presentation."
+      "note": "IRL Concept — imagined as a Columbia Sportswear entry for 23XI Racing, blending Aetherwing’s livery style with a real-world NASCAR presentation.",
+      "bodyModel": "nrrs-toyota"
     },
     {
       "slug": "d1-friskies",
@@ -100,7 +105,8 @@
       "body": "BBR D1 Toyota",
       "schemeId": "121812441355064",
       "image": "https://i.ibb.co/LXJRB3Z4/Friskies-Party-Packd-NG.png",
-      "special": []
+      "special": [],
+      "bodyModel": "nrrs-toyota"
     },
     {
       "slug": "d1-xfinity-mobile",
@@ -115,7 +121,8 @@
       "body": "BBR D1 Toyota",
       "schemeId": "124576944916357",
       "image": "https://i.ibb.co/ccJpRpTq/Wispy-Xfinity-Mobile.png",
-      "special": []
+      "special": [],
+      "bodyModel": "nrrs-toyota"
     },
     {
       "slug": "d1-hardees",
@@ -130,7 +137,8 @@
       "body": "BBR D1 Toyota",
       "schemeId": "130704640741912",
       "image": "https://i.ibb.co/FbL4Ny7X/Wispy-Hardees.png",
-      "special": []
+      "special": [],
+      "bodyModel": "nrrs-toyota"
     },
     {
       "slug": "d1-chumba",
@@ -145,7 +153,8 @@
       "body": "BBR D1 Toyota",
       "schemeId": "86023205741921",
       "image": "https://i.ibb.co/FbKD7bwS/Chumba-Colored.png",
-      "special": []
+      "special": [],
+      "bodyModel": "nrrs-toyota"
     },
     {
       "slug": "d1-pokemon-30th-anniversary-tcg",
@@ -161,7 +170,8 @@
       "schemeId": "73989394735008",
       "image": "https://i.ibb.co/XfdtNDxd/Pokemon-30th-TCG.png",
       "special": [],
-      "specialBadgeIcon": "https://i.ibb.co/qL1KRxtH/800px-30th-Anniversary-logo.png"
+      "specialBadgeIcon": "https://i.ibb.co/qL1KRxtH/800px-30th-Anniversary-logo.png",
+      "bodyModel": "nrrs-toyota"
     },
     {
       "slug": "d1-mobil1",
@@ -198,7 +208,8 @@
       "image": "https://i.ibb.co/Z1kQH6HT/Kmart-Pet-Smart-Dodge.png",
       "special": [
         "starclutch"
-      ]
+      ],
+      "bodyModel": "oreilly-chevy"
     },
     {
       "slug": "kmart-petsmart-patriotic",
@@ -216,7 +227,8 @@
       "special": [
         "patriotic",
         "starclutch"
-      ]
+      ],
+      "bodyModel": "oreilly-chevy"
     },
     {
       "slug": "kmart-ghost-peaches",
@@ -233,7 +245,8 @@
       "image": "https://i.ibb.co/Ngcpz1vF/Ghost-Peaches-D2.png",
       "special": [
         "starclutch"
-      ]
+      ],
+      "bodyModel": "oreilly-chevy"
     },
     {
       "slug": "kmart-2005-home-depot",
@@ -252,7 +265,8 @@
         "throwback",
         "starclutch"
       ],
-      "note": "Throwback to Tony Stewart’s 2005 Cup Series scheme."
+      "note": "Throwback to Tony Stewart’s 2005 Cup Series scheme.",
+      "bodyModel": "oreilly-chevy"
     },
     {
       "slug": "kmart-clutch-sinder",
@@ -269,7 +283,8 @@
       "image": "https://i.ibb.co/zV26LQkF/Clutch-Kmart-Sinder.png",
       "special": [
         "starclutch"
-      ]
+      ],
+      "bodyModel": "oreilly-chevy"
     },
     {
       "slug": "d2-mobil1-toyota-supra",
@@ -319,7 +334,8 @@
       "image": "https://i.ibb.co/LDs91FwQ/Wispy-Ghost-Warped-Tour-Truck.png",
       "special": [
         "starclutch"
-      ]
+      ],
+      "bodyModel": "sunoco-truck"
     },
     {
       "slug": "truck-petsmart-patriotic",
@@ -338,7 +354,8 @@
         "patriotic",
         "tribute",
         "starclutch"
-      ]
+      ],
+      "bodyModel": "sunoco-truck"
     },
     {
       "slug": "truck-heatwave",
@@ -357,7 +374,8 @@
         "starclutch",
         "racewinner"
       ],
-      "note": "Race Winner — won at Rockingham on May 2, 2026."
+      "note": "Race Winner — won at Rockingham on May 2, 2026.",
+      "bodyModel": "sunoco-truck"
     },
     {
       "slug": "truck-mopar-starclutch-racing",
@@ -374,7 +392,8 @@
       "image": "https://i.ibb.co/zhDzKvt1/SCR-Mopar-RAM-2.png",
       "special": [
         "starclutch"
-      ]
+      ],
+      "bodyModel": "sunoco-truck"
     },
     {
       "slug": "iracing-ghost-sour-patch-red-berry",
