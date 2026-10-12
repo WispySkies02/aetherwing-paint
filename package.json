@@ -1,8 +1,8 @@
 {
   "name": "aetherwing-paintbooth",
   "private": true,
-  "version": "87.0.0",
-  "description": "Shared 3D viewer for all paint records with uploaded compatible templates, original stage and searchable bottom picker.",
+  "version": "88.0.0",
+  "description": "3D-first Paint Booth with static-render fallback when a selected scheme lacks a working 3D model.",
   "scripts": {
     "check": "node tools/validate-paintbooth.mjs",
     "preview": "node tools/serve.mjs"

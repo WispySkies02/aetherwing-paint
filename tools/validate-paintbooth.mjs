@@ -24,7 +24,7 @@ assert.match(html, /INFO PLAQUE/);
 assert.match(html, /1600 × 900/);
 assert.match(html, /1080 × 1080/);
 assert.match(html, /1080 × 1350/);
-assert.match(html, /data-paint-build="(?:81\.0-blue-anniversary-flow|83\.0-roster-stage-state|84\.0-gk3r-active-exit|85\.0-nonstarter-directory|86\.0-unified-3d-beta)"/);
+assert.match(html, /data-paint-build="(?:81\.0-blue-anniversary-flow|83\.0-roster-stage-state|84\.0-gk3r-active-exit|85\.0-nonstarter-directory|86\.0-unified-3d-beta|88\.0-3d-first-render-fallback)"/);
 const opsCss = read('assets/paint-ops.css');
 assert.match(opsCss, /v66 — visual redesign/);
 assert.match(opsCss, /v67 — clean render export/);
@@ -165,7 +165,7 @@ assert.match(shellCss,/data-anniversary-2015=\"true\"[\s\S]*?site-header(?:::|:)
 console.log('v82 verified: Paint Booth uses the main-site Anniversary shell with full blue-flow environment while preserving a neutral render bay.');
 
 // v83: current roster canon, historical paint separation, render state, alt text, and endurance credential.
-assert.match(html, /data-paint-build="(?:83\.0-roster-stage-state|84\.0-gk3r-active-exit|85\.0-nonstarter-directory|86\.0-unified-3d-beta)"/);
+assert.match(html, /data-paint-build="(?:83\.0-roster-stage-state|84\.0-gk3r-active-exit|85\.0-nonstarter-directory|86\.0-unified-3d-beta|88\.0-3d-first-render-fallback)"/);
 assert.match(html, /function paintStageAlt\(paint\)/);
 assert.match(html, /setRenderState\('LOADING'\)/);
 assert.match(html, /setRenderState\('RENDER READY'\)/);
@@ -205,23 +205,32 @@ console.log('v84 verified: GK3R is removed from the active UARL D1 Paint Booth b
 assert.ok(!html.includes('"uarl-d1::GK3R"'),'v85 pre-hydration data must not preserve a false team driver affiliation');
 console.log('v85 verified: no former-team-driver attribution for a non-starter.');
 
-// v86: only matched 3D demonstration textures can select shared geometry.
+// v88: every paint remains selectable in a 3D-first showroom; unavailable 3D uses its own registered static render.
 const betaPaints=seed.paints.filter((p)=>p.bodyModel&&p.liveryTexture);
 assert.equal(betaPaints.length,5);
 assert.equal(new Set(betaPaints.map(p=>p.bodyModel)).size,3);
 assert.ok(!seed.paints.find(p=>p.leagues.includes('uarl-open')).bodyModel);
-for (const paint of betaPaints) {
+for(const paint of betaPaints){
   assert.ok(fs.existsSync(path.join(root,paint.liveryTexture.replace(/^\//,''))));
   assert.ok(fs.existsSync(path.join(root,paint.image.replace(/^\//,''))));
 }
-for (const filename of ['nrrs-toyota.glb','sunoco-truck.glb','oreilly-chevy.glb']) {
+for(const filename of ['nrrs-toyota.glb','sunoco-truck.glb','oreilly-chevy.glb']){
   assert.ok(fs.existsSync(path.join(root,'assets/3d',filename)));
 }
 assert.match(html,/data-3d-stage/);
-assert.match(html,/data-view-3d/);
+assert.match(html,/data-3d-fallback/);
+assert.match(html,/data-3d-fallback-image/);
+assert.match(html,/3D unavailable/);
+assert.match(html,/data-3d-export-trigger/);
+assert.doesNotMatch(html,/data-view-2d|data-view-3d/);
 assert.match(html,/aetherwing:paint-change/);
-assert.match(html,/3d-stage-v87\.js/);
-assert.match(read('assets/3d-stage-v87.js'),/requestId/);
-assert.match(read('assets/3d-stage-v87.js'),/forceContextLoss/);
-
-console.log('v87 verified: 3 body files, search-first paint rack, all schemes preserved and upload-ready 3D stage with fallback.');
+assert.match(html,/3d-stage-v88\.js/);
+assert.match(html,/3d-stage-v88\.css/);
+const viewer=read('assets/3d-stage-v88.js');
+assert.match(viewer,/showFallback/);
+assert.match(viewer,/fallbackImage\.src=url/);
+assert.doesNotMatch(viewer,/Admin →|3D PNG NEEDED|3D BODY NEEDED/);
+assert.match(viewer,/forceContextLoss/);
+assert.doesNotMatch(viewer,/show2d|mode='2d'|2D READY/);
+new vm.Script(viewer,{filename:'assets/3d-stage-v88.js'});
+console.log('v88 verified: 3D-first stage, normal paint rack, fallback to selected database render with only 3D unavailable label, and on-demand loading.');

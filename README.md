@@ -1,3 +1,5 @@
+> **v88 update:** The showroom is 3D-first, without a 2D/3D switch. Every scheme stays in the normal bottom picker. When 3D cannot load, the stage displays that exact scheme’s existing database render and a small “3D unavailable” label. Admin-only diagnostics remain in the main-site 3D Viewer tab.
+
 # Aetherwing Paint Booth v85 — Non-starter identity correction
 
 - No #42 GK3R active bay or former-team-driver identity: he never raced for Aetherwing.

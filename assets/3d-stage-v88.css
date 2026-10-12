@@ -1,0 +1,49 @@
+/* v86 — 3D uses the existing Paint Booth architecture, not a replacement stage. */
+.aw-stage-modes{position:absolute;z-index:35;top:53px;left:.72rem;display:flex;align-items:center;gap:0;border:1px solid rgba(255,255,255,.28);background:rgba(5,8,12,.91);box-shadow:0 8px 24px rgba(0,0,0,.35);backdrop-filter:blur(10px)}
+.aw-stage-modes button{appearance:none;border:0;border-right:1px solid rgba(255,255,255,.16);background:none;color:#c4cbd0;padding:.68rem .74rem;font:900 .56rem/1 var(--font-mono);letter-spacing:.08em;cursor:pointer;white-space:nowrap;min-height:39px}
+.aw-stage-modes button:last-child{border-right:0}
+.aw-stage-modes button.is-active{background:var(--booth-accent,#6dc8ff);color:#05070a}
+.aw-stage-modes button:disabled{opacity:.44;cursor:not-allowed}
+.aw-stage-modes button:not(:disabled):hover{color:#fff;background:rgba(109,200,255,.2)}
+.aw-stage-modes button.is-active:hover{background:var(--booth-accent,#6dc8ff);color:#05070a}
+.aw-stage-modes button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.aw-booth-car .aw-3d-stage[hidden]{display:none!important}
+.aw-booth-car .aw-3d-stage{position:absolute;inset:-6% -7% -10%;z-index:9;display:block;pointer-events:auto;touch-action:none;overflow:hidden}
+.aw-booth-car .aw-3d-stage canvas{display:block;width:100%;height:100%;touch-action:none;outline:0}
+.aw-3d-stage .aw-3d-hint{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);background:rgba(2,9,15,.83);border:1px solid rgba(109,200,255,.24);padding:.4rem .6rem;color:#d3e4f0;font:800 .52rem/1 var(--font-mono);letter-spacing:.08em;white-space:nowrap;pointer-events:none}
+.aw-booth-shell[data-view-mode="3d"] .aw-car-open{visibility:hidden;pointer-events:none}
+.aw-booth-shell[data-view-mode="3d"] .aw-booth-car{z-index:14}
+.aw-booth-shell[data-view-mode="3d"] .aw-booth-car.is-loading::after{display:none}
+.aw-booth-shell[data-view-mode="3d"] .aw-car-shadow{opacity:.75}
+.aw-collection-card--3d-lab .aw-collection-badges span{color:#0c1018;background:#6dc8ff;border-color:#6dc8ff}
+@media(max-width:900px){.aw-stage-modes{left:.55rem;top:50px}.aw-stage-modes button{font-size:.5rem;padding:.6rem .5rem;min-height:36px}}
+@media(max-width:720px){.aw-stage-modes{left:.45rem;top:47px}.aw-stage-modes button{font-size:.43rem;padding:.57rem .42rem;min-height:36px}.aw-stage-modes [data-3d-save]{position:absolute;top:41px;left:0;border:1px solid rgba(255,255,255,.25);background:#061019}.aw-booth-car .aw-3d-stage{inset:-10% -2% -9%}.aw-3d-stage .aw-3d-hint{font-size:.42rem}}
+@media(max-width:385px){.aw-stage-modes button{font-size:.4rem;padding:.55rem .34rem}.aw-stage-modes{left:.3rem}.aw-booth-car .aw-3d-stage{inset:-6% -2% -9%}}
+@media(prefers-reduced-motion:reduce){.aw-stage-modes,.aw-booth-car .aw-3d-stage{transition:none!important}}
+
+.aw-stage-modes [data-3d-availability]{font:800 .47rem/1.3 var(--font-mono);color:#b9c1c9;padding:0 .6rem;white-space:normal;max-width:135px}.aw-rack-find{grid-column:1/-1;grid-row:1;display:flex;gap:.55rem;padding:.65rem;background:#080b0e;border-bottom:1px solid #303940;align-items:center;flex-wrap:wrap}.aw-control-bench{grid-template-rows:auto auto}.aw-bench-label,.aw-mobile-quick-picker,.aw-paint-rack,.aw-bench-controls{grid-row:2}.aw-rack-find label{display:flex;align-items:center;gap:.45rem;color:#9ac8dc;font:800 .55rem/1.2 var(--font-mono)}.aw-rack-find>label:first-child{flex:1;min-width:200px}.aw-rack-find input[type="search"]{width:100%;border:1px solid #46535a;background:#11191e;color:#fff;border-radius:5px;min-height:40px;padding:.6rem;font:700 .78rem/1 sans-serif}.aw-rack-find input[type="checkbox"]{accent-color:#6dc8ff}.aw-rack-find button{border:1px solid #46535a;background:#141b21;color:#fff;padding:.6rem;min-height:40px;font:800 .57rem/1 var(--font-mono);cursor:pointer}.aw-paint-rack .aw-rack-3d-badge{display:inline-block;margin-top:.35rem;border:1px solid #525659;padding:.17rem .25rem;font:900 .4rem/1.2 var(--font-mono);font-style:normal;color:#aeb3b9}.aw-paint-rack .aw-rack-3d-badge.is-ready{border-color:#5cbca8;color:#83e0c6}.aw-paint-rack>button span{min-width:0}@media(max-width:900px){.aw-rack-find{grid-column:1/-1;grid-row:auto}.aw-bench-label,.aw-mobile-quick-picker,.aw-paint-rack,.aw-bench-controls{grid-row:auto}.aw-rack-find>label:first-child{min-width:100%}.aw-rack-find input[type="search"]{font-size:.8rem}}
+/* v88: 3D-first stage, with matched static render fallback for unavailable models. */
+.aw-booth-shell[data-view-mode="3d"] .aw-car-open,
+.aw-booth-shell[data-view-mode="3d"] [data-active-car]{display:none!important}
+.aw-booth-car .aw-3d-stage{z-index:12;inset:-6% -7% -10%;display:block}
+.aw-booth-car .aw-3d-stage[hidden]{display:none!important}
+.aw-stage-modes--only-3d{padding:.55rem .7rem;gap:.5rem;align-items:center;max-width:min(78%,300px)}
+.aw-stage-modes--only-3d strong{font:900 .6rem/1.2 var(--font-mono);white-space:nowrap;color:#6dc8ff;letter-spacing:.08em}
+.aw-stage-modes--only-3d [data-3d-availability]{border-left:1px solid #40515d;padding-left:.6rem;max-width:200px}
+.aw-3d-pending[hidden]{display:none!important}
+.aw-3d-pending{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(410px,80%);padding:1.25rem 1.1rem;background:rgba(7,12,19,.92);border:1px solid rgba(109,200,255,.38);box-shadow:0 20px 60px rgba(0,0,0,.5);display:grid;gap:.8rem;text-align:center;pointer-events:none;z-index:20}
+.aw-3d-pending strong{font:900 clamp(.9rem,2vw,1.25rem)/1.2 var(--font-display,var(--font-mono));color:#e5f5ff;letter-spacing:.07em}
+.aw-3d-pending span{font:600 .72rem/1.55 Inter,system-ui,sans-serif;color:#b4c7d7}
+.aw-booth-shell[data-view-mode="3d"] .aw-booth-car.is-empty::before,
+.aw-booth-shell[data-view-mode="3d"] .aw-booth-car.is-empty::after,
+.aw-booth-shell[data-view-mode="3d"] .aw-booth-car.is-loading::after{display:none!important}
+.aw-booth-shell[data-view-mode="3d"] .aw-3d-stage .aw-3d-hint[hidden]{display:none!important}
+@media(max-width:720px){.aw-stage-modes--only-3d{top:47px;left:.45rem;max-width:52%;flex-wrap:wrap}.aw-stage-modes--only-3d strong{font-size:.52rem}.aw-3d-pending{width:85%;padding:.8rem}.aw-3d-pending span{font-size:.65rem}}
+
+/* Public fallback: the selected paint's stored render, not a separate viewer mode. */
+.aw-booth-car .aw-3d-stage [data-3d-canvas][hidden]{display:none!important}
+.aw-3d-fallback[hidden],.aw-3d-fallback img[hidden]{display:none!important}
+.aw-3d-fallback{position:absolute;inset:0;z-index:13;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.aw-3d-fallback img{width:100%;height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 18px 24px rgba(0,0,0,.25));max-width:100%}
+.aw-3d-fallback-label{position:absolute;bottom:5%;left:50%;transform:translateX(-50%);padding:.42rem .72rem;border-radius:.22rem;border:1px solid rgba(217,235,244,.38);background:rgba(5,10,16,.86);color:#e0e9ee;font:800 .56rem/1.1 var(--font-mono);letter-spacing:.055em;white-space:nowrap;z-index:15;box-shadow:0 4px 16px rgba(0,0,0,.24)}
+@media(max-width:720px){.aw-3d-fallback-label{bottom:7%;font-size:.5rem;padding:.36rem .55rem}}

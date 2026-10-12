@@ -1,3 +1,3 @@
-Aetherwing Paint Booth v84.0.0
-GK3R active UARL D1 roster exit + preserved historical metadata
-Annual Anniversary Week: Oct. 1–7 ET
+Aetherwing Paint Booth v88.0.0
+3D-first showroom with own-scheme static render fallback and simplified public status
+Requires Aetherwing main-site Admin v2.0.42+ for optional 3D paint texture uploads
