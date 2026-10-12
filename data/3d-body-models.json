@@ -1,0 +1,14 @@
+{
+  "nrrs-toyota": {
+    "path": "/assets/3d/nrrs-toyota.glb",
+    "mesh": "Paint1Mtl"
+  },
+  "sunoco-truck": {
+    "path": "/assets/3d/sunoco-truck.glb",
+    "mesh": "Body21Mtl"
+  },
+  "oreilly-chevy": {
+    "path": "/assets/3d/oreilly-chevy.glb",
+    "mesh": "Body1Mtl"
+  }
+}

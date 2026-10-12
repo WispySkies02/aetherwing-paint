@@ -1,8 +1,8 @@
 {
   "name": "aetherwing-paintbooth",
   "private": true,
-  "version": "83.1.0",
-  "description": "Aetherwing Paint Booth v83.1 keeps the v83 roster/stage-state fixes and removes an unused oversized local paint asset that could stall Netlify Drop deployments.",
+  "version": "86.0.0",
+  "description": "Original Aetherwing stage with on-demand 3D beta for five matched liveries; Late Models remain in 2D.",
   "scripts": {
     "check": "node tools/validate-paintbooth.mjs",
     "preview": "node tools/serve.mjs"

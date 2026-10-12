@@ -1,3 +1,16 @@
+# Aetherwing Paint Booth v85 — Non-starter identity correction
+
+- No #42 GK3R active bay or former-team-driver identity: he never raced for Aetherwing.
+- Drop only the obsolete per-driver #42 override; preserve original files and independent history.
+- Keep six active garages and 23 active slots, and all Paint Booth controls.
+
+# Aetherwing Paint Booth v84 — GK3R Active Roster Exit
+
+- Removes GK3R / @sealsntags from the active UARL D1 driver bay after leaving the league.
+- Does not invent a #42 OPEN replacement; historical paint/override metadata remains available for archive use.
+- Active-slot totals derive from the roster and now fall by one.
+- Keeps all v83.1 deploy-size, roster, stage-state, accessibility, ENDURANCE, and historical-paint fixes.
+
 # Aetherwing Paint Booth v83.1 — Deploy Size Fix
 
 - Keeps all v83 roster, historical-paint, render-state, accessibility, ENDURANCE, and counter fixes unchanged.

@@ -6,8 +6,8 @@ import assert from 'node:assert/strict';
 const root = path.resolve(import.meta.dirname, '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
 const seed = JSON.parse(read('data/paint-seed.json'));
-assert.equal(seed.paints.length, 35);
-assert.equal(new Set(seed.paints.map((paint) => paint.slug)).size, 35);
+assert.equal(seed.paints.length, 40);
+assert.equal(new Set(seed.paints.map((paint) => paint.slug)).size, 40);
 const html = read('index.html');
 const publicOps = read('assets/paint-ops-public-v64.js');
 assert.match(html, /data-league-controls/);
@@ -24,7 +24,7 @@ assert.match(html, /INFO PLAQUE/);
 assert.match(html, /1600 × 900/);
 assert.match(html, /1080 × 1080/);
 assert.match(html, /1080 × 1350/);
-assert.match(html, /data-paint-build="(?:81\.0-blue-anniversary-flow|83\.0-roster-stage-state)"/);
+assert.match(html, /data-paint-build="(?:81\.0-blue-anniversary-flow|83\.0-roster-stage-state|84\.0-gk3r-active-exit|85\.0-nonstarter-directory|86\.0-unified-3d-beta)"/);
 const opsCss = read('assets/paint-ops.css');
 assert.match(opsCss, /v66 — visual redesign/);
 assert.match(opsCss, /v67 — clean render export/);
@@ -42,7 +42,7 @@ assert.doesNotMatch(html + publicOps, /data-card-copy-share|data-copy-share|data
 for (const paint of seed.paints) assert.ok(!fs.existsSync(path.join(root, paint.slug, 'index.html')));
 new vm.Script(publicOps, {filename:'assets/paint-ops-public-v64.js'});
 for (const script of [...html.matchAll(/<script(?![^>]*\bsrc=)(?![^>]*\btype="application\/json")[^>]*>([\s\S]*?)<\/script>/g)]) {
-  new vm.Script(script[1], {filename:'index.html inline script'});
+  if (!script[0].includes('type="importmap"')) new vm.Script(script[1], {filename:'index.html inline script'});
 }
 assert.match(html, /data-stage-scheme-copy/);
 assert.match(html, /data-scene-choice="victory-confetti"/);
@@ -165,7 +165,7 @@ assert.match(shellCss,/data-anniversary-2015=\"true\"[\s\S]*?site-header(?:::|:)
 console.log('v82 verified: Paint Booth uses the main-site Anniversary shell with full blue-flow environment while preserving a neutral render bay.');
 
 // v83: current roster canon, historical paint separation, render state, alt text, and endurance credential.
-assert.match(html, /data-paint-build="83\.0-roster-stage-state"/);
+assert.match(html, /data-paint-build="(?:83\.0-roster-stage-state|84\.0-gk3r-active-exit|85\.0-nonstarter-directory|86\.0-unified-3d-beta)"/);
 assert.match(html, /function paintStageAlt\(paint\)/);
 assert.match(html, /setRenderState\('LOADING'\)/);
 assert.match(html, /setRenderState\('RENDER READY'\)/);
@@ -177,10 +177,10 @@ assert.doesNotMatch(html, />#TEAM</);
 assert.match(html, /https:\/\/aetherwing\.net\/api\/site-content/);
 const d1=seed.leagues.find((league)=>league.id==='uarl-d1');
 assert.equal(d1.bodyTag,'BBR Next-Gen Toyota');
-assert.deepEqual(d1.drivers.map((driver)=>driver.name),['Hailey','BurgerTown2Good','GK3R','Rocky','OPEN','Aetherwing Open Charter']);
+assert.deepEqual(d1.drivers.map((driver)=>driver.name),['Hailey','BurgerTown2Good','Rocky','OPEN','Aetherwing Open Charter']);
 assert.deepEqual(seed.driverOverrides['uarl-d1::Hailey'],['28']);
 assert.deepEqual(seed.driverOverrides['uarl-d1::BurgerTown2Good'],['32']);
-assert.deepEqual(seed.driverOverrides['uarl-d1::GK3R'],['42']);
+assert.ok(!('uarl-d1::GK3R' in seed.driverOverrides),'GK3R had no Aetherwing starts; no false former-driver paint override.');
 assert.deepEqual(seed.driverOverrides['uarl-d1::Rocky'],['46']);
 assert.deepEqual(seed.driverOverrides['uarl-d1::OPEN'],['56']);
 assert.deepEqual(seed.driverOverrides['uarl-d1::Aetherwing Open Charter'],['62 PT / 82 DEV']);
@@ -190,6 +190,38 @@ const historicCadillac=seed.paints.find((paint)=>paint.slug==='d1-mobil1');
 assert.equal(historicCadillac.historical,true);
 assert.equal(historicCadillac.manufacturer,'Cadillac');
 assert.match(historicCadillac.note,/current UARL D1 program uses Toyota/i);
-assert.equal(seed.paints.filter((paint)=>!paint.historical).length,33);
+assert.equal(seed.paints.filter((paint)=>!paint.historical).length,38);
 assert.equal(seed.paints.filter((paint)=>paint.historical).length,2);
 console.log('v83 verified: roster canon, historical Cadillac handling, stage state/accessibility, ENDURANCE, and derived counters are present.');
+
+// v84 — GK3R / @sealsntags left UARL D1. Active Paint Booth surfaces must not keep the bay.
+assert.ok(!d1.drivers.some((driver)=>driver.name==='GK3R'||driver.username==='@sealsntags'),'v84 active UARL D1 seed must exclude GK3R / @sealsntags');
+assert.ok(!html.includes('<strong>GK3R</strong><small>@sealsntags</small>'),'v84 pre-hydration overview must not show departed GK3R');
+assert.ok(html.includes('23 active slots across six active garages.'),'v84 static active-slot fallback should reflect the departed UARL D1 driver');
+assert.ok(html.includes("['28','32','46','56']")&&html.includes("!['42','52','54','92']"),'v84 live roster gate must accept the post-GK3R UARL D1 canon and reject stale #42.');
+console.log('v84 verified: GK3R is removed from the active UARL D1 Paint Booth bay while historical metadata remains archived.');
+
+// v85: no entry in archived team driver overrides when the person never raced for Aetherwing.
+assert.ok(!html.includes('"uarl-d1::GK3R"'),'v85 pre-hydration data must not preserve a false team driver affiliation');
+console.log('v85 verified: no former-team-driver attribution for a non-starter.');
+
+// v86: only matched 3D demonstration textures can select shared geometry.
+const betaPaints=seed.paints.filter((p)=>p.bodyModel&&p.liveryTexture);
+assert.equal(betaPaints.length,5);
+assert.equal(new Set(betaPaints.map(p=>p.bodyModel)).size,3);
+assert.ok(!seed.paints.find(p=>p.leagues.includes('uarl-open')).bodyModel);
+for (const paint of betaPaints) {
+  assert.ok(fs.existsSync(path.join(root,paint.liveryTexture.replace(/^\//,''))));
+  assert.ok(fs.existsSync(path.join(root,paint.image.replace(/^\//,''))));
+}
+for (const filename of ['nrrs-toyota.glb','sunoco-truck.glb','oreilly-chevy.glb']) {
+  assert.ok(fs.existsSync(path.join(root,'assets/3d',filename)));
+}
+assert.match(html,/data-3d-stage/);
+assert.match(html,/data-view-3d/);
+assert.match(html,/aetherwing:paint-change/);
+assert.match(html,/3d-stage-v86\.js/);
+assert.match(read('assets/3d-stage-v86.js'),/requestId/);
+assert.match(read('assets/3d-stage-v86.js'),/forceContextLoss/);
+
+console.log('v86 verified: 3D lab paints have matching textures and 3 distinct body files, with 2D fallback.');

@@ -579,6 +579,106 @@
       "special": [],
       "note": "Team endurance livery inspired by Lando Norris’ special-edition Monster Energy can design.",
       "classification": "endurance"
+    },
+    {
+      "slug": "lab-nrrs-mobil1-32",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "nrrs"
+      ],
+      "number": "32",
+      "sponsor": "Mobil 1 / Home Depot (3D Lab)",
+      "manufacturer": "Toyota",
+      "body": "BBR D1 Toyota",
+      "bodyModel": "nrrs-toyota",
+      "liveryTexture": "/assets/3d/lab-nrrs-mobil1-32.webp",
+      "schemeId": "",
+      "image": "/assets/3d/lab-nrrs-mobil1-32-preview.png",
+      "special": [
+        "concept"
+      ],
+      "note": "3D beta demonstration. Toyota body; Mobil 1 paint; The Home Depot and Interstate Batteries rear-quarter decals. This entry has no verified Roblox Scheme ID."
+    },
+    {
+      "slug": "lab-nrrs-palmetto-32",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "nrrs"
+      ],
+      "number": "32",
+      "sponsor": "Palmetto Gaming (3D Lab)",
+      "manufacturer": "Toyota",
+      "body": "BBR D1 Toyota",
+      "bodyModel": "nrrs-toyota",
+      "liveryTexture": "/assets/3d/lab-nrrs-palmetto-32.webp",
+      "schemeId": "",
+      "image": "/assets/3d/lab-nrrs-palmetto-32-preview.png",
+      "special": [
+        "concept"
+      ],
+      "note": "3D beta demonstration. Toyota body; blue/white Palmetto Gaming paint. This entry has no verified Roblox Scheme ID."
+    },
+    {
+      "slug": "lab-nrrs-cadillac-32",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "nrrs"
+      ],
+      "number": "32",
+      "sponsor": "Cadillac Racing (3D Lab)",
+      "manufacturer": "Cadillac",
+      "body": "BBR D1 Toyota",
+      "bodyModel": "nrrs-toyota",
+      "liveryTexture": "/assets/3d/lab-nrrs-cadillac-32.webp",
+      "schemeId": "",
+      "image": "/assets/3d/lab-nrrs-cadillac-32-preview.png",
+      "special": [
+        "concept"
+      ],
+      "note": "3D beta demonstration. Cadillac-branded scheme on the Toyota geometry; no separate Cadillac 3D body. This entry has no verified Roblox Scheme ID."
+    },
+    {
+      "slug": "lab-sunoco-craftsman-54",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "sunoco-truck"
+      ],
+      "number": "54",
+      "sponsor": "Craftsman / RAM (3D Lab)",
+      "manufacturer": "RAM",
+      "body": "CWS15 RAM",
+      "bodyModel": "sunoco-truck",
+      "liveryTexture": "/assets/3d/lab-sunoco-craftsman-54.webp",
+      "schemeId": "",
+      "image": "/assets/3d/lab-sunoco-craftsman-54-preview.png",
+      "special": [
+        "concept"
+      ],
+      "note": "3D beta demonstration. Truck geometry and Craftsman RAM paint from the 3D lab. This entry has no verified Roblox Scheme ID."
+    },
+    {
+      "slug": "lab-oreilly-dodge-15",
+      "driver": "Hailey",
+      "username": "@Aokikoto",
+      "leagues": [
+        "kmart"
+      ],
+      "number": "15",
+      "sponsor": "Mobil 1 Dodge (3D Lab)",
+      "manufacturer": "Dodge",
+      "body": "BBR D2 Chevy",
+      "bodyModel": "oreilly-chevy",
+      "liveryTexture": "/assets/3d/lab-oreilly-dodge-15.webp",
+      "schemeId": "",
+      "image": "/assets/3d/lab-oreilly-dodge-15-preview.png",
+      "special": [
+        "concept"
+      ],
+      "note": "3D beta demonstration. Dodge-branded paint on the O’Reilly Chevrolet body; custom v6 wheel alignment. This entry has no verified Roblox Scheme ID."
     }
   ],
   "leagues": [
@@ -619,7 +719,7 @@
       "subtitle": "Aetherwing Program · LL Bean Cup Series",
       "bodyTag": "BBR Next-Gen Toyota",
       "color": "#ff5eb8",
-      "description": "Current UARL Division 1 charter board: five full-time charters plus one shared Aetherwing Open Charter. Historical uploaded schemes stay with the season and number they originally ran.",
+      "description": "Current UARL Division 1 Toyota roster and shared Aetherwing Open Charter. Historical uploaded schemes stay with the season, number, driver, and manufacturer they originally ran.",
       "drivers": [
         {
           "name": "Hailey",
@@ -629,11 +729,6 @@
         {
           "name": "BurgerTown2Good",
           "username": "@uhhbzb",
-          "role": "Driver"
-        },
-        {
-          "name": "GK3R",
-          "username": "@sealsntags",
           "role": "Driver"
         },
         {
@@ -846,9 +941,6 @@
     ],
     "uarl-d1::BurgerTown2Good": [
       "32"
-    ],
-    "uarl-d1::GK3R": [
-      "42"
     ],
     "uarl-d1::Rocky": [
       "46"

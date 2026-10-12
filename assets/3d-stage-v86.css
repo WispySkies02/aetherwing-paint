@@ -1,0 +1,28 @@
+/* v86 — 3D uses the existing Paint Booth architecture, not a replacement stage. */
+.aw-stage-modes{position:absolute;z-index:35;top:53px;left:.72rem;display:flex;align-items:center;gap:0;border:1px solid rgba(255,255,255,.28);background:rgba(5,8,12,.91);box-shadow:0 8px 24px rgba(0,0,0,.35);backdrop-filter:blur(10px)}
+.aw-stage-modes button{appearance:none;border:0;border-right:1px solid rgba(255,255,255,.16);background:none;color:#c4cbd0;padding:.68rem .74rem;font:900 .56rem/1 var(--font-mono);letter-spacing:.08em;cursor:pointer;white-space:nowrap;min-height:39px}
+.aw-stage-modes button:last-child{border-right:0}
+.aw-stage-modes button.is-active{background:var(--booth-accent,#6dc8ff);color:#05070a}
+.aw-stage-modes button:disabled{opacity:.44;cursor:not-allowed}
+.aw-stage-modes button:not(:disabled):hover{color:#fff;background:rgba(109,200,255,.2)}
+.aw-stage-modes button.is-active:hover{background:var(--booth-accent,#6dc8ff);color:#05070a}
+.aw-stage-modes button:focus-visible{outline:2px solid #fff;outline-offset:2px}
+.aw-booth-car .aw-3d-stage[hidden]{display:none!important}
+.aw-booth-car .aw-3d-stage{position:absolute;inset:-6% -7% -10%;z-index:9;display:block;pointer-events:auto;touch-action:none;overflow:hidden}
+.aw-booth-car .aw-3d-stage canvas{display:block;width:100%;height:100%;touch-action:none;outline:0}
+.aw-3d-stage .aw-3d-hint{position:absolute;left:50%;bottom:2%;transform:translateX(-50%);background:rgba(2,9,15,.83);border:1px solid rgba(109,200,255,.24);padding:.4rem .6rem;color:#d3e4f0;font:800 .52rem/1 var(--font-mono);letter-spacing:.08em;white-space:nowrap;pointer-events:none}
+.aw-booth-shell[data-view-mode="3d"] .aw-car-open{visibility:hidden;pointer-events:none}
+.aw-booth-shell[data-view-mode="3d"] .aw-booth-car{z-index:14}
+.aw-booth-shell[data-view-mode="3d"] .aw-booth-car.is-loading::after{display:none}
+.aw-booth-shell[data-view-mode="3d"] .aw-car-shadow{opacity:.75}
+.aw-collection-card--3d-lab .aw-collection-badges span{color:#0c1018;background:#6dc8ff;border-color:#6dc8ff}
+@media(max-width:900px){.aw-stage-modes{left:.55rem;top:50px}.aw-stage-modes button{font-size:.5rem;padding:.6rem .5rem;min-height:36px}}
+@media(max-width:720px){.aw-stage-modes{left:.45rem;top:47px}.aw-stage-modes button{font-size:.43rem;padding:.57rem .42rem;min-height:36px}.aw-stage-modes [data-3d-save]{position:absolute;top:41px;left:0;border:1px solid rgba(255,255,255,.25);background:#061019}.aw-booth-car .aw-3d-stage{inset:-10% -2% -9%}.aw-3d-stage .aw-3d-hint{font-size:.42rem}}
+@media(max-width:385px){.aw-stage-modes button{font-size:.4rem;padding:.55rem .34rem}.aw-stage-modes{left:.3rem}.aw-booth-car .aw-3d-stage{inset:-6% -2% -9%}}
+@media(prefers-reduced-motion:reduce){.aw-stage-modes,.aw-booth-car .aw-3d-stage{transition:none!important}}
+
+.aw-3d-fleet{display:flex;align-items:center;gap:1rem;padding:.66rem clamp(.6rem,2vw,1.2rem);background:linear-gradient(110deg,#07111b,#142333 54%,#07131b);border:1px solid rgba(109,200,255,.34);border-bottom:0;position:relative;z-index:2}
+.aw-3d-fleet-head{flex:0 0 auto;display:flex;flex-direction:column;gap:.1rem;padding-right:.8rem;border-right:1px solid rgba(109,200,255,.35)}
+.aw-3d-fleet-head strong{font:900 .8rem/1.15 var(--font-mono);color:#6dc8ff;letter-spacing:.12em}.aw-3d-fleet-head small{font:.47rem/1.4 var(--font-mono);color:#abb8c4;letter-spacing:.04em}
+.aw-3d-fleet-choices{display:flex;flex:1;gap:.48rem;overflow-x:auto;scrollbar-width:thin;scrollbar-color:#6dc8ff #101722;padding:.14rem 0}.aw-3d-fleet-choices button{flex:0 0 auto;min-height:45px;display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:.25rem;border:1px solid rgba(255,255,255,.23);background:rgba(0,0,0,.45);padding:.42rem .7rem;color:#f5f9ff;font:900 .61rem/1.1 var(--font-mono);cursor:pointer}.aw-3d-fleet-choices button span{color:#95b8ca;font:.46rem/1 var(--font-mono);letter-spacing:.06em}.aw-3d-fleet-choices button:hover,.aw-3d-fleet-choices button:focus-visible{border-color:#6dc8ff;background:#123044;outline:none}.aw-3d-fleet-choices button.is-active{border-color:#6dc8ff;box-shadow:inset 0 0 0 1px #6dc8ff}
+@media(max-width:840px){.aw-3d-fleet{display:block;padding:.5rem}.aw-3d-fleet-head{border:0;padding:0 0 .45rem}.aw-3d-fleet-head small{font-size:.42rem}.aw-3d-fleet-choices{width:100%}}
