@@ -229,7 +229,7 @@ exportButton.addEventListener('click',()=>{
     setTimeout(()=>URL.revokeObjectURL(url),4000);
   },'image/png');
 });
-window.addEventListener('visibilitychange',()=>{if(!document.hidden)draw()});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)draw()});
 window.addEventListener('pagehide',()=>{
   ++modelVersion;
   unloadModel();
