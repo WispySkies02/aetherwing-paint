@@ -13,7 +13,10 @@ const statusElement = $('[data-status]');
 const exportButton = $('[data-export]');
 const models = Object.freeze({
   'nrrs-toyota': {path:'/assets/3d/nrrs-toyota.glb', mesh:'Paint1Mtl', camera:[-34,19,34], range:[16,85]},
+  'bbr-d1-chevy': {parts:'/assets/3d/bbr-d1-chevy.glb.part', partCount:11, mesh:'Paint1Mtl', camera:[-34,19,34], range:[16,85]},
+  'bbr-d1-ford': {parts:'/assets/3d/bbr-d1-ford.glb.part', partCount:11, mesh:'Paint1Mtl', camera:[-34,19,34], range:[16,85]},
   'oreilly-chevy': {path:'/assets/3d/oreilly-chevy.glb', mesh:'Body1Mtl', camera:[-31,15,-34], range:[15,75]},
+  'bbr-d2-ford': {path:'/assets/3d/bbr-d2-ford.glb', mesh:'Body1Mtl', camera:[-31,15,-34], range:[15,75]},
   'sunoco-truck': {path:'/assets/3d/sunoco-truck.glb', mesh:'Body21Mtl', camera:[-34,19,34], range:[16,85]}
 });
 const maxBytes = 16 * 1024 * 1024;
@@ -161,6 +164,27 @@ async function applyPreview(){
     URL.revokeObjectURL(url);
   }
 }
+async function loadModel(conf) {
+  if (!conf.parts) return loader.loadAsync(conf.path);
+  // Big D1 Roblox-source meshes are stored as small binary segments for
+  // GitHub compatibility. Reassemble exact GLB bytes in-memory before parsing.
+  const segments = await Promise.all(Array.from({length:conf.partCount},(_,index)=>{
+    const url = conf.parts + String(index).padStart(2,'0');
+    return fetch(url).then(response=>{
+      if(!response.ok)throw Error('3D model segment '+(index+1)+' failed to load (HTTP '+response.status+').');
+      return response.arrayBuffer();
+    });
+  }));
+  const length=segments.reduce((total,part)=>total+part.byteLength,0);
+  const bytes=new Uint8Array(length);
+  let offset=0;
+  for(const segment of segments){bytes.set(new Uint8Array(segment),offset);offset+=segment.byteLength;}
+  // GLB magic "glTF". Fail gracefully rather than rendering a corrupt car.
+  if(length<20 || String.fromCharCode(...bytes.subarray(0,4))!=='glTF'){
+    throw Error('The combined 3D model is invalid or incomplete.');
+  }
+  return loader.parseAsync(bytes.buffer,'/assets/3d/');
+}
 async function loadBody(){
   const key=bodySelect.value,conf=models[key];
   if(!conf)return;
@@ -168,7 +192,7 @@ async function loadBody(){
   unloadModel();
   notify('Loading '+bodySelect.selectedOptions[0].textContent+' 3D body…');
   try{
-    const gltf=await loader.loadAsync(conf.path);
+    const gltf=await loadModel(conf);
     if(version!==modelVersion){
       gltf.scene.traverse(node=>{if(node.isMesh){node.geometry?.dispose();disposeMaterial(node.material)}});
       return;
