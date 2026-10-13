@@ -2,9 +2,9 @@
    Only generated for the three Victory Lane presets. No UV template edits.
    The actual paint texture remains unchanged. */
 const CONFETTI_COUNTS = Object.freeze({
-  victory: 170,
-  'victory-night': 260,
-  'victory-confetti': 440
+  victory: 320,
+  'victory-night': 480,
+  'victory-confetti': 760
 });
 const COLORS = [0xf3f5f7, 0x2275cd, 0xe13638, 0xf5d54d, 0x36a96b, 0x141a28, 0xf1f2fc];
 
@@ -29,8 +29,8 @@ export function createLandedConfetti(THREE, body, preset, paintSlug = '') {
   if (!bounds) return null;
   const size = new THREE.Vector3();
   bounds.getSize(size);
-  const minimumY = bounds.min.y + size.y * 0.22;
-  const unit = Math.max(0.04, Math.min(0.2, Math.max(size.x, size.z) * 0.009));
+  const minimumY = bounds.min.y + size.y * 0.12;
+  const unit = Math.max(0.05, Math.min(0.24, Math.max(size.x, size.z) * 0.011));
   const a = new THREE.Vector3(), b = new THREE.Vector3(), c = new THREE.Vector3();
   const ab = new THREE.Vector3(), ac = new THREE.Vector3(), normal = new THREE.Vector3();
   const triangles = [];
@@ -52,7 +52,7 @@ export function createLandedConfetti(THREE, body, preset, paintSlug = '') {
     if (crossLength < 1e-7) continue;
     normal.divideScalar(crossLength);
     const midY = (a.y + b.y + c.y) / 3;
-    if (normal.y < 0.32 || midY < minimumY) continue;
+    if (normal.y < 0.16 || midY < minimumY) continue;
     const area = crossLength * 0.5;
     const bias = normal.y * normal.y * (0.55 + 0.45 * Math.min(1, (midY - minimumY) / Math.max(0.001, size.y * 0.5)));
     weight += area * bias;
@@ -61,7 +61,7 @@ export function createLandedConfetti(THREE, body, preset, paintSlug = '') {
   if (weight === 0 || !triangles.length) return null;
 
   const rand = seededRandom(paintSlug + ':' + preset + ':aetherwing-v89');
-  const count = typeof window !== 'undefined' && window.innerWidth < 720 ? Math.round(target * 0.62) : target;
+  const count = typeof window !== 'undefined' && window.innerWidth < 720 ? Math.round(target * 0.76) : target;
   const verts = [], normals = [], colors = [];
   const paperColors = COLORS.map(value => new THREE.Color(value));
   const center = new THREE.Vector3(), right = new THREE.Vector3(), forward = new THREE.Vector3();
@@ -94,8 +94,8 @@ export function createLandedConfetti(THREE, body, preset, paintSlug = '') {
     right.copy(ab).normalize();
     forward.crossVectors(normal, right).normalize();
     const rotation = rand() * Math.PI * 2;
-    const halfLength = unit * (0.32 + rand() * 0.65);
-    const halfWidth = unit * (0.11 + rand() * 0.23);
+    const halfLength = unit * (0.4 + rand() * 0.9);
+    const halfWidth = unit * (0.14 + rand() * 0.3);
     sideA.copy(right).multiplyScalar(Math.cos(rotation)).addScaledVector(forward, Math.sin(rotation)).multiplyScalar(halfLength);
     sideB.copy(right).multiplyScalar(-Math.sin(rotation)).addScaledVector(forward, Math.cos(rotation)).multiplyScalar(halfWidth);
     first.copy(center).sub(sideA).sub(sideB);
