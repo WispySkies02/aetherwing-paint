@@ -1555,6 +1555,7 @@ html {
   };
   const applyScene = (scene, name) => {
     if (boothShell instanceof HTMLElement) boothShell.dataset.lighting = scene || 'showroom';
+    document.dispatchEvent(new CustomEvent('aetherwing:scene-change',{detail:{scene:scene||'showroom'}}));
     root.querySelectorAll('[data-scene-choice]').forEach(item => item.classList.toggle('is-active', item.dataset.sceneChoice === scene));
     if (sceneCurrent) sceneCurrent.textContent = name || 'SHOWROOM';
     if (scene === 'neon') refreshNeonScene();
