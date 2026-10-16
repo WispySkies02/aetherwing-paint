@@ -15,6 +15,7 @@ const models = Object.freeze({
   'nrrs-toyota': {path:'/assets/3d/nrrs-toyota.glb', mesh:'Paint1Mtl', camera:[-34,19,34], range:[16,85]},
   'bbr-d1-chevy': {parts:'/assets/3d/bbr-d1-chevy.glb.part', partCount:11, mesh:'Paint1Mtl', camera:[-34,19,34], range:[16,85]},
   'bbr-d1-ford': {parts:'/assets/3d/bbr-d1-ford.glb.part', partCount:11, mesh:'Paint1Mtl', camera:[-34,19,34], range:[16,85]},
+  'bbr-d2-toyota': {path:'/assets/3d/bbr-d2-toyota.glb', mesh:'Body1Mtl', camera:[-31,15,-34], range:[15,75]},
   'oreilly-chevy': {path:'/assets/3d/oreilly-chevy.glb', mesh:'Body1Mtl', camera:[-31,15,-34], range:[15,75]},
   'bbr-d2-ford': {path:'/assets/3d/bbr-d2-ford.glb', mesh:'Body1Mtl', camera:[-31,15,-34], range:[15,75]},
   'sunoco-truck': {path:'/assets/3d/sunoco-truck.glb', mesh:'Body21Mtl', camera:[-34,19,34], range:[16,85]}
