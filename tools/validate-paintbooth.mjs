@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import vm from 'node:vm';
 import assert from 'node:assert/strict';
+import { spawnSync } from 'node:child_process';
 
 const root = path.resolve(import.meta.dirname, '..');
 const read = (file) => fs.readFileSync(path.join(root, file), 'utf8');
@@ -197,7 +198,39 @@ console.log('v83 verified: roster canon, historical Cadillac handling, stage sta
 // v84 — GK3R / @sealsntags left UARL D1. Active Paint Booth surfaces must not keep the bay.
 assert.ok(!d1.drivers.some((driver)=>driver.name==='GK3R'||driver.username==='@sealsntags'),'v84 active UARL D1 seed must exclude GK3R / @sealsntags');
 assert.ok(!html.includes('<strong>GK3R</strong><small>@sealsntags</small>'),'v84 pre-hydration overview must not show departed GK3R');
-assert.ok(html.includes('23 active slots across six active garages.'),'v84 static active-slot fallback should reflect the departed UARL D1 driver');
+// The current HUD renders numeric counters, not the retired prose summary.
+// Derive expectations from the roster so archived garages never add slots.
+const activeLeagues=seed.leagues.filter((league)=>league.relationship!=='archive');
+const activeSlots=activeLeagues.reduce((total,league)=>total+league.drivers.length,0);
+const metrics={
+  'data-active-garages':String(activeLeagues.length).padStart(2,'0'),
+  'data-active-slots':String(activeSlots),
+  'data-total-paints':String(seed.paints.length),
+  'data-active-paint-summary':`${seed.paints.filter((paint)=>!paint.historical).length} ACTIVE · ${seed.paints.filter((paint)=>paint.historical).length} HISTORICAL`
+};
+for(const [filename,markup] of [['index.html',html],['404.html',read('404.html')]]) {
+  for(const [attribute,value] of Object.entries(metrics)) {
+    assert.equal(markup.match(new RegExp(`<[^>]+\\b${attribute}(?:="[^"]*")?[^>]*>([^<]*)<`))?.[1],value,`${filename}: ${attribute} fallback must match the current seed`);
+  }
+}
+// Exercise the real updater as well as the static fallback, including a roster
+// change and historical paint. No network or browser rendering is required.
+const metricsSource=html.match(/function updateFacilityMetrics\(\) \{[\s\S]*?\n  \}(?=\n  function mergeLiveRoster)/)?.[0];
+assert.ok(metricsSource,'Facility metric updater must be present');
+const counters=Object.fromEntries(Object.keys(metrics).map((attribute)=>[`[${attribute}]`,{textContent:''}]));
+const liveLeagues=structuredClone(seed.leagues),livePaints=structuredClone(seed.paints);
+const context=vm.createContext({leagues:liveLeagues,paints:livePaints,root:{querySelector:(selector)=>counters[selector]||null},mobileLeagueSelect:null,HTMLSelectElement:class {}});
+const updateMetrics=new vm.Script(`${metricsSource}\nupdateFacilityMetrics();`);
+updateMetrics.runInContext(context);
+for(const [attribute,value] of Object.entries(metrics))assert.equal(counters[`[${attribute}]`].textContent,value,`${attribute} hydrated value must match the seed`);
+liveLeagues.find((league)=>league.relationship!=='archive').drivers.push({name:'Fixture Driver'});
+liveLeagues.find((league)=>league.relationship==='archive').drivers.push({name:'Fixture Archive Driver'});
+livePaints.push({slug:'fixture-historical',historical:true});
+updateMetrics.runInContext(context);
+assert.equal(counters['[data-active-slots]'].textContent,String(activeSlots+1),'Only active roster changes should change slot totals');
+assert.equal(counters['[data-active-garages]'].textContent,metrics['data-active-garages']);
+assert.equal(counters['[data-total-paints]'].textContent,String(seed.paints.length+1));
+assert.equal(counters['[data-active-paint-summary]'].textContent,`${seed.paints.filter((paint)=>!paint.historical).length} ACTIVE · ${seed.paints.filter((paint)=>paint.historical).length+1} HISTORICAL`);
 assert.ok(html.includes("['28','32','46','56']")&&html.includes("!['42','52','54','92']"),'v84 live roster gate must accept the post-GK3R UARL D1 canon and reject stale #42.');
 console.log('v84 verified: GK3R is removed from the active UARL D1 Paint Booth bay while historical metadata remains archived.');
 
@@ -232,5 +265,9 @@ assert.match(viewer,/fallbackImage\.src=url/);
 assert.doesNotMatch(viewer,/Admin →|3D PNG NEEDED|3D BODY NEEDED/);
 assert.match(viewer,/forceContextLoss/);
 assert.doesNotMatch(viewer,/show2d|mode='2d'|2D READY/);
-new vm.Script(viewer,{filename:'assets/3d-stage-v88.js'});
+// The viewer imports the confetti module. Parse it as an ES module without
+// executing its DOM/WebGL code; classic vm.Script rejects valid imports.
+const syntax=spawnSync(process.execPath,['--input-type=module','--check'],{input:viewer,encoding:'utf8'});
+assert.ifError(syntax.error);
+assert.equal(syntax.status,0,syntax.stderr);
 console.log('v88 verified: 3D-first stage, normal paint rack, fallback to selected database render with only 3D unavailable label, and on-demand loading.');
