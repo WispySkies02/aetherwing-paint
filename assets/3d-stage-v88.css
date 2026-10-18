@@ -47,3 +47,19 @@
 .aw-3d-fallback img{width:100%;height:100%;object-fit:contain;object-position:center;filter:drop-shadow(0 18px 24px rgba(0,0,0,.25));max-width:100%}
 .aw-3d-fallback-label{position:absolute;bottom:5%;left:50%;transform:translateX(-50%);padding:.42rem .72rem;border-radius:.22rem;border:1px solid rgba(217,235,244,.38);background:rgba(5,10,16,.86);color:#e0e9ee;font:800 .56rem/1.1 var(--font-mono);letter-spacing:.055em;white-space:nowrap;z-index:15;box-shadow:0 4px 16px rgba(0,0,0,.24)}
 @media(max-width:720px){.aw-3d-fallback-label{bottom:7%;font-size:.5rem;padding:.36rem .55rem}}
+
+/* Static originals use the same stage dimensions and controls as 3D. */
+.aw-3d-fallback-label[hidden],.aw-render-save-status[hidden]{display:none!important}
+.aw-booth-shell[data-render-mode] .aw-export-trigger{box-sizing:border-box;width:148px;min-width:148px;justify-content:center}
+.aw-booth-shell[data-render-mode] .aw-export-trigger span[hidden]{display:none!important}
+.aw-booth-shell[data-render-mode] .aw-export-trigger strong{white-space:nowrap}
+.aw-booth-shell[data-render-mode] .aw-stage-modes{box-sizing:border-box;min-width:138px;min-height:32px;border-radius:0}
+.aw-booth-shell:is([data-render-mode^="static"],[data-render-mode="unavailable"]) .aw-stage-modes{background:#25292d;border:1px solid #59616b;border-left:3px solid var(--booth-accent,#6dc8ff);box-shadow:inset 0 1px rgba(255,255,255,.04),0 4px 12px #0004}
+.aw-booth-shell:is([data-render-mode^="static"],[data-render-mode="unavailable"]) .aw-stage-modes strong{color:#f4f6f8;font-family:var(--font-condensed,'Saira Condensed',sans-serif);font-size:.78rem;letter-spacing:.08em}
+.aw-booth-shell:is([data-render-mode^="static"],[data-render-mode="unavailable"]) .aw-3d-stage{touch-action:pan-y;pointer-events:none}
+.aw-booth-shell[data-render-mode][data-render-source="iracing"] .aw-scene-control{display:flex!important}
+.aw-render-save-status{position:absolute;right:0;top:calc(100% + 6px);z-index:40;max-width:260px;padding:.5rem .65rem;background:#25292d;border:1px solid #737b85;color:#fff;font:700 .7rem/1.4 var(--font-condensed,sans-serif)}
+@media(max-width:820px){.aw-booth-shell[data-render-mode] .aw-export-trigger{width:112px;min-width:112px}.aw-booth-shell[data-render-mode] .aw-stage-modes{min-width:124px}.aw-booth-shell[data-render-mode] .aw-export-trigger strong{font-size:.56rem}}
+/* Reserve separate lanes for the credential, scene controls and paint title. */
+.aw-booth-shell[data-render-mode] .aw-car-id--top{top:94px!important}
+@media(max-width:900px){.aw-booth-shell[data-render-mode] .aw-stage-modes{top:100px}.aw-booth-shell[data-render-mode] .aw-car-id--top{top:140px!important}}

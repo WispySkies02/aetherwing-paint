@@ -1,4 +1,17 @@
-> **v88 update:** The showroom is 3D-first, without a 2D/3D switch. Every scheme stays in the normal bottom picker. When 3D cannot load, the stage displays that exact scheme’s existing database render and a small “3D unavailable” label. Admin-only diagnostics remain in the main-site 3D Viewer tab.
+> **Static render mode:** Paints without usable 3D assets display their original image with a charcoal **STATIC RENDER** credential and **SAVE RENDER** control. Failed 3D loads use the same fallback; working models retain orbit controls, scenes and 3D PNG export. Saving a static render downloads the original image bytes with a descriptive filename. **RENDER UNAVAILABLE** appears only if the static image is missing or cannot load.
+
+## Stage browser regression checks
+
+Run `npm run check` for the static-site validation. The optional `npm run test:stage` uses Chromium to exercise original-image downloads, actual Three.js rendering/export, model/image failures, delayed selection requests, synchronized metadata, and stable desktop/mobile controls in both app shells. It mocks remote content and uses local assets; it does not publish or deploy.
+
+Keep the browser test dependencies outside this site's published directory:
+
+```sh
+npm install --prefix /tmp/aetherwing-browser-tests --cache /tmp/aetherwing-npm-cache --no-package-lock --no-audit --no-fund playwright-core three@0.169.0
+PAINT_TEST_MODULES=/tmp/aetherwing-browser-tests/node_modules npm run test:stage
+```
+
+Chromium defaults to `/usr/bin/chromium`; set `CHROMIUM_PATH` for another installation. Set `PAINT_TEST_ARTIFACTS` to a directory outside the repository to save stage screenshots. Software WebGL is enabled for headless environments.
 
 # Aetherwing Paint Booth v85 — Non-starter identity correction
 
