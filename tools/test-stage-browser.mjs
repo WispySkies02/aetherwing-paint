@@ -75,10 +75,11 @@ try{
       const select=slug=>page.evaluate(slug=>window.AetherwingBooth.selectPaint(slug,true),slug);
       const mode=async value=>{try{await page.waitForFunction(value=>document.querySelector('[data-booth-shell]').dataset.renderMode===value,value,{timeout:25000});}catch(error){console.error(name,await page.evaluate(()=>{const root=document.querySelector('[data-paint-facility]');return {mode:document.querySelector('[data-booth-shell]').dataset.renderMode,slug:root.dataset.currentPaintSlug,paint:window.AetherwingBooth.paints.find(p=>p.slug===root.dataset.currentPaintSlug)};}),diagnostics.slice(-5),errors);throw error;}};
       const exportButton=page.locator('[data-3d-export-trigger]');
-      const geometry=()=>page.evaluate(()=>Object.fromEntries(['[data-booth-room]','[data-3d-stage]','[data-3d-export-trigger]','[data-scene-open]'].map(selector=>{const r=document.querySelector(selector).getBoundingClientRect();return [selector,{x:r.x+scrollX,y:r.y+scrollY,width:r.width,height:r.height}];})));
+      const geometry=()=>page.evaluate(async()=>{await Promise.allSettled(document.querySelector('[data-booth-car]').getAnimations().filter(animation=>animation.effect.getTiming().iterations!==Infinity).map(animation=>animation.finished));return Object.fromEntries(['[data-booth-room]','[data-3d-stage]','[data-3d-export-trigger]','[data-scene-open]'].map(selector=>{const r=document.querySelector(selector).getBoundingClientRect();return [selector,{x:r.x+scrollX,y:r.y+scrollY,width:r.width,height:r.height}];}));});
       await select('fixture-static-a');await mode('static');
       assert.equal(await page.locator('[data-stage-mode-label]').textContent(),'STATIC RENDER');
-      assert.equal(await page.locator('[data-booth-state]').textContent(),'STATIC RENDER');
+      assert.equal(await page.locator('[data-booth-state]').textContent(),'');
+      assert.equal(await page.locator('.aw-booth-signal').isVisible(),false,'Only the mode credential should persist');
       assert.equal(await exportButton.isEnabled(),true);assert.match(await exportButton.innerText(),/SAVE RENDER/);
       const staticGeometry=await geometry();
       const assertClearControls=async()=>{
@@ -104,6 +105,13 @@ try{
       assert.equal(await page.locator('[data-3d-hint]').isVisible(),true);
       assert.equal(await exportButton.getAttribute('aria-label'),'EXPORT 3D PNG');
       await assertClearControls();
+      const renderedBefore = await page.locator('[data-3d-canvas]').evaluate(canvas=>canvas.toDataURL());
+      const canvasBox = await page.locator('[data-3d-canvas]').boundingBox();
+      await page.mouse.move(canvasBox.x+canvasBox.width*.5,canvasBox.y+canvasBox.height*.5);
+      await page.mouse.down();await page.mouse.move(canvasBox.x+canvasBox.width*.65,canvasBox.y+canvasBox.height*.55,{steps:5});await page.mouse.up();
+      await page.mouse.wheel(0,-80);
+      const renderedAfter = await page.locator('[data-3d-canvas]').evaluate(canvas=>canvas.toDataURL());
+      assert.notEqual(renderedAfter,renderedBefore,'Working 3D orbit/zoom controls must change the rendered pixels');
       const modelGeometry=await geometry();
       assert.deepEqual(modelGeometry,staticGeometry,'Stage and controls must not move or resize between static and 3D');
       const [modelSaved]=await Promise.all([page.waitForEvent('download'),exportButton.click()]);

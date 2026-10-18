@@ -1,14 +1,19 @@
 > **Static render mode:** Paints without usable 3D assets display their original image with a charcoal **STATIC RENDER** credential and **SAVE RENDER** control. Failed 3D loads use the same fallback; working models retain orbit controls, scenes and 3D PNG export. Saving a static render downloads the original image bytes with a descriptive filename. **RENDER UNAVAILABLE** appears only if the static image is missing or cannot load.
 
-## Stage browser regression checks
+## Catalog consistency
 
-Run `npm run check` for the static-site validation. The optional `npm run test:stage` uses Chromium to exercise original-image downloads, actual Three.js rendering/export, model/image failures, delayed selection requests, synchronized metadata, and stable desktop/mobile controls in both app shells. It mocks remote content and uses local assets; it does not publish or deploy.
+Counts stay neutral while the published catalog loads. The resolved catalog updates the booth, driver stalls, rack and archive together; Hailey's filter and stall use one identity matcher. Failed requests use a labeled last-published cache, or the bundled catalog if no cache is available. Numberless endurance paints use **ENDURANCE** across surfaces; Roblox 3D demonstrations without IDs use **3D DEMONSTRATION · NO SCHEME ID**. The stage keeps one persistent mode badge and reserves its secondary readout for loading, save feedback and errors.
+
+## Browser regression checks
+
+Run `npm run check` for the static-site validation. The optional `npm run test:stage` uses Chromium to exercise original-image downloads, actual Three.js rendering/export, model/image failures, delayed selection requests, synchronized metadata, and stable desktop/mobile controls in both app shells. `npm run test:catalog` covers delayed startup, synchronized catalog counts and publication changes, endurance/demo labels, search/filters, Scheme ID copying, direct URLs, cached/bundled fallback and mobile controls. Both suites mock remote content and use local assets; they do not publish or deploy.
 
 Keep the browser test dependencies outside this site's published directory:
 
 ```sh
 npm install --prefix /tmp/aetherwing-browser-tests --cache /tmp/aetherwing-npm-cache --no-package-lock --no-audit --no-fund playwright-core three@0.169.0
 PAINT_TEST_MODULES=/tmp/aetherwing-browser-tests/node_modules npm run test:stage
+PAINT_TEST_MODULES=/tmp/aetherwing-browser-tests/node_modules npm run test:catalog
 ```
 
 Chromium defaults to `/usr/bin/chromium`; set `CHROMIUM_PATH` for another installation. Set `PAINT_TEST_ARTIFACTS` to a directory outside the repository to save stage screenshots. Software WebGL is enabled for headless environments.

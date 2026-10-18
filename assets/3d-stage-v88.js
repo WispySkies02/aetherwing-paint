@@ -35,7 +35,7 @@ if(root && shell && stage && canvas && raw){
   shell.dataset.viewMode='3d';
   stage.hidden=false;
   let mode='empty',downloadRequest=null;
-  const showText=t=>{if(status)status.textContent=t;if(retry)retry.hidden=t!=='RENDER UNAVAILABLE';};
+  const showText=t=>{if(status){status.textContent=t;status.closest('.aw-booth-signal')?.classList.toggle('is-idle',!t);}if(retry)retry.hidden=t!=='RENDER UNAVAILABLE';};
   const setMode=(value,label)=>{mode=value;shell.dataset.renderMode=value;if(modeLabel)modeLabel.textContent=label;};
   const exportLabel=(text,enabled,title)=>{
     if(!export3d)return;
@@ -71,7 +71,7 @@ if(root && shell && stage && canvas && raw){
       if(!image.naturalWidth){markUnavailable();return;}
       image.hidden=false;setMode('static','STATIC RENDER');
       exportLabel('SAVE RENDER',true,'Download the selected paint’s original image');
-      showText('STATIC RENDER');
+      showText('');
     };
     image.onerror=()=>{if(current===token)markUnavailable();};
     if(url)image.src=url;else markUnavailable();
@@ -86,7 +86,7 @@ if(root && shell && stage && canvas && raw){
     setMode('3d','3D SHOWROOM');
     if(fallback)fallback.hidden=true;
     canvas.hidden=false;if(hint)hint.hidden=false;
-    exportLabel('EXPORT 3D PNG',true,'Save an image of the current 3D car');showText('3D READY');
+    exportLabel('EXPORT 3D PNG',true,'Save an image of the current 3D car');showText('');
   };
   const disposeMaterial=material=>{
     if(!material)return;
@@ -154,7 +154,7 @@ if(root && shell && stage && canvas && raw){
     const current=++token;
     downloadRequest?.abort();downloadRequest=null;clearSaveStatus();
     if(renderMessage)renderMessage.hidden=true;
-    if(!p){releaseModel();setMode('empty','PAINT PENDING');if(fallback)fallback.hidden=true;canvas.hidden=true;if(hint)hint.hidden=true;exportLabel('SAVE RENDER',false,'Select a paint to save its render');showText('PAINT PENDING');return;}
+    if(!p){releaseModel();setMode('empty','PAINT PENDING');if(fallback)fallback.hidden=true;canvas.hidden=true;if(hint)hint.hidden=true;exportLabel('SAVE RENDER',false,'Select a paint to save its render');showText('');return;}
     if(!ready(p)){releaseModel();showFallback(p,current);return;}
     markLoading();
     try{
@@ -192,7 +192,7 @@ if(root && shell && stage && canvas && raw){
     clearSaveStatus();
     if(mode==='static'){
       const controller=new AbortController();downloadRequest=controller;
-      exportLabel('SAVING…',false,'Saving the original render');
+      exportLabel('SAVING…',false,'Saving the original render');showText('SAVING RENDER');
       try{
         // Download the original bytes, without canvas recompression, cropping,
         // scene effects or a screenshot of the displayed stage.
@@ -201,9 +201,11 @@ if(root && shell && stage && canvas && raw){
         const blob=await response.blob();
         if(!blob.size||blob.type&& !/^image\//.test(blob.type)&&blob.type!=='application/octet-stream')throw new Error('The host did not return an image');
         if(current!==token||controller.signal.aborted)return;
-        download(blob,renderFilename(paint,blob));
+        download(blob,renderFilename(paint,blob));showText('RENDER SAVED');
+        setTimeout(()=>{if(current===token&&status?.textContent==='RENDER SAVED')showText('');},3000);
       }catch(error){
         if(current!==token||controller.signal.aborted)return;
+        showText('SAVE FAILED');
         if(saveStatus){saveStatus.hidden=false;saveStatus.textContent='Could not save the render. Please try again.';}
       }finally{
         if(current===token){downloadRequest=null;exportLabel('SAVE RENDER',true,'Download the selected paint’s original image');}

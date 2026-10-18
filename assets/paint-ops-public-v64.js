@@ -3,7 +3,8 @@
 
   const STORAGE_KEY = 'aetherwing-paint-ops';
   const PUBLIC_ENDPOINT = '/.netlify/functions/paint-data';
-  const identityNames = new Set(['hailey', 'wispy', 'nicholas waggoner', 'hailey bell']);
+  const catalog = window.AetherwingPaintCatalog;
+  const CACHE_KEY = 'aetherwing-published-paint-catalog-v1';
   const badgeLabels = {
     prized: 'Prized Livery', patriotic: 'Patriotic', concept: 'Concept', tribute: 'Tribute',
     starclutch: 'StarClutch Racing Alliance', legacy: 'Legacy / Part-Time',
@@ -48,17 +49,25 @@
   }
 
   async function readRegistry() {
-    if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
-      return readLocalRegistry();
-    }
     const controller = new AbortController();
     const timer = setTimeout(() => controller.abort(), 3500);
     try {
-      const response = await fetch(PUBLIC_ENDPOINT, { headers: { accept: 'application/json' }, signal: controller.signal });
+      const response = await fetch(PUBLIC_ENDPOINT, { cache:'no-store', headers:{ accept:'application/json' }, signal:controller.signal });
       if (!response.ok) throw new Error(`Registry returned ${response.status}`);
-      return await response.json();
+      const registry = await response.json();
+      if (!Array.isArray(registry?.paints)) throw new Error('Invalid published catalog');
+      try { localStorage.setItem(CACHE_KEY, JSON.stringify(registry)); } catch {}
+      return { registry, source:'published' };
     } catch {
-      return { paints: [], feature: null };
+      try {
+        const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || 'null');
+        if (Array.isArray(cached?.paints)) return { registry:cached, source:'cached' };
+      } catch {}
+      if (location.hostname === 'localhost' || location.hostname === '127.0.0.1') {
+        const local = readLocalRegistry();
+        if (Array.isArray(local.paints) && local.paints.length) return { registry:local, source:'local' };
+      }
+      return { registry:null, source:'bundled' };
     } finally {
       clearTimeout(timer);
     }
@@ -365,7 +374,7 @@
       context.textAlign = 'right';
       context.fillStyle = accent;
       context.font = `900 ${rows > 2 ? 26 : 32}px monospace`;
-      context.fillText(paint.number ? `#${paint.number}` : 'TEAM', x + cardWidth - 22, y + cardHeight - 31);
+      context.fillText(catalog.numberLabel(paint), x + cardWidth - 22, y + cardHeight - 31);
       context.textAlign = 'left';
       context.fillStyle = '#91989e';
       context.font = `700 ${rows > 2 ? 14 : 17}px monospace`;
@@ -465,7 +474,7 @@
   function normalizeIdentity(paint) {
     if (!paint) return paint;
     const league = paint?.leagues?.[0] || '';
-    if (league === 'iracing' && identityNames.has(String(paint?.driver || '').toLowerCase())) return { ...paint, driver:'Hailey Bell', username:'' };
+    if (league === 'iracing' && catalog.isHailey(paint?.driver)) return { ...paint, driver:'Hailey Bell', username:'' };
     if (league !== 'uarl-d2' && ['wispy','hailey'].includes(String(paint?.driver || '').toLowerCase())) return { ...paint, driver:'Hailey', username:'@Aokikoto' };
     return paint;
   }
@@ -476,13 +485,9 @@
     const league = paint.leagues?.[0] || '';
     const leagueName = paint.leagueName || league.replace(/-/g, ' ');
     const tags = (paint.special || []).map((tag) => `<span class="is-${esc(tag)}">${esc(badgeLabels[tag] || tag)}</span>`).join('');
-    const hasNumber = String(paint.number || '').trim().length > 0;
-    const enduranceEntry = !hasNumber && (
-      String(paint.classification || '').toLowerCase() === 'endurance' ||
-      /endurance/i.test(String(paint.driver || '')) ||
-      /\b(gt3|gt4|gte|gtd|lmp|prototype)\b/i.test(String(paint.body || ''))
-    );
-    const cardCredential = hasNumber ? `#${paint.number}` : (enduranceEntry ? 'ENDURANCE' : 'TEAM');
+    const hasNumber = catalog.hasNumber(paint);
+    const enduranceEntry = catalog.isEndurance(paint);
+    const cardCredential = catalog.numberLabel(paint);
     const sponsorHeading = enduranceEntry
       ? `<h3 class="aw-collection-title is-endurance"><span class="aw-endurance-credential">ENDURANCE</span><span class="aw-endurance-separator" aria-hidden="true">·</span><span class="aw-collection-sponsor">${esc(paint.sponsor)}</span></h3>`
       : `<h3>${esc(paint.sponsor)}</h3>`;
@@ -500,7 +505,7 @@
         ${paint.note ? `<small>${esc(paint.note)}</small>` : ''}
         <div class="aw-collection-badges">${tags}</div>
         <div class="aw-collection-actions">
-          ${paint.schemeId ? `<button type="button" data-dynamic-copy-id="${esc(paint.schemeId)}">COPY ID</button>` : '<span>iRACING CUSTOM LIVERY</span>'}
+          ${paint.schemeId ? `<button type="button" data-dynamic-copy-id="${esc(paint.schemeId)}">COPY ID</button>` : `<span>${esc(catalog.paintType(paint))}</span>`}
 
         </div>
       </div>
@@ -572,7 +577,9 @@
 
   function syncCollectionCards(paints, featuredSlugs = []) {
     const grid = document.querySelector('[data-collection-grid]');
-    if (!(grid instanceof HTMLElement) || !paints.length) return;
+    if (!(grid instanceof HTMLElement)) return;
+    const slugs = new Set(paints.map(paint => paint.slug));
+    grid.querySelectorAll('[data-collection-card]').forEach(card => { if (!slugs.has(card.dataset.slug)) card.remove(); });
     for (const paint of orderDynamicPaints(paints, featuredSlugs)) {
       if (!paint?.slug) continue;
       const template = document.createElement('template');
@@ -586,13 +593,12 @@
     document.dispatchEvent(new CustomEvent('paintops:cardschanged'));
   }
 
-  function bindDynamicCards(paints) {
-    const bySlug = new Map(paints.map((paint) => [paint.slug, paint]));
+  function bindDynamicCards() {
     document.addEventListener('click', async (event) => {
       const target = event.target instanceof Element ? event.target.closest('[data-load-dynamic-paint],[data-dynamic-copy-id]') : null;
       if (!(target instanceof HTMLElement)) return;
       if (target.dataset.loadDynamicPaint) {
-        const paint = bySlug.get(target.dataset.loadDynamicPaint);
+        const paint = window.AetherwingBooth?.paints.find(paint => paint.slug === target.dataset.loadDynamicPaint);
         if (!paint) return;
         window.AetherwingBooth?.selectPaint?.(paint.slug, true);
         document.querySelector('[data-paint-facility]')?.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
@@ -602,48 +608,33 @@
     });
   }
 
-  function updateTotals(total, paints = []) {
-    const metric = document.querySelector('[data-total-paints]') || document.querySelector('.aw-hud-metrics > div:nth-child(2) strong');
-    if (metric) metric.textContent = String(total).padStart(2, '0');
-    const historical = paints.filter((paint) => paint?.programStatus === 'closed-archive' || paint?.historical || paint?.leagues?.includes('uarl-d2')).length;
-    const active = Math.max(0, total - historical);
-    const summary = document.querySelector('[data-active-paint-summary]');
-    if (summary) summary.textContent = `${active} ACTIVE · ${historical} HISTORICAL`;
-    const allFilter = document.querySelector('[data-collection-filter="all"]');
-    if (allFilter) allFilter.textContent = `ALL ${total}`;
-    const allGarage = document.querySelector('[data-league-id="all"] small');
-    if (allGarage) allGarage.textContent = `${total} TOTAL · ${active} ACTIVE + ${historical} HISTORICAL`;
-    const relationshipCopy = {
-      nrrs:'AETHERWING PROGRAM', 'uarl-d1':'AETHERWING PROGRAM', 'uarl-d2':'HISTORICAL ARCHIVE', 'uarl-open':'AETHERWING PROGRAM',
-      kmart:'STARCLUTCH ALLIANCE', 'sunoco-truck':'STARCLUTCH ALLIANCE', iracing:'AETHERWING PROGRAM'
-    };
-    leagueOrder.forEach((league) => {
-      const count = paints.filter((paint) => Array.isArray(paint.leagues) && paint.leagues.includes(league)).length;
-      const small = document.querySelector(`[data-league-id="${league}"] small`);
-      if (small) small.textContent = `${String(count).padStart(2,'0')} PAINT${count===1?'':'S'} · ${relationshipCopy[league] || 'AETHERWING PROGRAM'}`;
-    });
+  let currentFeature = null;
+  function renderCatalog() {
+    const paints = window.AetherwingBooth?.paints || [];
+    const featuredSlugs = isFeatureLive(currentFeature) ? featureSlugs(currentFeature) : [];
+    syncCollectionCards(paints, featuredSlugs);
+    groupCollectionCards(currentFeature);
+    renderFeature(currentFeature, paints);
   }
 
   async function start() {
-    const registry = await readRegistry();
-    const dynamicPaints = Array.isArray(registry.paints)
-      ? registry.paints.filter((paint) => !paint.archived && paint.status !== 'draft')
-      : [];
-    const featuredSlugs = isFeatureLive(registry.feature) ? featureSlugs(registry.feature) : [];
-    if (dynamicPaints.length) {
-      // The central registry is authoritative when available: it includes the original
-      // collection plus Admin overrides/additions, so matching slugs replace seed data.
-      window.AetherwingBooth?.addPaints?.(dynamicPaints);
-      syncCollectionCards(dynamicPaints, featuredSlugs);
-      bindDynamicCards(dynamicPaints);
-    }
-    if (window.AetherwingBooth?.setFeaturedPaints) window.AetherwingBooth.setFeaturedPaints(featuredSlugs);
-    else window.AetherwingBooth?.setFeaturedPaint?.(featuredSlugs[0] || '');
-    const allPaints = [...(window.AetherwingBooth?.paints || [])]
-      .filter((paint, index, list) => list.findIndex((item) => item.slug === paint.slug) === index);
-    groupCollectionCards(registry.feature);
-    updateTotals(allPaints.length || 35, allPaints);
-    renderFeature(registry.feature, allPaints);
+    bindDynamicCards();
+    document.addEventListener('aetherwing:catalog-change', renderCatalog);
+    const { registry, source } = await readRegistry();
+    currentFeature = registry?.feature || null;
+    const featuredSlugs = isFeatureLive(currentFeature) ? featureSlugs(currentFeature) : [];
+    window.AetherwingBooth?.setFeaturedPaints?.(featuredSlugs);
+    if (registry) window.AetherwingBooth?.replacePaints?.(registry.paints);
+    else renderCatalog();
+    document.querySelectorAll('[data-league-controls],[data-driver-controls],[data-paint-controls],[data-collection-grid]').forEach(node => node.setAttribute('aria-busy', 'false'));
+    const status = document.querySelector('[data-catalog-status]');
+    if (status) status.textContent = {
+      published:'Published catalog', cached:'Cached catalog · published catalog unavailable',
+      local:'Local catalog · published catalog unavailable', bundled:'Bundled catalog · published catalog unavailable'
+    }[source];
+    // Reveal all counts and collection surfaces in the same browser frame,
+    // after the one resolved catalog has populated both booth and archive.
+    document.documentElement.dataset.catalogState = source;
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start, { once: true });

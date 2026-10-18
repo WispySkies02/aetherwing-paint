@@ -6,6 +6,7 @@
   "scripts": {
     "check": "node tools/validate-paintbooth.mjs",
     "test:stage": "node tools/test-stage-browser.mjs",
-    "preview": "node tools/serve.mjs"
+    "preview": "node tools/serve.mjs",
+    "test:catalog": "node tools/test-catalog-browser.mjs"
   }
 }
