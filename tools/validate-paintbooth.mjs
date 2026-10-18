@@ -11,6 +11,21 @@ assert.equal(seed.paints.length, 40);
 assert.equal(new Set(seed.paints.map((paint) => paint.slug)).size, 40);
 const html = read('index.html');
 const publicOps = read('assets/paint-ops-public-v64.js');
+const catalogContext = vm.createContext({window:{}});
+new vm.Script(read('assets/paint-catalog-v1.js')).runInContext(catalogContext);
+const catalog = catalogContext.window.AetherwingPaintCatalog;
+for (const name of ['Hailey',' hailey bell ','WISPY','Nicholas Waggoner']) assert.equal(catalog.isHailey(name),true);
+assert.equal(catalog.isHailey('Aetherwing Endurance Team'),false);
+assert.equal(catalog.isHailey('Hailey-Bell'),false,'Badge, stall and result matching must not broaden identity aliases through search normalization');
+const publishedEndurance = {...seed.paints.find(paint=>paint.slug==='iracing-monster-lando-mclaren')};
+delete publishedEndurance.classification;
+assert.equal(catalog.numberLabel(publishedEndurance),'ENDURANCE','Published numberless McLaren works without an optional classification');
+assert.equal(catalog.numberLabel({...publishedEndurance,number:'97'}),'#97');
+for (const paint of seed.paints.filter(paint=>paint.slug.startsWith('lab-'))) {
+  assert.equal(catalog.paintType(paint),'3D DEMONSTRATION · NO SCHEME ID');
+  assert.equal(paint.schemeId,'','Demonstrations must not acquire Scheme IDs');
+}
+assert.equal(catalog.paintType(publishedEndurance),'iRACING CUSTOM LIVERY');
 assert.match(html, /data-league-controls/);
 assert.match(html, /data-driver-controls/);
 assert.match(html, /data-scene-open/);
@@ -53,8 +68,8 @@ console.log('v68 baseline verified: mobile-safe export, compact stage label, qui
 
 // v69: numberless endurance gallery cards must use the ENDURANCE credential, never an empty # prefix.
 assert.match(html, /paint-iracing-monster-lando-mclaren[\s\S]*?aw-endurance-credential[\s\S]*?ENDURANCE[\s\S]*?Monster Energy \(Lando Norris\)/i);
-assert.match(publicOps, /const enduranceEntry = !hasNumber/);
-assert.match(publicOps, /cardCredential = hasNumber \? `#\$\{paint\.number\}` : \(enduranceEntry \? 'ENDURANCE' : 'TEAM'\)/);
+assert.match(publicOps, /const enduranceEntry = catalog\.isEndurance\(paint\)/);
+assert.match(publicOps, /cardCredential = catalog\.numberLabel\(paint\)/);
 assert.doesNotMatch(html + publicOps, />#\s*·\s*</);
 
 console.log('v69 verified: numberless endurance cards use ENDURANCE credential; numbered cards and gallery interactions remain intact.');
@@ -172,7 +187,7 @@ assert.match(html, /setRenderState\('LOADING'\)/);
 assert.match(html, /setRenderState\('RENDER READY'\)/);
 assert.match(html, /setRenderState\('RENDER UNAVAILABLE'\)/);
 assert.match(html, /data-render-retry/);
-assert.match(html, /classification === 'endurance'[\s\S]*?Aetherwing Endurance Team/);
+assert.match(html, /catalog\.isEndurance\(paint\)[\s\S]*?Aetherwing Endurance Team/);
 assert.match(html, /ENDURANCE/);
 assert.doesNotMatch(html, />#TEAM</);
 assert.match(html, /https:\/\/aetherwing\.net\/api\/site-content/);
@@ -209,17 +224,19 @@ const metrics={
   'data-active-paint-summary':`${seed.paints.filter((paint)=>!paint.historical).length} ACTIVE · ${seed.paints.filter((paint)=>paint.historical).length} HISTORICAL`
 };
 for(const [filename,markup] of [['index.html',html],['404.html',read('404.html')]]) {
-  for(const [attribute,value] of Object.entries(metrics)) {
-    assert.equal(markup.match(new RegExp(`<[^>]+\\b${attribute}(?:="[^"]*")?[^>]*>([^<]*)<`))?.[1],value,`${filename}: ${attribute} fallback must match the current seed`);
+  assert.match(markup, /data-catalog-state="loading"/);
+  assert.match(markup, /paint-catalog-v1\.js/);
+  for(const attribute of Object.keys(metrics)) {
+    assert.equal(markup.match(new RegExp(`<[^>]+\\b${attribute}(?:="[^"]*")?[^>]*>([^<]*)<`))?.[1],'…',`${filename}: ${attribute} must not flash seed counts before the catalog resolves`);
   }
 }
-// Exercise the real updater as well as the static fallback, including a roster
+// Exercise the resolved metric updater as well as loading placeholders, including a roster
 // change and historical paint. No network or browser rendering is required.
 const metricsSource=html.match(/function updateFacilityMetrics\(\) \{[\s\S]*?\n  \}(?=\n  function mergeLiveRoster)/)?.[0];
 assert.ok(metricsSource,'Facility metric updater must be present');
 const counters=Object.fromEntries(Object.keys(metrics).map((attribute)=>[`[${attribute}]`,{textContent:''}]));
 const liveLeagues=structuredClone(seed.leagues),livePaints=structuredClone(seed.paints);
-const context=vm.createContext({leagues:liveLeagues,paints:livePaints,root:{querySelector:(selector)=>counters[selector]||null},mobileLeagueSelect:null,HTMLSelectElement:class {}});
+const context=vm.createContext({catalog,leagues:liveLeagues,paints:livePaints,root:{querySelector:(selector)=>counters[selector]||null},mobileLeagueSelect:null,HTMLSelectElement:class {}});
 const updateMetrics=new vm.Script(`${metricsSource}\nupdateFacilityMetrics();`);
 updateMetrics.runInContext(context);
 for(const [attribute,value] of Object.entries(metrics))assert.equal(counters[`[${attribute}]`].textContent,value,`${attribute} hydrated value must match the seed`);
