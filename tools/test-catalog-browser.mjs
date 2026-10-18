@@ -121,6 +121,11 @@ try{
         assert.equal(await card.locator('.aw-collection-specs').textContent(),paint.manufacturer+paint.body);
       }
       await page.locator('[data-league-id="all"]').click();
+      for(const query of ['Sinder Dodge','132350921119875']){
+        await page.locator('[data-rack-search]').fill(query);
+        assert.equal(await page.locator('[data-paint-controls] [data-rack-paint]').count(),1,`${query} must find exactly Sinder Dodge`);
+        assert.equal(await page.locator('[data-rack-paint="kmart-clutch-sinder"] strong').textContent(),'Sinder Dodge');
+      }
       await page.locator('[data-rack-search]').fill('Published addition');assert.equal(await page.locator('[data-paint-count]').textContent(),'08 paints');
       await page.locator('[data-rack-search-clear]').click();
       await page.locator('[data-rack-only-3d]').check();assert.equal(await page.locator('[data-paint-count]').textContent(),'05 paints');

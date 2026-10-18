@@ -901,7 +901,7 @@ html {
   const filterRack=()=>{
     const term=(rackSearch?.value||'').trim().toLowerCase(), only=!!rackOnly3d?.checked;
     const list=(term||only)?paints.filter(p=>{
-      const haystack=[p.sponsor,p.driver,p.number,p.manufacturer,p.body,p.leagueName,...(p.leagues||[])].join(' ').toLowerCase();
+      const haystack=[p.sponsor,p.driver,p.number,p.schemeId,p.manufacturer,p.body,p.leagueName,...(p.leagues||[])].join(' ').toLowerCase();
       return (!term||haystack.includes(term))&&(!only||has3d(p));
     }):driverPaints(activeLeague,activeDriver);
     return list;
