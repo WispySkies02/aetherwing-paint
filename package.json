@@ -5,6 +5,7 @@
   "description": "3D-first Paint Booth with static-render fallback when a selected scheme lacks a working 3D model.",
   "scripts": {
     "check": "node tools/validate-paintbooth.mjs",
+    "test:stage": "node tools/test-stage-browser.mjs",
     "preview": "node tools/serve.mjs"
   }
 }

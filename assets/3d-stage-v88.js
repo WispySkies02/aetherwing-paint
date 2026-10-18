@@ -7,7 +7,11 @@ const stage=root?.querySelector('[data-3d-stage]');
 const canvas=stage?.querySelector('[data-3d-canvas]');
 const status=root?.querySelector('[data-booth-state]');
 const fallback=stage?.querySelector('[data-3d-fallback]');
-const fallbackImage=stage?.querySelector('[data-3d-fallback-image]');
+let fallbackImage=stage?.querySelector('[data-3d-fallback-image]');
+const renderMessage=stage?.querySelector('[data-render-message]');
+const modeLabel=root?.querySelector('[data-stage-mode-label]');
+const retry=root?.querySelector('[data-render-retry]');
+const saveStatus=root?.querySelector('[data-render-save-status]');
 const hint=stage?.querySelector('[data-3d-hint]');
 const export3d=root?.querySelector('[data-3d-export-trigger]');
 const raw=document.querySelector('#aw-paint-booth-data');
@@ -24,43 +28,65 @@ if(root && shell && stage && canvas && raw){
     /^https:\/\/aetherwing\.net\/api\/paint-3d-texture\/[a-f0-9]{64}\.png$/.test(url)||
     /^https:\/\/paint\.aetherwing\.net\/assets\/3d\/[a-z0-9-]+\.(?:webp|png)$/.test(url)
   );
-  const excluded=p=>(p?.leagues||[]).some(l=>['uarl-open','uarl-d2','iracing'].includes(l));
-  const ready=p=>!!(p && !excluded(p) && bodies[p.bodyModel] && validTexture(p.liveryTexture));
+  const ready=p=>!!(p && bodies[p.bodyModel] && validTexture(p.liveryTexture));
   let chosen=paints.find(p=>p.slug===root.dataset.currentPaintSlug)||paints[0]||null;
   let api=null,THREE=null,renderer=null,scene=null,camera=null,controls=null,viewerModel=null,activeTexture=null;
   let modelKey='',token=0,active=false,observer=null,landedConfetti=null;
   shell.dataset.viewMode='3d';
   stage.hidden=false;
-  const showText=t=>{if(status)status.textContent=t;};
-  // The visitor sees either their selected 3D car or the same paint's existing render.
-  // Do not expose missing-asset or Admin instructions here.
-  const showFallback=paint=>{
-    const url=typeof paint?.image==='string' ? paint.image.trim() : '';
-    if(fallbackImage){
-      fallbackImage.alt=paint ? `${paint.sponsor||'Selected paint'} — static paint render` : 'Selected paint render';
-      fallbackImage.hidden=!url;
-      if(url)fallbackImage.src=url;
-      else fallbackImage.removeAttribute('src');
-    }
+  let mode='empty',downloadRequest=null;
+  const showText=t=>{if(status)status.textContent=t;if(retry)retry.hidden=t!=='RENDER UNAVAILABLE';};
+  const setMode=(value,label)=>{mode=value;shell.dataset.renderMode=value;if(modeLabel)modeLabel.textContent=label;};
+  const exportLabel=(text,enabled,title)=>{
+    if(!export3d)return;
+    export3d.disabled=!enabled;export3d.title=title;export3d.setAttribute('aria-label',text);
+    const prefix=export3d.querySelector('span'),label=export3d.querySelector('strong');
+    if(prefix)prefix.hidden=text!=='EXPORT 3D PNG';
+    if(label)label.textContent=text==='EXPORT 3D PNG'?'3D PNG':text;
+  };
+  const clearSaveStatus=()=>{if(saveStatus){saveStatus.hidden=true;saveStatus.textContent='';}};
+  const markUnavailable=()=>{
+    setMode('unavailable','RENDER UNAVAILABLE');
+    if(fallbackImage)fallbackImage.hidden=true;
+    if(renderMessage)renderMessage.hidden=false;
+    exportLabel('SAVE RENDER',false,'The selected render could not be loaded');
+    showText('RENDER UNAVAILABLE');
+  };
+  const showFallback=(paint,current)=>{
+    const url=typeof paint?.image==='string'?paint.image.trim():'';
+    setMode('static-loading','STATIC RENDER');
     if(fallback)fallback.hidden=false;
-    canvas.hidden=true;
-    if(hint)hint.hidden=true;
-    if(export3d){export3d.disabled=true;export3d.title='3D unavailable';}
-    showText('SHOWROOM');
+    canvas.hidden=true;if(hint)hint.hidden=true;
+    exportLabel('SAVE RENDER',false,'Loading the selected original render');
+    showText('LOADING RENDER');
+    // Each request gets its own element and callbacks: a late load/error from
+    // a previous image must never change the latest selection or its mode.
+    const image=new Image();
+    image.setAttribute('data-3d-fallback-image','');image.hidden=true;
+    image.alt=`${paint?.driver||'Selected driver'} — ${paint?.sponsor||'Paint'} static render`;
+    image.decoding='async';image.fetchPriority='high';
+    fallbackImage?.replaceWith(image);fallbackImage=image;
+    image.onload=()=>{
+      if(current!==token)return;
+      if(!image.naturalWidth){markUnavailable();return;}
+      image.hidden=false;setMode('static','STATIC RENDER');
+      exportLabel('SAVE RENDER',true,'Download the selected paint’s original image');
+      showText('STATIC RENDER');
+    };
+    image.onerror=()=>{if(current===token)markUnavailable();};
+    if(url)image.src=url;else markUnavailable();
   };
   const markLoading=()=>{
+    setMode('3d-loading','3D SHOWROOM');
     if(fallback)fallback.hidden=true;
-    canvas.hidden=false;
-    if(hint)hint.hidden=true;
-    if(export3d){export3d.disabled=true;export3d.title='Loading 3D';}
-    showText('LOADING 3D');
+    canvas.hidden=true;if(hint)hint.hidden=true;
+    exportLabel('EXPORT 3D PNG',false,'Loading 3D');showText('LOADING 3D');
   };
   const markReady=()=>{
+    setMode('3d','3D SHOWROOM');
     if(fallback)fallback.hidden=true;
-    canvas.hidden=false;
-    if(hint)hint.hidden=false;
-    if(export3d){export3d.disabled=false;export3d.title='Save an image of the current 3D car';}
-    showText('3D READY');
+    canvas.hidden=false;if(hint)hint.hidden=false;
+    exportLabel('EXPORT 3D PNG',true,'Save an image of the current 3D car');showText('3D READY');
   };
   const disposeMaterial=material=>{
     if(!material)return;
@@ -79,8 +105,8 @@ if(root && shell && stage && canvas && raw){
     if(viewerModel){scene?.remove(viewerModel);viewerModel.traverse(n=>{if(n.isMesh){n.geometry?.dispose();disposeMaterial(n.material);}});viewerModel=null;}
     activeTexture?.dispose();activeTexture=null;modelKey='';
   };
-  function destroy(){++token;active=false;releaseModel();observer?.disconnect();observer=null;controls?.dispose();controls=null;renderer?.dispose();renderer?.forceContextLoss();renderer=null;camera=null;scene=null;}
-  function draw(){if(!active||document.hidden||!renderer||!scene||!camera)return;renderer.render(scene,camera);}
+  function destroy(){++token;downloadRequest?.abort();active=false;releaseModel();observer?.disconnect();observer=null;controls?.dispose();controls=null;renderer?.dispose();renderer?.forceContextLoss();renderer=null;camera=null;scene=null;}
+  function draw(){if(!active||mode!=='3d'||document.hidden||!renderer||!scene||!camera)return;renderer.render(scene,camera);}
   function resize(){if(!active||!renderer||!camera)return;const w=stage.clientWidth,h=stage.clientHeight;if(!w||!h)return;renderer.setPixelRatio(Math.min(devicePixelRatio||1,innerWidth<700?1:1.45));renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();draw();}
   async function engine(){if(api)return api;const [T,L,C]=await Promise.all([import('three'),import('three/addons/loaders/GLTFLoader.js'),import('three/addons/controls/OrbitControls.js')]);api={THREE:T,GLTFLoader:L.GLTFLoader,OrbitControls:C.OrbitControls};return api;}
   function setup(conf){
@@ -121,12 +147,15 @@ if(root && shell && stage && canvas && raw){
     const mat=old.clone();mat.color.set(0xffffff);mat.map=map;mat.transparent=false;mat.metalness=0;mat.roughness=.85;mat.side=THREE.DoubleSide;mat.needsUpdate=true;
     mesh.material=mat;disposeMaterial(old);activeTexture=map;
     syncLandedConfetti();
-    draw();markReady();
+    markReady();draw();
   }
   async function present(p){
     chosen=p;
     const current=++token;
-    if(!ready(p)){releaseModel();showFallback(p);return;}
+    downloadRequest?.abort();downloadRequest=null;clearSaveStatus();
+    if(renderMessage)renderMessage.hidden=true;
+    if(!p){releaseModel();setMode('empty','PAINT PENDING');if(fallback)fallback.hidden=true;canvas.hidden=true;if(hint)hint.hidden=true;exportLabel('SAVE RENDER',false,'Select a paint to save its render');showText('PAINT PENDING');return;}
+    if(!ready(p)){releaseModel();showFallback(p,current);return;}
     markLoading();
     try{
       await engine();if(current!==token)return;
@@ -143,13 +172,48 @@ if(root && shell && stage && canvas && raw){
     }catch(err){
       if(current!==token)return;
       console.error('[Aetherwing 3D]',err);
-      releaseModel();showFallback(p);
+      releaseModel();showFallback(p,current);
     }
   }
-  export3d?.addEventListener('click',()=>{
-    if(!ready(chosen)||!renderer||!viewerModel||export3d.disabled)return;
-    draw();canvas.toBlob(blob=>{if(!blob)return;const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=(chosen.slug||'paint')+'-3d.png';a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);},'image/png');
+  const download=(blob,filename)=>{
+    const url=URL.createObjectURL(blob),link=document.createElement('a');
+    link.href=url;link.download=filename;document.body.append(link);link.click();link.remove();
+    setTimeout(()=>URL.revokeObjectURL(url),3000);
+  };
+  const renderFilename=(paint,blob)=>{
+    const extensions={'image/png':'png','image/jpeg':'jpg','image/webp':'webp','image/gif':'gif','image/avif':'avif','image/svg+xml':'svg'};
+    const extension=extensions[blob.type.split(';')[0]]||new URL(paint.image,location.href).pathname.match(/\.(png|jpe?g|webp|gif|avif|svg)$/i)?.[1]||'png';
+    const name=[paint.driver,paint.number,paint.sponsor,paint.slug,'render'].filter(Boolean).join('-').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/[^a-z0-9-]+/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,'').slice(0,160);
+    return `${name||'aetherwing-render'}.${extension}`;
+  };
+  export3d?.addEventListener('click',async()=>{
+    if(export3d.disabled)return;
+    const paint=chosen,current=token;
+    clearSaveStatus();
+    if(mode==='static'){
+      const controller=new AbortController();downloadRequest=controller;
+      exportLabel('SAVING…',false,'Saving the original render');
+      try{
+        // Download the original bytes, without canvas recompression, cropping,
+        // scene effects or a screenshot of the displayed stage.
+        const response=await fetch(paint.image,{signal:controller.signal,credentials:'omit'});
+        if(!response.ok)throw new Error('Image download failed');
+        const blob=await response.blob();
+        if(!blob.size||blob.type&& !/^image\//.test(blob.type)&&blob.type!=='application/octet-stream')throw new Error('The host did not return an image');
+        if(current!==token||controller.signal.aborted)return;
+        download(blob,renderFilename(paint,blob));
+      }catch(error){
+        if(current!==token||controller.signal.aborted)return;
+        if(saveStatus){saveStatus.hidden=false;saveStatus.textContent='Could not save the render. Please try again.';}
+      }finally{
+        if(current===token){downloadRequest=null;exportLabel('SAVE RENDER',true,'Download the selected paint’s original image');}
+      }
+      return;
+    }
+    if(mode!=='3d'||!renderer||!viewerModel)return;
+    draw();canvas.toBlob(blob=>{if(blob&&current===token)download(blob,(paint.slug||'paint')+'-3d.png');},'image/png');
   });
+  retry?.addEventListener('click',()=>{if(mode==='unavailable')present(chosen);});
   document.addEventListener('aetherwing:paint-change',e=>present(e.detail?.paint||null));
   document.addEventListener('aetherwing:scene-change',syncLandedConfetti);
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)draw();});

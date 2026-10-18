@@ -253,7 +253,9 @@ for(const filename of ['nrrs-toyota.glb','sunoco-truck.glb','oreilly-chevy.glb']
 assert.match(html,/data-3d-stage/);
 assert.match(html,/data-3d-fallback/);
 assert.match(html,/data-3d-fallback-image/);
-assert.match(html,/3D unavailable/);
+assert.match(html,/data-stage-mode-label/);
+assert.match(html,/data-render-message/);
+assert.doesNotMatch(html,/3D unavailable/);
 assert.match(html,/data-3d-export-trigger/);
 assert.doesNotMatch(html,/data-view-2d|data-view-3d/);
 assert.match(html,/aetherwing:paint-change/);
@@ -261,7 +263,17 @@ assert.match(html,/3d-stage-v88\.js/);
 assert.match(html,/3d-stage-v88\.css/);
 const viewer=read('assets/3d-stage-v88.js');
 assert.match(viewer,/showFallback/);
-assert.match(viewer,/fallbackImage\.src=url/);
+assert.match(viewer,/image\.src=url/);
+assert.match(viewer,/setMode\('static','STATIC RENDER'\)/);
+assert.match(viewer,/exportLabel\('SAVE RENDER',true/);
+assert.match(viewer,/current!==token/);
+for(const filename of ['index.html','404.html']){
+  const page=read(filename);
+  assert.match(page,/data-3d-fallback-image/);
+  assert.match(page,/data-stage-mode-label/);
+  assert.match(page,/data-render-save-status/);
+  assert.doesNotMatch(page,/3D unavailable|data-3d-pending/);
+}
 assert.doesNotMatch(viewer,/Admin →|3D PNG NEEDED|3D BODY NEEDED/);
 assert.match(viewer,/forceContextLoss/);
 assert.doesNotMatch(viewer,/show2d|mode='2d'|2D READY/);
@@ -270,4 +282,4 @@ assert.doesNotMatch(viewer,/show2d|mode='2d'|2D READY/);
 const syntax=spawnSync(process.execPath,['--input-type=module','--check'],{input:viewer,encoding:'utf8'});
 assert.ifError(syntax.error);
 assert.equal(syntax.status,0,syntax.stderr);
-console.log('v88 verified: 3D-first stage, normal paint rack, fallback to selected database render with only 3D unavailable label, and on-demand loading.');
+console.log('Static render mode verified: original selected render, SAVE RENDER, accurate mode labels, guarded loading, and preserved 3D/paint-rack hooks.');
